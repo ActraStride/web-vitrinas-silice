@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+app/__init__.py
+app/main.py
+app/presenter.py
+app/views.py
+app/models/__init__.py
+app/models/session.py
+entre_vetas_core_orchestrator.egg-info/PKG-INFO
+entre_vetas_core_orchestrator.egg-info/SOURCES.txt
+entre_vetas_core_orchestrator.egg-info/dependency_links.txt
+entre_vetas_core_orchestrator.egg-info/entry_points.txt
+entre_vetas_core_orchestrator.egg-info/requires.txt
+entre_vetas_core_orchestrator.egg-info/top_level.txt
