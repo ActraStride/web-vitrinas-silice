@@ -1,0 +1,18 @@
+{
+  "session_id": "f3d98ca5-7ece-47cc-ac7d-be2c53744a1b",
+  "created": "2025-09-08 19:00:42",
+  "status": "completed",
+  "directory": "/home/actra_dev/Documents/silixe-web/evc",
+  "git": {
+    "branch": "main",
+    "base_commit": "5e5a62d1a31ec8c02a4accfdfa8bf2fe0ce0da84",
+    "final_commit": null
+  },
+  "issue": {
+    "number": null,
+    "title": "null",
+    "url": ""
+  },
+  "service_context": "monorepo",
+  "description": "Definir el roadmap de issues para el proyecto."
+}

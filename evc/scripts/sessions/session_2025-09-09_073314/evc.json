@@ -1,0 +1,18 @@
+{
+  "session_id": "f55037a2-80bd-411f-ba5d-de786bdd127e",
+  "created": "2025-09-09 07:33:14",
+  "status": "active",
+  "directory": "/home/actra_dev/Documents/silixe-web/evc",
+  "git": {
+    "branch": "feature/project-structure",
+    "base_commit": "5e5a62d1a31ec8c02a4accfdfa8bf2fe0ce0da84",
+    "final_commit": null
+  },
+  "issue": {
+    "number": 1,
+    "title": "Configurar estructura básica de directorios",
+    "url": "https://github.com/ActraStride/web-vitrinas-silice/issues/1"
+  },
+  "service_context": "monorepo",
+  "description": "Trabajar en issue #1: Configurar estructura básica de directorios"
+}

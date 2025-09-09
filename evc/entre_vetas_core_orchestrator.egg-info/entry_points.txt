@@ -1,0 +1,2 @@
+[console_scripts]
+evc = app.main:main
