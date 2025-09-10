@@ -1,0 +1,18 @@
+{
+  "session_id": "c74048a3-3f47-47d0-be49-6ce6471156a1",
+  "created": "2025-09-09 16:56:55",
+  "status": "active",
+  "directory": "/home/actra_dev/Documents/silixe-web/evc",
+  "git": {
+    "branch": "feature/docker",
+    "base_commit": "bfae25792a9742cac63c6f173564b91902aa7776",
+    "final_commit": null
+  },
+  "issue": {
+    "number": 3,
+    "title": "Crear Dockerfile para la aplicación",
+    "url": "https://github.com/ActraStride/web-vitrinas-silice/issues/3"
+  },
+  "service_context": "monorepo",
+  "description": "Trabajar en issue #3: Crear Dockerfile para la aplicación"
+}
