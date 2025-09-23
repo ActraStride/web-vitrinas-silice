@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Vitrinas Sílice | Vitrinas de Calidad en Guadalajara</title>
     <style>
         * {
@@ -12,10 +13,10 @@
         }
 
         :root {
-            --azul-principal: #1e3a8a;
-            --azul-medio: #3b82f6;
-            --azul-claro: #60a5fa;
-            --azul-muy-claro: #dbeafe;
+            --azul-principal: #5f849fff;
+            --azul-medio: #9cbdd1ff;
+            --azul-claro: #7facbfff;
+            --azul-muy-claro: #d1e2e9ff;
             --plateado: #e5e7eb;
             --plateado-oscuro: #9ca3af;
             --blanco: #ffffff;
@@ -41,7 +42,7 @@
         }
 
         nav.scrolled {
-            background: rgba(30, 58, 138, 0.95);
+            background: var(--azul-principal);
             backdrop-filter: blur(10px);
         }
 
@@ -70,10 +71,25 @@
         }
 
         .logo::before {
-            content: "◈";
-            font-size: 2rem;
-            color: var(--plateado);
-            animation: rotate 10s linear infinite;
+            content: ""; /* MUY IMPORTANTE: Dejarlo vacío */
+            display: inline-block; /* Para que acepte width y height */
+            
+            /* Define el tamaño del logo */
+            width: 52px;  /* 2rem es aprox. 32px, ajústalo a tu gusto */
+            height: 52px; /* Mismo que el ancho para que sea un cuadrado */
+
+            /* Carga tu imagen */
+            background-image: url('img/logo_marine.png'); /* O .png, .jpg, etc. */
+
+            /* Ajusta cómo se ve la imagen de fondo */
+            background-size: contain; /* Asegura que la imagen quepa completa */
+            background-repeat: no-repeat; /* Para que no se repita */
+            background-position: center; /* Para que esté centrada */
+
+            /* La animación se mantiene igual */
+            animation: fadeInUp 2s linear;
+
+            /* Las propiedades 'font-size' y 'color' ya no son necesarias aquí */
         }
 
         @keyframes rotate {
@@ -260,8 +276,17 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shine 3s infinite;
+            /* --- CAMBIOS AQUÍ --- */
+            /* Reemplazamos el 'background' anterior por estas propiedades */
+            background-image: url('img/glass_showcase_4.png'); /* Usa tu imagen. PNG con transparencias o SVG funcionan genial. */
+            background-repeat: no-repeat;
+            background-position: center center; /* Centramos la imagen en la capa gigante */
+            background-size: 50%; /* Ajusta el tamaño de tu imagen dentro de la capa. Prueba diferentes valores. */
+            
+            /* opacity: 0.15; Opcional: Haz la imagen más sutil para que parezca un reflejo */
+            
+            /* La animación se mantiene igual para que la imagen rote */
+            animation: fadeIn 3s; 
         }
 
         @keyframes shine {
@@ -528,6 +553,39 @@
             color: var(--plateado);
         }
 
+        /* === ESTILOS PARA EL BOTÓN DE WHATSAPP === */
+        .whatsapp-button {
+            position: fixed; /* Lo mantiene fijo en la pantalla */
+            bottom: 20px;    /* 20px desde la parte inferior */
+            right: 20px;     /* 20px desde la parte derecha */
+            z-index: 1000;   /* Se asegura de que esté por encima de otros elementos */
+
+            /* Estilos visuales */
+            background-color: #25D366; /* Color oficial de WhatsApp */
+            color: white;              /* Color del icono */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;        /* Lo hace un círculo perfecto */
+            text-align: center;
+            font-size: 28px;           /* Tamaño del icono */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+            text-decoration: none;    /* Sin subrayado */
+            
+            /* Centra el icono dentro del círculo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Transición suave para el efecto hover */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
+
+        /* Efecto al pasar el ratón por encima (hover) */
+        .whatsapp-button:hover {
+            transform: scale(1.1); /* Agranda ligeramente el botón */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -607,7 +665,7 @@
                 <a href="#contacto" class="cta-button">Solicita tu Cotización</a>
             </div>
             <div class="hero-image">
-                <div class="glass-showcase">◈</div>
+                <div class="glass-showcase"></div>
             </div>
         </div>
     </section>
@@ -705,16 +763,12 @@
 
     <!-- Contacto -->
     <section class="contacto" id="contacto">
-        <h2 class="section-title fade-in">Contáctanos</h2>
+        <h2 class="section-title fade-in">Asesoría y Presupuesto sin Compromiso</h2>
         <div class="contacto-container fade-in">
             <form class="contacto-form" id="contactForm">
                 <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
+                    <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
@@ -748,8 +802,8 @@
             <div class="footer-section">
                 <h3>Contacto</h3>
                 <p>📍 Guadalajara, Jalisco, México</p>
-                <p>📞 +52 33 1234 5678</p>
-                <p>✉️ info@vitrinassilice.mx</p>
+                <p>📞 +52 33 3468 3900</p>
+                <p>✉️ info@vitrinassilice.com</p>
             </div>
             <div class="footer-section">
                 <h3>Horario</h3>
@@ -762,6 +816,9 @@
             <p>&copy; 2024 Vitrinas Sílice. Todos los derechos reservados.</p>
         </div>
     </footer>
+    <a href="https://wa.me/3334683900" class="whatsapp-button" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // Navegación móvil
@@ -1087,7 +1144,7 @@
                 bottom: 20px;
                 left: 20px;
                 right: 20px;
-                background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+                background: linear-gradient(135deg, #5f849fff, #9cbdd1ff);
                 color: white;
                 padding: 20px;
                 border-radius: 10px;
@@ -1100,7 +1157,7 @@
                 max-width: 500px;
                 margin: 0 auto;
             `;
-            
+
             cookieNotice.innerHTML = `
                 <span>Utilizamos cookies para mejorar tu experiencia 🍪</span>
                 <button style="
