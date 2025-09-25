@@ -1,0 +1,51 @@
+name: Create and Publish Release Docker Image
+
+# Este workflow se activa CADA VEZ que empujas un tag nuevo que empiece con "v"
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+# Variables de entorno para todo el job
+env:
+  REGISTRY: ghcr.io  # Usaremos GitHub Container Registry, es más fácil de integrar
+  IMAGE_NAME: ${{ github.repository }} # El nombre será "tu-usuario/silixe-web"
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Permiso para escribir en el registro de paquetes de GitHub
+
+    steps:
+      # 1. Clona el código del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Inicia sesión en el registro de contenedores (GHCR)
+      - name: Log in to the Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }} # Este token se genera automáticamente
+
+      # 3. Extrae la versión del Git Tag y la guarda como una variable
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+
+      # 4. Construye la imagen y la empuja al registro
+      #    - Le pone el tag de la versión extraído en el paso anterior (ej: v1.2.3)
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
