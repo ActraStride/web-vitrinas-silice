@@ -338,15 +338,19 @@
             width: 200%;
             height: 200%;
             background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.15) 50%,
-                transparent 70%
+                110deg,
+                transparent 20%,
+                rgba(255, 255, 255, 0.08) 40%,
+                rgba(255, 255, 255, 0.25) 50%,
+                rgba(255, 255, 255, 0.08) 60%,
+                transparent 80%
             );
-            animation: shimmer 5s infinite linear;
-            z-index: 3;
+            animation: shimmer 10s linear infinite;
+            z-index: 0;
             pointer-events: none;
+            will-change: transform;
         }
+
 
         /* Partículas flotantes decorativas */
         .floating-particles {
@@ -386,12 +390,16 @@
             }
         }
 
+        
         @keyframes shimmer {
             0% {
-                transform: rotate(45deg) translate(-150%, 150%);
+                transform: translateX(-100%) translateY(-100%) rotate(-75deg);
+            }
+            30% {
+                transform: translateX(100%) translateY(100%) rotate(-75deg);
             }
             100% {
-                transform: rotate(45deg) translate(150%, -150%);
+                transform: translateX(100%) translateY(100%) rotate(-75deg);
             }
         }
 
@@ -924,8 +932,8 @@
     <!-- Productos Section -->
     <section class="products-section" id="productos">
         <div class="section-header scroll-animate">
-            <h2>Colección Premium</h2>
-            <p>Cada vitrina es una obra maestra de ingeniería y diseño, creada para realzar la belleza de sus productos.</p>
+            <h2>Nuestras Vitrinas</h2>
+            <p>Combinamos estética y funcionalidad para crear la solución de exhibición que necesita.</p>
         </div>
         <div class="products-grid">
             <div class="product-card scroll-animate">
@@ -976,7 +984,7 @@
     <!-- Proceso Section -->
     <section class="process-section" id="proceso">
         <div class="section-header scroll-animate">
-            <h2>Proceso de Excelencia</h2>
+            <h2>¿Cómo Trabajamos?</h2>
             <p>Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
         </div>
         <div class="process-timeline">
