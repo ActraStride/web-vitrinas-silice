@@ -1,0 +1,14 @@
+/* Variables CSS */
+:root {
+    --primary-dark: #1a1f2e;
+    --primary-blue: #2c3e50;
+    --accent-blue: #3498db;
+    --glass-blue: #e8f4f8;
+    --text-light: #ecf0f1;
+    --text-gray: #95a5a6;
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --shadow-soft: 0 10px 40px rgba(0,0,0,0.1);
+    --shadow-luxury: 0 20px 60px rgba(0,0,0,0.15);
+    --border-radius: 16px;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
