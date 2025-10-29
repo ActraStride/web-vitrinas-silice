@@ -6,7 +6,7 @@
     <title>Vitrinas Sílice - Diseño Premium de Vitrinas en Guadalajara</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <style>
-        /* Reset y Variables CSS */
+        /* 1. RESET Y VARIABLES CSS */
         :root {
             --primary-dark: #1a1f2e;
             --primary-blue: #2c3e50;
@@ -37,660 +37,32 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
         }
 
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 31, 46, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
+        /* 2. ESTILOS GENERALES Y UTILIDADES */
+        main {
+            padding-top: 80px; /* Espacio para el header fijo */
+        }
+        
+        .content-wrapper {
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .content-wrapper.fade-out {
             opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
         }
 
-        .modal-overlay.active {
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scroll-animate.visible {
             opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-container {
-            background: rgba(44, 62, 80, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                        0 0 0 1px rgba(255, 255, 255, 0.1);
-            transform: scale(0.9) translateY(20px);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .modal-overlay.active .modal-container {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: transparent;
-            border: none;
-            color: var(--text-gray);
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
-            transform: rotate(90deg);
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .modal-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
-        }
-
-        .modal-icon svg {
-            width: 30px;
-            height: 30px;
-            stroke: white;
-            stroke-width: 2;
-            fill: none;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-
-        .modal-subtitle {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            font-weight: 300;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            background: rgba(26, 31, 46, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            background: rgba(26, 31, 46, 0.8);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-gray);
-        }
-
-        .form-select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2395a5a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1.25rem center;
-            padding-right: 3rem;
-        }
-
-        /* --- SOLUCIÓN AQUÍ --- */
-        .form-select:focus {
-            outline: none;
-            background-repeat: no-repeat;
-            background-position: right 1.25rem center;
-            padding-right: 3rem;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4); /* Un resplandor azul semi-transparente */
-            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-        }
-
-        .form-select option {
-            background: var(--primary-dark);
-            color: var(--text-light);
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-submit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s;
-        }
-
-        .btn-submit:hover::before {
-            left: 100%;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4);
-        }
-
-        .btn-submit:active {
             transform: translateY(0);
         }
-
-        /* Demo button */
-        .demo-btn {
-            padding: 1rem 3rem;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
-        }
-
-        .demo-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Header y Navegación */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(26, 31, 46, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo a {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-decoration: none;
-            color: var(--text-light);
-            text-transform: uppercase;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .logo a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent-blue);
-            transition: width 0.3s ease;
-        }
-
-        .logo a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links ul {
-            display: flex;
-            list-style: none;
-            gap: 3rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-light);
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 1px;
-            background: var(--accent-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            min-height: 100vh;
-            padding: 8rem 5% 4rem;
-            max-width: 1600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: -10%;
-            width: 50%;
-            height: 50%;
-            background: radial-gradient(circle, rgba(52, 152, 219, 0.15) 0%, transparent 70%);
-            filter: blur(100px);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
-
-        .hero-content {
-            animation: fadeInLeft 1s ease-out;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 200;
-            letter-spacing: -1px;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            line-height: 1.8;
-            max-width: 500px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem; /* Ajusta este valor si quieres más o menos espacio */
-            padding: 1rem 3rem;
-            background: transparent;
-            color: var(--text-light);
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        .btn-secondary:hover {
-            background-color: #25D366; /* El color verde oficial de WhatsApp */
-            border-color: #25D366;     /* Cambiamos el borde también para que sea sólido */
-            color: #ffffff;            /* Cambiamos el texto a blanco para que sea legible */
-        }
-
-        /* ---- AÑADIR ESTE NUEVO CÓDIGO ---- */
-
-        /* SECCIÓN MEJORADA - Hero Visual */
-        .hero-visual {
-            position: relative;
-            animation: fadeInRight 1s ease-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 600px;
-        }
-
-        /* Efectos de fondo decorativos */
-        .hero-visual::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .hero-visual::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite 2s;
-            z-index: 0;
-        }
-
-        /* Contenedor principal de la imagen */
-        .showcase-image-container {
-            position: relative;
-            z-index: 1;
-            transform-style: preserve-3d;
-            transform: perspective(1500px) rotateY(-12deg) rotateX(5deg);
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            overflow: visible;
-        }
-
-        .showcase-image-container:hover {
-            transform: perspective(1500px) rotateY(0deg) rotateX(0deg) scale(1.08);
-        }
-
-        /* Efecto de resplandor detrás de la imagen */
-        .showcase-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: linear-gradient(135deg, 
-                rgba(59, 130, 246, 0.4) 0%, 
-                rgba(147, 197, 253, 0.3) 50%,
-                rgba(59, 130, 246, 0.4) 100%);
-            filter: blur(60px);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: glowPulse 3s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        /* La imagen principal - AHORA MÁS GRANDE */
-        .showcase-image {
-            display: block;
-            width: 94%;
-            padding-left: 3%;
-            max-width: 700px; /* Aumentado de 450px a 700px */
-            height: auto;
-            filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5))
-                    drop-shadow(0 20px 30px rgba(59, 130, 246, 0.3));
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Efecto de brillo animado mejorado */
-        .showcase-image-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                110deg,
-                transparent 20%,
-                rgba(255, 255, 255, 0.08) 40%,
-                rgba(255, 255, 255, 0.25) 50%,
-                rgba(255, 255, 255, 0.08) 60%,
-                transparent 80%
-            );
-            animation: shimmer 10s linear infinite;
-            z-index: 0;
-            pointer-events: none;
-            will-change: transform;
-        }
-
-
-        /* Partículas flotantes decorativas */
-        .floating-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(96, 165, 250, 0.6);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 40%; left: 80%; animation-delay: 1s; }
-        .particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; }
-        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 3s; }
-        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 1.5s; }
-
-        /* Animaciones */
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(-75deg);
-            }
-            30% {
-                transform: translateX(100%) translateY(100%) rotate(-75deg);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(-75deg);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                opacity: 0.6;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.5;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.05);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) translateX(0px);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translateY(-20px) translateX(10px);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translateY(-40px) translateX(-10px);
-                opacity: 0.8;
-            }
-            75% {
-                transform: translateY(-20px) translateX(10px);
-                opacity: 0.6;
-            }
-        }
-
-    
-       
-        /* Sección de Productos */
-        .products-section {
-            padding: 6rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
         .section-header {
             text-align: center;
             margin-bottom: 5rem;
@@ -710,414 +82,236 @@
             margin: 0 auto;
         }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
+        /* 3. COMPONENTES */
 
-        .product-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius);
-            overflow: hidden;
+        /* Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 31, 46, 0.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; opacity: 0; visibility: hidden;
             transition: var(--transition);
-            position: relative;
-            cursor: pointer;
         }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-container {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 3rem; max-width: 500px; width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            transform: scale(0.9) translateY(20px); transition: var(--transition); position: relative;
+        }
+        .modal-overlay.active .modal-container { transform: scale(1) translateY(0); }
+        .modal-close {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none;
+            color: var(--text-gray); font-size: 1.5rem; cursor: pointer;
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; transition: var(--transition);
+        }
+        .modal-close:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-light); transform: rotate(90deg); }
+        .modal-header { text-align: center; margin-bottom: 2rem; }
+        .modal-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem; box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+        .modal-icon svg { width: 30px; height: 30px; stroke: white; stroke-width: 2; fill: none; }
+        .modal-title { font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem; color: var(--text-light); }
+        .modal-subtitle { color: var(--text-gray); font-size: 0.95rem; font-weight: 300; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-light); font-size: 0.9rem; font-weight: 400; }
+        .form-input {
+            width: 100%; padding: 1rem 1.25rem; background: rgba(26, 31, 46, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            color: var(--text-light); font-size: 1rem; transition: var(--transition); font-family: inherit;
+        }
+        .form-input:focus {
+            outline: none; border-color: var(--accent-blue); background: rgba(26, 31, 46, 0.8);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .form-input::placeholder { color: var(--text-gray); }
+        .form-select {
+            cursor: pointer; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2395a5a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 1.25rem center; padding-right: 3rem;
+        }
+        .form-select:focus {
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4);
+        }
+        .form-select option { background: var(--primary-dark); color: var(--text-light); }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(52, 152, 219, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+        /* Botones */
+        .btn-submit, .btn-primary {
+            display: inline-block; padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
+            color: white; text-decoration: none; border: none;
+            border-radius: 50px; font-weight: 400; letter-spacing: 1px;
+            transition: var(--transition); box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            position: relative; overflow: hidden; cursor: pointer;
         }
+        .btn-submit { width: 100%; border-radius: 12px; }
+        .btn-submit::before, .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+        .btn-submit:hover, .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4); }
+        .btn-submit:hover::before, .btn-primary:hover::before { left: 100%; }
+        .btn-submit:active, .btn-primary:active { transform: translateY(0); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 3rem;
+            background: transparent; color: var(--text-light); text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px;
+            font-weight: 400; letter-spacing: 1px; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .btn-secondary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 211, 102, 0.25), transparent);
+            transition: left 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn-secondary:hover { transform: translateY(-2px); border-color: rgba(37, 211, 102, 0.5); }
+        .btn-secondary:hover::before { left: 100%; }
 
-        .product-image {
-            height: 300px;
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-            position: relative;
-            overflow: hidden;
+        /* Tarjetas de Producto */
+        .product-card {
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius);
+            overflow: hidden; transition: var(--transition); position: relative; cursor: pointer;
         }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(52, 152, 219, 0.2); background: rgba(255, 255, 255, 0.05); }
+        .product-image { height: 300px; background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1)); position: relative; overflow: hidden; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .product-image::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, transparent 50%, rgba(26, 31, 46, 0.8) 100%); }
+        .product-info { padding: 2rem; }
+        .product-info h3 { font-size: 1.5rem; font-weight: 300; margin-bottom: 1rem; letter-spacing: 1px; }
+        .product-info p { color: var(--text-gray); line-height: 1.6; margin-bottom: 1.5rem; }
+        .product-features { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .feature-tag { padding: 0.3rem 1rem; background: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 20px; font-size: 0.85rem; color: var(--accent-blue); }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        /* 4. LAYOUT Y SECCIONES */
+        
+        /* Header y Navegación */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(26, 31, 46, 0.95);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 1000; transition: var(--transition);
         }
+        header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; max-width: 1400px; margin: 0 auto; }
+        .logo a { font-size: 1.8rem; font-weight: 300; letter-spacing: 3px; text-decoration: none; color: var(--text-light); text-transform: uppercase; transition: var(--transition); position: relative; }
+        .logo a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: var(--accent-blue); transition: width 0.3s ease; }
+        .logo a:hover::after { width: 100%; }
+        .nav-links ul { display: flex; list-style: none; gap: 3rem; }
+        .nav-links a { text-decoration: none; color: var(--text-gray); font-size: 0.95rem; font-weight: 400; letter-spacing: 1px; transition: var(--transition); position: relative; padding: 0.5rem 0; cursor: pointer; }
+        .nav-links a:hover { color: var(--text-light); }
+        .nav-links a.active { color: var(--text-light); }
+        .nav-links a::before {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 0; height: 1px;
+            background: var(--accent-blue); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
 
-        .product-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(26, 31, 46, 0.8) 100%);
-        }
+        /* Sección Hero */
+        .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: calc(100vh - 80px); padding: 0 5% 4rem; max-width: 1600px; margin: 0 auto; position: relative; }
+        .hero-content { animation: fadeInLeft 1s ease-out; z-index: 2; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 200; letter-spacing: -1px; line-height: 1.1; margin-bottom: 2rem; background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 3rem; font-weight: 300; line-height: 1.8; max-width: 500px; }
+        .btn-group { display: flex; gap: 1.5rem; align-items: center; }
+        .hero-visual { position: relative; animation: fadeInRight 1s ease-out; display: flex; justify-content: center; align-items: center; min-height: 600px; }
+        .hero-visual::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite; z-index: 0; }
+        .hero-visual::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite 2s; z-index: 0; }
+        .showcase-image-container { position: relative; z-index: 1; transform-style: preserve-3d; transform: perspective(1500px) rotateY(-12deg) rotateX(5deg); transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); overflow: visible; }
+        .showcase-image-container:hover { transform: perspective(1500px) rotateY(0deg) rotateX(0deg) scale(1.08); }
+        .showcase-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; height: 120%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(147, 197, 253, 0.3) 50%, rgba(59, 130, 246, 0.4) 100%); filter: blur(60px); border-radius: 50%; opacity: 0.6; animation: glowPulse 3s ease-in-out infinite; z-index: -1; }
+        .showcase-image { display: block; width: 94%; padding-left: 3%; max-width: 700px; height: auto; filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px rgba(59, 130, 246, 0.3)); position: relative; z-index: 2; }
+        .showcase-image-container::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient( 110deg, transparent 20%, rgba(255, 255, 255, 0.08) 40%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.08) 60%, transparent 80% ); animation: shimmer 10s linear infinite; z-index: 0; pointer-events: none; will-change: transform; }
+        .floating-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; width: 4px; height: 4px; background: rgba(96, 165, 250, 0.6); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; } .particle:nth-child(2) { top: 40%; left: 80%; animation-delay: 1s; } .particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; } .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 3s; } .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 1.5s; }
 
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-info h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .product-info p {
-            color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .product-features {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .feature-tag {
-            padding: 0.3rem 1rem;
-            background: rgba(52, 152, 219, 0.1);
-            border: 1px solid rgba(52, 152, 219, 0.3);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-        }
-
-        /* Sección de Proceso */
-        .process-section {
-            padding: 6rem 5%;
-            background: rgba(255, 255, 255, 0.02);
-            position: relative;
-        }
-
-        .process-timeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 4rem auto 0;
-        }
-
-        .timeline-item {
-            text-align: center;
-            position: relative;
-        }
-
-        .timeline-number {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, var(--accent-blue), #2980b9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 200;
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
-            position: relative;
-        }
-
-        .timeline-number::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(52, 152, 219, 0.3), transparent);
-        }
-
-        .timeline-item:last-child .timeline-number::after {
-            display: none;
-        }
-
-        .timeline-item h3 {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .timeline-item p {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
+        /* Sección Productos */
+        .products-section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem; }
+        
+        /* Sección Proceso */
+        .process-section { padding: 6rem 5%; background: rgba(255, 255, 255, 0.02); position: relative; }
+        .process-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 4rem auto 0; }
+        .timeline-item { text-align: center; position: relative; }
+        .timeline-number { width: 80px; height: 80px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--accent-blue), #2980b9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 200; box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3); position: relative; }
+        .timeline-number::after { content: ''; position: absolute; top: 50%; left: 100%; width: 100px; height: 1px; background: linear-gradient(90deg, rgba(52, 152, 219, 0.3), transparent); }
+        .timeline-item:last-child .timeline-number::after { display: none; }
+        .timeline-item h3 { font-size: 1.3rem; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; }
+        .timeline-item p { color: var(--text-gray); line-height: 1.6; }
 
         /* Sección CTA */
-        .cta-section {
-            padding: 8rem 5%;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 50%);
-            animation: float 30s ease-in-out infinite reverse;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-content h2 {
-            font-size: 3rem;
-            font-weight: 200;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-content p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 3rem;
-        }
+        .cta-section { padding: 8rem 5%; text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 50%); animation: float 30s ease-in-out infinite reverse; }
+        .cta-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .cta-content h2 { font-size: 3rem; font-weight: 200; margin-bottom: 2rem; background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .cta-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 3rem; }
 
         /* Footer */
-        footer {
-            padding: 4rem 5% 2rem;
-            background: rgba(26, 31, 46, 0.95);
-            backdrop-filter: blur(20px);
+        footer { padding: 4rem 5% 2rem; background: rgba(26, 31, 46, 0.95); backdrop-filter: blur(20px); }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto 3rem; }
+        .footer-brand h3 { font-size: 1.8rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 1rem; text-transform: uppercase; }
+        .footer-brand p { color: var(--text-gray); line-height: 1.8; margin-bottom: 2rem; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-gray); text-decoration: none; transition: var(--transition); }
+        .social-links a:hover { background: var(--accent-blue); border-color: var(--accent-blue); color: white; transform: translateY(-3px); }
+        .footer-column h4 { font-size: 1rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 1rem; }
+        .footer-column ul li a { color: var(--text-gray); text-decoration: none; transition: var(--transition); }
+        .footer-column ul li a:hover { color: var(--text-light); padding-left: 5px; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: var(--text-gray); }
+
+        /* 5. ANIMACIONES */
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes shimmer { 0% { transform: translateX(-100%) translateY(-100%) rotate(-75deg); } 30% { transform: translateX(100%) translateY(100%) rotate(-75deg); } 100% { transform: translateX(100%) translateY(100%) rotate(-75deg); } }
+        @keyframes glowPulse { 0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); } }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.05); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; } 25% { transform: translateY(-20px) translateX(10px); opacity: 0.6; } 50% { transform: translateY(-40px) translateX(-10px); opacity: 0.8; } 75% { transform: translateY(-20px) translateX(10px); opacity: 0.6; } }
+
+        /* 6. MEDIA QUERIES RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; gap: 3rem; text-align: center; min-height: auto; padding: 4rem 5%; }
+            .hero-content p { margin: 0 auto 3rem; }
+            .btn-group { justify-content: center; }
+            .showcase-image { max-width: 550px; }
         }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto 3rem;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .footer-brand p {
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-column h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 1rem;
-        }
-
-        .footer-column ul li a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--text-light);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: var(--text-gray);
-        }
-
-        /* Animaciones de Scroll */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Animaciones */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Responsive */
-         @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .showcase-image {
-                max-width: 550px;
-            }
-        }
-
         @media (max-width: 968px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .hero-content p {
-                margin: 0 auto 3rem;
-            }
-
-            .btn-group {
-                justify-content: center;
-            }
-
-            .glass-showcase {
-                width: 300px;
-                height: 400px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-number::after {
-                display: none;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
+            .products-grid { grid-template-columns: 1fr; }
+            .timeline-number::after { display: none; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .social-links { justify-content: center; }
         }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .cta-content h2 {
-                font-size: 2rem;
-            }
+            .nav-links { display: none; } /* O implementar un menú hamburguesa */
+            .hero-content h1, .section-header h2, .cta-content h2 { font-size: 2.5rem; }
         }
-
-
         @media (max-width: 640px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .showcase-image {
-                max-width: 100%;
-            }
-
-            .hero-visual {
-                min-height: 400px;
-            }
+            .hero-content h1, .section-header h2, .cta-content h2 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+            .showcase-image { max-width: 100%; }
+            .hero-visual { min-height: 400px; }
         }
     </style>
 </head>
 <body>
     <div class="modal-overlay" id="contactModal">
         <div class="modal-container">
-            <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">
-                <svg viewBox="0 0 24 24">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Cerrar">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
-
             <div class="modal-header">
                 <div class="modal-icon">
                     <svg viewBox="0 0 24 24">
@@ -1127,56 +321,28 @@
                 <h2 class="modal-title">Solicitar Cotización</h2>
                 <p class="modal-subtitle">Déjanos tu número y te contactaremos</p>
             </div>
-
-            <form onsubmit="handleSubmit(event)">
+            <form id="contactForm">
                 <div class="form-group">
                     <label for="name" class="form-label">Nombre</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name"
-                        class="form-input" 
-                        placeholder="Tu nombre completo"
-                        required
-                        minlength="2"
-                    >
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre completo" required minlength="2">
                 </div>
-
                 <div class="form-group">
                     <label for="phone" class="form-label">Número de Teléfono</label>
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone"
-                        class="form-input" 
-                        placeholder="+52 33 1234 5678"
-                        required
-                        pattern="[0-9+\s\-()]+"
-                    >
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+52 33 1234 5678" required pattern="[0-9+\s\-()]+">
                 </div>
-
                 <div class="form-group">
                     <label for="interest" class="form-label">¿Qué te interesa?</label>
-                    <select 
-                        id="interest" 
-                        name="interest"
-                        class="form-input form-select"
-                        required
-                    >
-                        <!-- <option value="" disabled selected>Selecciona una opción</option> -->
+                    <select id="interest" name="interest" class="form-input form-select" required>
                         <option value="vitrinas">Vitrinas</option>
                         <option value="panel-ranurado">Panel Ranurado</option>
                         <option value="carpinteria">Carpintería</option>
                     </select>
                 </div>
-
-                <button type="submit" class="btn-submit">
-                    Solicitar Llamada
-                </button>
+                <button type="submit" class="btn-submit">Solicitar Llamada</button>
             </form>
         </div>
     </div>
-    <!-- Header -->
+    
     <header id="header">
         <nav>
             <div class="logo">
@@ -1185,149 +351,81 @@
             </div>
             <div class="nav-links">
                 <ul>
-                    <li><a href="#vitrinas">Vitrinas</a></li>
-                    <li><a href="#muebleria">Mueblería</a></li>
-                    <li><a href="#" onclick="openModal(); return false;">Contacto</a></li>
+                    <li><a data-section="vitrinas" class="active">Vitrinas</a></li>
+                    <li><a data-section="muebleria">Mueblería</a></li>
+                    <li><a id="contactNavBtn">Contacto</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="floating-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
-            <h1>El Escenario Perfecto para sus Productos</h1>
-            <p>Creamos vitrinas de exhibición que capturan la atención, generan impacto y aumentan el valor percibido.</p>
-            <div class="btn-group">
-                <a href="#contacto" class="btn-primary">Solicitar Cotización</a>
-                <a href="#productos" class="btn-secondary"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>  
-                    WhatsApp
-                </a>
-            </div>
-        </div>
-        
-        <div class="hero-visual">
-            <!-- Partículas flotantes -->
-            <div class="floating-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
-            
-            <!-- Contenedor de la imagen con efectos -->
-            <div class="showcase-image-container">
-                <!-- Resplandor de fondo -->
-                <div class="showcase-glow"></div>
-                
-                <!-- Imagen principal -->
-                <img src="assets/img/glass_showcase_4.png" 
-                     alt="Vitrina de exhibición de cristal SÍLICE" 
-                     class="showcase-image">
-            </div>
-        </div>
-    </section>
-
-    <!-- Productos Section -->
-    <section class="products-section" id="productos">
-        <div class="section-header scroll-animate">
-            <h2>Nuestras Vitrinas</h2>
-            <p>Combinamos estética y funcionalidad para crear la solución de exhibición que necesita.</p>
-        </div>
-        <div class="products-grid">
-            <div class="product-card scroll-animate">
-                <div class="product-image">
-                    <img src="assets/img/glass_showcase_4.png" alt="Vitrina Modular">
-                </div>
-                <div class="product-info">
-                    <h3>Vitrina Ejecutiva</h3>
-                    <p>Diseño minimalista con iluminación LED integrada y sistema de apertura suave.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">Cristal Templado</span>
-                        <span class="feature-tag">LED Premium</span>
-                        <span class="feature-tag">Personalizable</span>
+    <main>
+        <div class="content-wrapper">
+            <!-- Hero Section -->
+            <section class="hero" id="home">
+                <div class="hero-content">
+                    <h1 data-content="heroTitle">El Escenario Perfecto para sus Productos</h1>
+                    <p data-content="heroSubtitle">Creamos vitrinas de exhibición que capturan la atención, generan impacto y aumentan el valor percibido.</p>
+                    <div class="btn-group">
+                        <a href="#contacto" class="btn-primary">Solicitar Cotización</a>
+                        <a href="https://wa.me/523334683900?text=hola" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 25 25" fill="currentColor" width="23" height="23"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>  
+                            WhatsApp
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="product-card scroll-animate">
-                <div class="product-image">
-                    <img src="assets/img/glass_showcase_3.jpeg" alt="Vitrina Modular">
-                </div>
-                <div class="product-info">
-                    <h3>Vitrina Torre</h3>
-                    <p>Máxima visibilidad con estructura de aluminio anodizado y cristal ultra claro.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">360° Vista</span>
-                        <span class="feature-tag">Altura Ajustable</span>
-                        <span class="feature-tag">Antirreflejo</span>
+                <div class="hero-visual">
+                    <div class="floating-particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+                    <div class="showcase-image-container">
+                        <div class="showcase-glow"></div>
+                        <img src="assets/img/glass_showcase_4.png" alt="Vitrina de exhibición de cristal" class="showcase-image" data-content="heroImage">
                     </div>
                 </div>
-            </div>
-            <div class="product-card scroll-animate">
-                <div class="product-image">
-                    <img src="assets/img/glass_showcase_2.png" alt="Vitrina Modular">
+            </section>
+
+            <!-- Productos Section -->
+            <section class="products-section" id="productos">
+                <div class="section-header scroll-animate">
+                    <h2 data-content="productsTitle">Nuestras Vitrinas</h2>
+                    <p data-content="productsSubtitle">Combinamos estética y funcionalidad para crear la solución de exhibición que necesita.</p>
                 </div>
-                <div class="product-info">
-                    <h3>Vitrina Modular</h3>
-                    <p>Sistema modular expandible con conectividad inteligente y control remoto.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">IoT Ready</span>
-                        <span class="feature-tag">Modular</span>
-                        <span class="feature-tag">App Control</span>
+                <div class="products-grid" data-content="productsGrid">
+                    <!-- El contenido se genera dinámicamente con JS -->
+                </div>
+            </section>
+
+            <!-- Resto de las secciones (Proceso, CTA, Footer) son iguales y no necesitan ser dinámicas -->
+            <section class="process-section" id="proceso">
+                 <div class="section-header scroll-animate">
+                    <h2>¿Cómo Trabajamos?</h2>
+                    <p>Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
+                </div>
+                <div class="process-timeline">
+                    <div class="timeline-item scroll-animate">
+                        <div class="timeline-number">01</div><h3>Consultoría</h3><p>Analizamos sus necesidades y diseñamos la solución perfecta para su espacio.</p>
+                    </div>
+                    <div class="timeline-item scroll-animate">
+                        <div class="timeline-number">02</div><h3>Diseño 3D</h3><p>Creamos renderizados digitales para visualizar el resultado final.</p>
+                    </div>
+                    <div class="timeline-item scroll-animate">
+                        <div class="timeline-number">03</div><h3>Fabricación</h3><p>Damos forma a su proyecto en nuestro taller.</p>
+                    </div>
+                    <div class="timeline-item scroll-animate">
+                        <div class="timeline-number">04</div><h3>Instalación</h3><p>Instalación profesional con garantía total de satisfacción.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Proceso Section -->
-    <section class="process-section" id="proceso">
-        <div class="section-header scroll-animate">
-            <h2>¿Cómo Trabajamos?</h2>
-            <p>Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
+            <section class="cta-section" id="contacto">
+                <div class="cta-content scroll-animate">
+                    <h2>Transforme su Espacio de Exhibición</h2>
+                    <p>Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos más valiosos.</p>
+                    <a href="mailto:contacto@vitrinassilice.mx" class="btn-primary">Agendar Visita Gratuita</a>
+                </div>
+            </section>
         </div>
-        <div class="process-timeline">
-            <div class="timeline-item scroll-animate">
-                <div class="timeline-number">01</div>
-                <h3>Consultoría</h3>
-                <p>Analizamos sus necesidades y diseñamos la solución perfecta para su espacio.</p>
-            </div>
-            <div class="timeline-item scroll-animate">
-                <div class="timeline-number">02</div>
-                <h3>Diseño 3D</h3>
-                <p>Creamos renderizados digitales para visualizar el resultado final.</p>
-            </div>
-            <div class="timeline-item scroll-animate">
-                <div class="timeline-number">03</div>
-                <h3>Fabricación</h3>
-                <p>Damos forma a su proyecto en nuestro taller.</p>
-            </div>
-            <div class="timeline-item scroll-animate">
-                <div class="timeline-number">04</div>
-                <h3>Instalación</h3>
-                <p>Instalación profesional con garantía total de satisfacción.</p>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contacto">
-        <div class="cta-content scroll-animate">
-            <h2>Transforme su Espacio de Exhibición</h2>
-            <p>Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos más valiosos.</p>
-            <a href="mailto:contacto@vitrinassilice.mx" class="btn-primary">Agendar Visita Gratuita</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -1340,143 +438,229 @@
                     <a href="#" aria-label="Google Maps"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg></a>
                 </div>
             </div>
-            <div class="footer-column">
-                <h4>Productos</h4>
-                <ul>
-                    <li><a href="#">Vitrinas Mostrador</a></li>
-                    <li><a href="#">Vitrinas Torre</a></li>
-                    <li><a href="#">Personalizadas</a></li>
-                    <li><a href="#">Panel Ranurado</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Servicios</h4>
-                <ul>
-                    <li><a href="#">Diseño 3D</a></li>
-                    <li><a href="#">Consultoría</a></li>
-                    <li><a href="#">Instalación</a></li>
-                    <li><a href="#">Mantenimiento</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Contacto</h4>
-                <ul>
-                    <li><a href="#">Esteban Alatorre #122, La Perla.</a></li>
-                    <li><a href="#">Guadalajara, Jalisco</a></li>
-                    <li><a href="tel:+523312345678">+52 33 3468 3900</a></li>
-                    <li><a href="mailto:contacto@vitrinassilice.com">contacto@vitrinassilice.com</a></li>
-                </ul>
-            </div>
+            <div class="footer-column"><h4>Productos</h4><ul><li><a href="#">Vitrinas Mostrador</a></li><li><a href="#">Vitrinas Torre</a></li><li><a href="#">Personalizadas</a></li><li><a href="#">Panel Ranurado</a></li></ul></div>
+            <div class="footer-column"><h4>Servicios</h4><ul><li><a href="#">Diseño 3D</a></li><li><a href="#">Consultoría</a></li><li><a href="#">Instalación</a></li><li><a href="#">Mantenimiento</a></li></ul></div>
+            <div class="footer-column"><h4>Contacto</h4><ul><li><a href="#">Esteban Alatorre #122, La Perla.</a></li><li><a href="#">Guadalajara, Jalisco</a></li><li><a href="tel:+523334683900">+52 33 3468 3900</a></li><li><a href="mailto:contacto@vitrinassilice.com">contacto@vitrinassilice.com</a></li></ul></div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 Vitrinas Sílice. Todos los derechos reservados. | Diseñado con precisión y elegancia.</p>
         </div>
     </footer>
-
+    
     <script>
-        // Efecto de sombra en el header al hacer scroll
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+    // IIFE para crear un scope privado y no contaminar el global
+    (function() {
+        /**
+         * Objeto principal que encapsula toda la lógica de la aplicación.
+         */
+        const VitrinasApp = {
+            // Almacena referencias a los elementos del DOM para no tener que buscarlos repetidamente.
+            elements: {},
 
-        // Scroll suave para los enlaces de anclaje
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+            // Almacena todo el contenido dinámico de la página.
+            contentData: {
+                vitrinas: {
+                    heroTitle: "El Escenario Perfecto para sus Productos",
+                    heroSubtitle: "Creamos vitrinas de exhibición que capturan la atención, generan impacto y aumentan el valor percibido.",
+                    heroImage: "assets/img/glass_showcase_4.png",
+                    productsTitle: "Nuestras Vitrinas",
+                    productsSubtitle: "Combinamos estética y funcionalidad para crear la solución de exhibición que necesita.",
+                    products: [
+                        { img: 'assets/img/glass_showcase_4.png', title: 'Vitrina Ejecutiva', desc: 'Diseño minimalista con iluminación LED integrada y sistema de apertura suave.', tags: ['Cristal Templado', 'LED Premium', 'Personalizable'] },
+                        { img: 'assets/img/glass_showcase_3.jpeg', title: 'Vitrina Torre', desc: 'Máxima visibilidad con estructura de aluminio anodizado y cristal ultra claro.', tags: ['360° Vista', 'Altura Ajustable', 'Antirreflejo'] },
+                        { img: 'assets/img/glass_showcase_2.png', title: 'Vitrina Modular', desc: 'Sistema modular expandible con conectividad inteligente y control remoto.', tags: ['IoT Ready', 'Modular', 'App Control'] }
+                    ]
+                },
+                muebleria: {
+                    heroTitle: "Mobiliario Comercial que Vende por Sí Mismo",
+                    heroSubtitle: "Diseñamos y fabricamos muebles a la medida que optimizan tu espacio y mejoran la experiencia de compra.",
+                    heroImage: "assets/img/mueble_tienda.png", // <- Cambiar a imagen de mueblería
+                    productsTitle: "Soluciones en Mueblería",
+                    productsSubtitle: "Desde mostradores hasta islas de exhibición, creamos el mobiliario ideal para tu negocio.",
+                    products: [
+                        { img: 'assets/img/mostrador_moderno.png', title: 'Mostrador de Recepción', desc: 'Acabados premium, diseño ergonómico y espacio de almacenamiento integrado.', tags: ['Melamina Alto Brillo', 'Diseño a Medida', 'Iluminación Indirecta'] },
+                        { img: 'assets/img/isla_central.png', title: 'Isla de Exhibición Central', desc: 'Perfecta para destacar productos clave y crear flujos de clientes en tu tienda.', tags: ['Vista 360°', 'Almacenamiento Inferior', 'Materiales Mixtos'] },
+                        { img: 'assets-img/panel_ranurado.png', title: 'Panel Ranurado y Estantería', desc: 'Solución versátil y adaptable para exhibir una amplia gama de productos de forma ordenada.', tags: ['Alta Resistencia', 'Accesorios Variados', 'Fácil Instalación'] }
+                    ]
                 }
-            });
-        });
+            },
 
-        // Intersection Observer para animaciones al hacer scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            /**
+             * Función de inicialización. Se ejecuta cuando el DOM está listo.
+             */
+            init() {
+                this.cacheDOMElements();
+                this.bindEvents();
+                this.setupScrollObserver();
+                this.updateContent('vitrinas'); // Carga el contenido inicial
+            },
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
+            /**
+             * Guarda las referencias a los elementos del DOM en el objeto 'elements'.
+             */
+            cacheDOMElements() {
+                this.elements.header = document.getElementById('header');
+                this.elements.modal = document.getElementById('contactModal');
+                this.elements.modalCloseBtn = document.getElementById('modalCloseBtn');
+                this.elements.contactNavBtn = document.getElementById('contactNavBtn');
+                this.elements.contactForm = document.getElementById('contactForm');
+                this.elements.navLinks = document.querySelectorAll('.nav-links a[data-section]');
+                this.elements.contentWrapper = document.querySelector('.content-wrapper');
+                this.elements.contentElements = document.querySelectorAll('[data-content]');
+                this.elements.productsGrid = document.querySelector('[data-content="productsGrid"]');
+            },
+
+            /**
+             * Centraliza todos los event listeners de la aplicación.
+             */
+            bindEvents() {
+                window.addEventListener('scroll', () => this.handleHeaderScroll());
+                
+                this.elements.navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => this.handleNavClick(e));
+                });
+
+                // Eventos del Modal
+                this.elements.contactNavBtn.addEventListener('click', () => this.toggleModal(true));
+                this.elements.modalCloseBtn.addEventListener('click', () => this.toggleModal(false));
+                this.elements.modal.addEventListener('click', (e) => {
+                    if (e.target === this.elements.modal) this.toggleModal(false);
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') this.toggleModal(false);
+                });
+
+                // Evento del Formulario
+                this.elements.contactForm.addEventListener('submit', (e) => this.handleFormSubmit(e));
+            },
+
+            /**
+             * Maneja el cambio de sección desde la navegación.
+             * @param {Event} e - El objeto del evento click.
+             */
+            handleNavClick(e) {
+                e.preventDefault();
+                const section = e.target.dataset.section;
+                
+                this.elements.navLinks.forEach(link => link.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Animación de desvanecimiento antes de cambiar el contenido
+                this.elements.contentWrapper.classList.add('fade-out');
+                setTimeout(() => {
+                    this.updateContent(section);
+                    this.elements.contentWrapper.classList.remove('fade-out');
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Vuelve al inicio de la página
+                }, 400); // Coincide con la duración de la transición en CSS
+            },
+
+            /**
+             * Actualiza el contenido de la página según la sección seleccionada.
+             * @param {string} sectionName - El nombre de la sección ('vitrinas' o 'muebleria').
+             */
+            updateContent(sectionName) {
+                const data = this.contentData[sectionName];
+                if (!data) return;
+
+                // Actualiza elementos simples (texto, imágenes)
+                this.elements.contentElements.forEach(el => {
+                    const key = el.dataset.content;
+                    if (data[key]) {
+                        if (el.tagName === 'IMG') {
+                            el.src = data[key];
+                        } else {
+                            el.innerHTML = data[key];
+                        }
                     }
                 });
-            }, observerOptions);
 
-            // Aplicar retraso de animación para efecto escalonado (stagger)
-            const staggerGroups = [
-                '.products-grid .scroll-animate',
-                '.process-timeline .scroll-animate'
-            ];
+                // Genera y actualiza la cuadrícula de productos
+                this.elements.productsGrid.innerHTML = data.products.map(product => `
+                    <div class="product-card scroll-animate">
+                        <div class="product-image">
+                            <img src="${product.img}" alt="${product.title}">
+                        </div>
+                        <div class="product-info">
+                            <h3>${product.title}</h3>
+                            <p>${product.desc}</p>
+                            <div class="product-features">
+                                ${product.tags.map(tag => `<span class="feature-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Re-inicializa el observador para las nuevas tarjetas de producto
+                this.setupScrollObserver();
+            },
 
-            staggerGroups.forEach(selector => {
-                document.querySelectorAll(selector).forEach((element, index) => {
-                    element.style.transitionDelay = `${index * 150}ms`;
+            /**
+             * Muestra u oculta el modal de contacto.
+             * @param {boolean} show - True para mostrar, false para ocultar.
+             */
+            toggleModal(show) {
+                if (show) {
+                    this.elements.modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    this.elements.modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            },
+
+            /**
+             * Maneja el envío del formulario de contacto.
+             * @param {Event} e - El objeto del evento submit.
+             */
+            handleFormSubmit(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const phone = formData.get('phone');
+                
+                console.log('Formulario enviado:', Object.fromEntries(formData));
+                alert(`¡Gracias! Te contactaremos pronto al ${phone}.`);
+                
+                this.toggleModal(false);
+                e.target.reset();
+            },
+
+            /**
+             * Añade/quita la clase 'scrolled' al header al hacer scroll.
+             */
+            handleHeaderScroll() {
+                this.elements.header.classList.toggle('scrolled', window.scrollY > 50);
+            },
+
+            /**
+             * Configura el IntersectionObserver para las animaciones de scroll.
+             */
+            setupScrollObserver() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                const elementsToAnimate = document.querySelectorAll('.scroll-animate');
+                elementsToAnimate.forEach((element, index) => {
+                     // Efecto escalonado (stagger)
+                    element.style.transitionDelay = `${(index % 3) * 150}ms`;
+                    observer.observe(element);
                 });
-            });
-
-            // Observar todos los elementos con la clase .scroll-animate
-            const elementsToAnimate = document.querySelectorAll('.scroll-animate');
-            elementsToAnimate.forEach(element => {
-                observer.observe(element);
-            });
-        });
-
-        // Abrir modal
-        function openModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevenir scroll
-        }
-
-        // Cerrar modal
-        function closeModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = ''; // Restaurar scroll
-        }
-
-        // Cerrar al hacer clic fuera del modal
-        document.getElementById('contactModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
             }
-        });
+        };
 
-        // Cerrar con tecla ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
+        // Inicia la aplicación cuando el DOM esté completamente cargado.
+        document.addEventListener('DOMContentLoaded', () => VitrinasApp.init());
 
-        // Manejar envío del formulario
-        function handleSubmit(e) {
-            e.preventDefault();
-            const phone = document.getElementById('phone').value;
-            
-            // Aquí puedes agregar tu lógica para enviar a backend/API
-            console.log('Número de teléfono:', phone);
-            
-            // Simulación de envío exitoso
-            alert('¡Gracias! Te contactaremos pronto al ' + phone);
-            closeModal();
-            
-            // Limpiar formulario
-            e.target.reset();
-        }
-
+    })();
     </script>
 </body>
 </html>
