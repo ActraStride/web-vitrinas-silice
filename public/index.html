@@ -8,18 +8,37 @@
     <style>
         /* 1. RESET Y VARIABLES CSS */
         :root {
+            /* TEMA PREDETERMINADO (VITRINAS - AZUL OSCURO) */
             --primary-dark: #1a1f2e;
             --primary-blue: #2c3e50;
             --accent-blue: #3498db;
             --glass-blue: #e8f4f8;
             --text-light: #ecf0f1;
             --text-gray: #95a5a6;
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --body-bg: linear-gradient(135deg, #1a1f2e 0%, #2c3e50 50%, #34495e 100%); /* MODIFICADO: Usando variable */
+            --bg-gradient: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
             --shadow-soft: 0 10px 40px rgba(0,0,0,0.1);
             --shadow-luxury: 0 20px 60px rgba(0,0,0,0.15);
             --border-radius: 16px;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* 1.1 TEMA MUEBLERIA - AÑADIDO */
+        body.theme-muebleria {
+            --primary-dark: #f5f0e8;      /* Crema de fondo principal */
+            --primary-blue: #e8e2d8;      /* Crema secundario un poco más oscuro */
+            --accent-blue: #8d6e63;       /* Marrón acento (era azul) */
+            --glass-blue: #faf8f5;        /* Un blanco roto muy claro */
+            --text-light: #4e342e;        /* Texto principal - Marrón oscuro para contraste */
+            --text-gray: #a1887f;         /* Texto secundario - Marrón más suave */
+            --body-bg: var(--primary-dark); /* Fondo sólido crema */
+            --bg-gradient: linear-gradient(135deg, #bcaaa4 0%, #8d6e63 100%); /* Gradiente en tonos café */
+
+            /* Ajustes para componentes específicos en tema claro */
+            --shadow-soft: 0 10px 40px rgba(141, 110, 99, 0.12);
+            --shadow-luxury: 0 20px 60px rgba(141, 110, 99, 0.18);
+        }
+
 
         * {
             margin: 0;
@@ -33,10 +52,11 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2c3e50 50%, #34495e 100%);
+            background: var(--body-bg); /* MODIFICADO: Ahora usa la variable de tema */
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out; /* AÑADIDO: Transición suave de tema */
         }
 
         /* 2. ESTILOS GENERALES Y UTILIDADES */
@@ -73,6 +93,7 @@
             font-weight: 200;
             margin-bottom: 1rem;
             letter-spacing: -1px;
+            color: var(--text-light); /* AÑADIDO: Para que herede el color de texto del tema */
         }
 
         .section-header p {
@@ -93,14 +114,23 @@
             z-index: 2000; opacity: 0; visibility: hidden;
             transition: var(--transition);
         }
+        /* AÑADIDO: Estilo del overlay para el tema mueblería */
+        .theme-muebleria .modal-overlay {
+            background: rgba(78, 52, 46, 0.85); /* Overlay más cálido */
+        }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-container {
-            background: rgba(44, 62, 80, 0.95);
+            background: var(--primary-blue); /* MODIFICADO: Usando variable */
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-radius: 20px; padding: 3rem; max-width: 500px; width: 90%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
             transform: scale(0.9) translateY(20px); transition: var(--transition); position: relative;
         }
+        /* AÑADIDO: Estilo del modal para el tema mueblería */
+        .theme-muebleria .modal-container {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
         .modal-overlay.active .modal-container { transform: scale(1) translateY(0); }
         .modal-close {
             position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none;
@@ -108,7 +138,7 @@
             width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
             border-radius: 50%; transition: var(--transition);
         }
-        .modal-close:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-light); transform: rotate(90deg); }
+        .modal-close:hover { background: rgba(0, 0, 0, 0.1); color: var(--text-light); transform: rotate(90deg); }
         .modal-header { text-align: center; margin-bottom: 2rem; }
         .modal-icon {
             width: 60px; height: 60px;
@@ -116,19 +146,23 @@
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             margin: 0 auto 1.5rem; box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
         }
+        .theme-muebleria .modal-icon {
+            background: var(--bg-gradient);
+            box-shadow: 0 10px 30px rgba(141, 110, 99, 0.3);
+        }
         .modal-icon svg { width: 30px; height: 30px; stroke: white; stroke-width: 2; fill: none; }
         .modal-title { font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem; color: var(--text-light); }
         .modal-subtitle { color: var(--text-gray); font-size: 0.95rem; font-weight: 300; }
         .form-group { margin-bottom: 1.5rem; }
         .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-light); font-size: 0.9rem; font-weight: 400; }
         .form-input {
-            width: 100%; padding: 1rem 1.25rem; background: rgba(26, 31, 46, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
+            width: 100%; padding: 1rem 1.25rem; background: rgba(0, 0, 0, 0.1); /* MODIFICADO: Para que funcione en ambos temas */
+            border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 12px;
             color: var(--text-light); font-size: 1rem; transition: var(--transition); font-family: inherit;
         }
         .form-input:focus {
-            outline: none; border-color: var(--accent-blue); background: rgba(26, 31, 46, 0.8);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            outline: none; border-color: var(--accent-blue); background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-blue) 40%, transparent); /* MODIFICADO: Sombra adaptable */
         }
         .form-input::placeholder { color: var(--text-gray); }
         .form-select {
@@ -136,19 +170,25 @@
             background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2395a5a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
             background-repeat: no-repeat; background-position: right 1.25rem center; padding-right: 3rem;
         }
+        .theme-muebleria .form-select {
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23a1887f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        }
         .form-select:focus {
             background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4);
+        }
+        .theme-muebleria .form-select:focus {
+             background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238d6e63' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         }
         .form-select option { background: var(--primary-dark); color: var(--text-light); }
 
         /* Botones */
         .btn-submit, .btn-primary {
             display: inline-block; padding: 1rem 3rem;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
+            background: var(--bg-gradient); /* MODIFICADO: Usa variable para ser adaptable */
             color: white; text-decoration: none; border: none;
             border-radius: 50px; font-weight: 400; letter-spacing: 1px;
-            transition: var(--transition); box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            transition: var(--transition); 
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent); /* MODIFICADO: Sombra adaptable */
             position: relative; overflow: hidden; cursor: pointer;
         }
         .btn-submit { width: 100%; border-radius: 12px; }
@@ -157,13 +197,17 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.7s;
         }
-        .btn-submit:hover, .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(52, 152, 219, 0.4); }
+        .btn-submit:hover, .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 15px 40px color-mix(in srgb, var(--accent-blue) 40%, transparent); /* MODIFICADO: Sombra adaptable */
+        }
         .btn-submit:hover::before, .btn-primary:hover::before { left: 100%; }
         .btn-submit:active, .btn-primary:active { transform: translateY(0); }
         .btn-secondary {
             display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 3rem;
             background: transparent; color: var(--text-light); text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px;
+            border: 1px solid color-mix(in srgb, var(--text-light) 20%, transparent); /* MODIFICADO */
+            border-radius: 50px;
             font-weight: 400; letter-spacing: 1px; transition: all 0.3s ease;
             position: relative; overflow: hidden;
         }
@@ -177,30 +221,38 @@
 
         /* Tarjetas de Producto */
         .product-card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius);
+            background: color-mix(in srgb, var(--primary-dark) 80%, var(--primary-blue) 20%); /* MODIFICADO */
+            backdrop-filter: blur(20px);
+            border: 1px solid color-mix(in srgb, var(--text-light) 5%, transparent); /* MODIFICADO */
+            border-radius: var(--border-radius);
             overflow: hidden; transition: var(--transition); position: relative; cursor: pointer;
         }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(52, 152, 219, 0.2); background: rgba(255, 255, 255, 0.05); }
-        .product-image { height: 300px; background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1)); position: relative; overflow: hidden; }
+        .product-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: var(--shadow-luxury); /* MODIFICADO */
+            background: var(--primary-blue);
+        }
+        .product-image { height: 300px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent-blue) 10%, transparent), color-mix(in srgb, var(--accent-blue) 15%, transparent)); position: relative; overflow: hidden; }
         .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .product-image::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, transparent 50%, rgba(26, 31, 46, 0.8) 100%); }
+        .product-image::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, transparent 50%, color-mix(in srgb, var(--primary-dark) 80%, black) 100%); } /* MODIFICADO */
         .product-info { padding: 2rem; }
-        .product-info h3 { font-size: 1.5rem; font-weight: 300; margin-bottom: 1rem; letter-spacing: 1px; }
+        .product-info h3 { font-size: 1.5rem; font-weight: 300; margin-bottom: 1rem; letter-spacing: 1px; color: var(--text-light); }
         .product-info p { color: var(--text-gray); line-height: 1.6; margin-bottom: 1.5rem; }
         .product-features { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .feature-tag { padding: 0.3rem 1rem; background: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 20px; font-size: 0.85rem; color: var(--accent-blue); }
+        .feature-tag { padding: 0.3rem 1rem; background: color-mix(in srgb, var(--accent-blue) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent-blue) 30%, transparent); border-radius: 20px; font-size: 0.85rem; color: var(--accent-blue); }
 
         /* 4. LAYOUT Y SECCIONES */
         
         /* Header y Navegación */
         header {
             position: fixed; top: 0; width: 100%;
-            background: rgba(26, 31, 46, 0.95);
+            background: color-mix(in srgb, var(--primary-dark) 95%, transparent); /* MODIFICADO */
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             z-index: 1000; transition: var(--transition);
         }
-        header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .theme-muebleria header.scrolled { box-shadow: 0 10px 30px rgba(141, 110, 99, 0.15); }
+
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; max-width: 1400px; margin: 0 auto; }
         .logo a { font-size: 1.8rem; font-weight: 300; letter-spacing: 3px; text-decoration: none; color: var(--text-light); text-transform: uppercase; transition: var(--transition); position: relative; }
         .logo a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: var(--accent-blue); transition: width 0.3s ease; }
@@ -223,15 +275,16 @@
         .hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 3rem; font-weight: 300; line-height: 1.8; max-width: 500px; }
         .btn-group { display: flex; gap: 1.5rem; align-items: center; }
         .hero-visual { position: relative; animation: fadeInRight 1s ease-out; display: flex; justify-content: center; align-items: center; min-height: 600px; }
-        .hero-visual::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite; z-index: 0; }
-        .hero-visual::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite 2s; z-index: 0; }
+        .hero-visual::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, color-mix(in srgb, var(--accent-blue) 15%, transparent) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite; z-index: 0; } /* MODIFICADO */
+        .hero-visual::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, color-mix(in srgb, var(--accent-blue) 10%, transparent) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite 2s; z-index: 0; } /* MODIFICADO */
         .showcase-image-container { position: relative; z-index: 1; transform-style: preserve-3d; transform: perspective(1500px) rotateY(-12deg) rotateX(5deg); transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); overflow: visible; }
         .showcase-image-container:hover { transform: perspective(1500px) rotateY(0deg) rotateX(0deg) scale(1.08); }
-        .showcase-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; height: 120%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(147, 197, 253, 0.3) 50%, rgba(59, 130, 246, 0.4) 100%); filter: blur(60px); border-radius: 50%; opacity: 0.6; animation: glowPulse 3s ease-in-out infinite; z-index: -1; }
-        .showcase-image { display: block; width: 94%; padding-left: 3%; max-width: 700px; height: auto; filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px rgba(59, 130, 246, 0.3)); position: relative; z-index: 2; }
+        .showcase-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; height: 120%; background: linear-gradient(135deg, color-mix(in srgb, var(--accent-blue) 40%, transparent) 0%, color-mix(in srgb, var(--accent-blue) 30%, transparent) 50%, color-mix(in srgb, var(--accent-blue) 40%, transparent) 100%); filter: blur(60px); border-radius: 50%; opacity: 0.6; animation: glowPulse 3s ease-in-out infinite; z-index: -1; } /* MODIFICADO */
+        .showcase-image { display: block; width: 94%; padding-left: 3%; max-width: 700px; height: auto; filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 20px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent)); position: relative; z-index: 2; } /* MODIFICADO */
+        .theme-muebleria .showcase-image { filter: drop-shadow(0 40px 60px rgba(141, 110, 99, 0.3)) drop-shadow(0 20px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent));}
         .showcase-image-container::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient( 110deg, transparent 20%, rgba(255, 255, 255, 0.08) 40%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.08) 60%, transparent 80% ); animation: shimmer 10s linear infinite; z-index: 0; pointer-events: none; will-change: transform; }
         .floating-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .particle { position: absolute; width: 4px; height: 4px; background: rgba(96, 165, 250, 0.6); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        .particle { position: absolute; width: 4px; height: 4px; background: color-mix(in srgb, var(--accent-blue) 60%, transparent); border-radius: 50%; animation: float 6s ease-in-out infinite; } /* MODIFICADO */
         .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; } .particle:nth-child(2) { top: 40%; left: 80%; animation-delay: 1s; } .particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; } .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 3s; } .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 1.5s; }
 
         /* Sección Productos */
@@ -239,36 +292,36 @@
         .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem; }
         
         /* Sección Proceso */
-        .process-section { padding: 6rem 5%; background: rgba(255, 255, 255, 0.02); position: relative; }
+        .process-section { padding: 6rem 5%; background: rgba(0, 0, 0, 0.02); position: relative; } /* MODIFICADO */
         .process-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 4rem auto 0; }
         .timeline-item { text-align: center; position: relative; }
-        .timeline-number { width: 80px; height: 80px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--accent-blue), #2980b9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 200; box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3); position: relative; }
-        .timeline-number::after { content: ''; position: absolute; top: 50%; left: 100%; width: 100px; height: 1px; background: linear-gradient(90deg, rgba(52, 152, 219, 0.3), transparent); }
+        .timeline-number { width: 80px; height: 80px; margin: 0 auto 2rem; background: var(--bg-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 200; box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent); position: relative; } /* MODIFICADO */
+        .timeline-number::after { content: ''; position: absolute; top: 50%; left: 100%; width: 100px; height: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--accent-blue) 30%, transparent), transparent); } /* MODIFICADO */
         .timeline-item:last-child .timeline-number::after { display: none; }
-        .timeline-item h3 { font-size: 1.3rem; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; }
+        .timeline-item h3 { font-size: 1.3rem; font-weight: 400; margin-bottom: 1rem; letter-spacing: 1px; color: var(--text-light); }
         .timeline-item p { color: var(--text-gray); line-height: 1.6; }
 
         /* Sección CTA */
         .cta-section { padding: 8rem 5%; text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 50%); animation: float 30s ease-in-out infinite reverse; }
+        .cta-section::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, color-mix(in srgb, var(--accent-blue) 10%, transparent) 0%, transparent 50%); animation: float 30s ease-in-out infinite reverse; } /* MODIFICADO */
         .cta-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
         .cta-content h2 { font-size: 3rem; font-weight: 200; margin-bottom: 2rem; background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .cta-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 3rem; }
 
         /* Footer */
-        footer { padding: 4rem 5% 2rem; background: rgba(26, 31, 46, 0.95); backdrop-filter: blur(20px); }
+        footer { padding: 4rem 5% 2rem; background: var(--primary-blue); backdrop-filter: blur(20px); } /* MODIFICADO */
         .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto 3rem; }
-        .footer-brand h3 { font-size: 1.8rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 1rem; text-transform: uppercase; }
+        .footer-brand h3 { font-size: 1.8rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 1rem; text-transform: uppercase; color: var(--text-light); }
         .footer-brand p { color: var(--text-gray); line-height: 1.8; margin-bottom: 2rem; }
         .social-links { display: flex; gap: 1rem; }
-        .social-links a { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-gray); text-decoration: none; transition: var(--transition); }
+        .social-links a { width: 40px; height: 40px; background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-gray); text-decoration: none; transition: var(--transition); } /* MODIFICADO */
         .social-links a:hover { background: var(--accent-blue); border-color: var(--accent-blue); color: white; transform: translateY(-3px); }
-        .footer-column h4 { font-size: 1rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .footer-column h4 { font-size: 1rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1.5rem; text-transform: uppercase; color: var(--text-light); }
         .footer-column ul { list-style: none; }
         .footer-column ul li { margin-bottom: 1rem; }
         .footer-column ul li a { color: var(--text-gray); text-decoration: none; transition: var(--transition); }
         .footer-column ul li a:hover { color: var(--text-light); padding-left: 5px; }
-        .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: var(--text-gray); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent); text-align: center; color: var(--text-gray); } /* MODIFICADO */
 
         /* 5. ANIMACIONES */
         @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
@@ -304,6 +357,9 @@
     </style>
 </head>
 <body>
+    
+    <!-- El resto del HTML (modal, header, main, footer) permanece exactamente igual -->
+    <!-- ... (El cuerpo del HTML no necesita cambios) ... -->
     <div class="modal-overlay" id="contactModal">
         <div class="modal-container">
             <button class="modal-close" id="modalCloseBtn" aria-label="Cerrar">
@@ -474,13 +530,13 @@
                 muebleria: {
                     heroTitle: "Mobiliario Comercial que Vende por Sí Mismo",
                     heroSubtitle: "Diseñamos y fabricamos muebles a la medida que optimizan tu espacio y mejoran la experiencia de compra.",
-                    heroImage: "assets/img/mueble_tienda.png", // <- Cambiar a imagen de mueblería
+                    heroImage: "assets/img/mueble.png", 
                     productsTitle: "Soluciones en Mueblería",
                     productsSubtitle: "Desde mostradores hasta islas de exhibición, creamos el mobiliario ideal para tu negocio.",
                     products: [
-                        { img: 'assets/img/mostrador_moderno.png', title: 'Mostrador de Recepción', desc: 'Acabados premium, diseño ergonómico y espacio de almacenamiento integrado.', tags: ['Melamina Alto Brillo', 'Diseño a Medida', 'Iluminación Indirecta'] },
-                        { img: 'assets/img/isla_central.png', title: 'Isla de Exhibición Central', desc: 'Perfecta para destacar productos clave y crear flujos de clientes en tu tienda.', tags: ['Vista 360°', 'Almacenamiento Inferior', 'Materiales Mixtos'] },
-                        { img: 'assets-img/panel_ranurado.png', title: 'Panel Ranurado y Estantería', desc: 'Solución versátil y adaptable para exhibir una amplia gama de productos de forma ordenada.', tags: ['Alta Resistencia', 'Accesorios Variados', 'Fácil Instalación'] }
+                        { img: 'assets/img/mueble1.png', title: 'Mostrador de Recepción', desc: 'Acabados premium, diseño ergonómico y espacio de almacenamiento integrado.', tags: ['Melamina Alto Brillo', 'Diseño a Medida', 'Iluminación Indirecta'] },
+                        { img: 'assets/img/mueble2.png', title: 'Isla de Exhibición Central', desc: 'Perfecta para destacar productos clave y crear flujos de clientes en tu tienda.', tags: ['Vista 360°', 'Almacenamiento Inferior', 'Materiales Mixtos'] },
+                        { img: 'assets/img/mueble3.png', title: 'Panel Ranurado y Estantería', desc: 'Solución versátil y adaptable para exhibir una amplia gama de productos de forma ordenada.', tags: ['Alta Resistencia', 'Accesorios Variados', 'Fácil Instalación'] }
                     ]
                 }
             },
@@ -542,6 +598,14 @@
                 e.preventDefault();
                 const section = e.target.dataset.section;
                 
+                // --- INICIO: LÓGICA DE CAMBIO DE TEMA --- // AÑADIDO
+                if (section === 'muebleria') {
+                    document.body.classList.add('theme-muebleria');
+                } else {
+                    document.body.classList.remove('theme-muebleria');
+                }
+                // --- FIN: LÓGICA DE CAMBIO DE TEMA ---
+
                 this.elements.navLinks.forEach(link => link.classList.remove('active'));
                 e.target.classList.add('active');
                 
