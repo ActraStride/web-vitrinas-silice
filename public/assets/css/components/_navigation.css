@@ -1,0 +1,92 @@
+/* ============================================
+   COMPONENTE: NAVEGACIÓN
+   ============================================ */
+
+/* Logo */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-decoration: none;
+    color: var(--text-light);
+    text-transform: uppercase;
+    transition: var(--transition);
+    position: relative;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo span {
+    position: relative;
+}
+
+.logo span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-blue);
+    transition: width 0.3s ease;
+}
+
+.logo a:hover span::after {
+    width: 100%;
+}
+
+/* Enlaces de Navegación */
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    position: relative;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.nav-links a:hover {
+    color: var(--text-light);
+}
+
+.nav-links a.active {
+    color: var(--text-light);
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--accent-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::before,
+.nav-links a.active::before {
+    width: 100%;
+}
+
+/* Menú Hamburguesa (oculto por defecto) */
+.hamburger-menu,
+.overlay-menu {
+    display: none;
+    z-index: 1001;
+}

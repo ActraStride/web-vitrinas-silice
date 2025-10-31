@@ -3,1245 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Vitrinas Sílice | Vitrinas de Calidad en Guadalajara</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --azul-principal: #5f849fff;
-            --azul-medio: #9cbdd1ff;
-            --azul-claro: #7facbfff;
-            --azul-muy-claro: #d1e2e9ff;
-            --plateado: #e5e7eb;
-            --plateado-oscuro: #9ca3af;
-            --blanco: #ffffff;
-            --negro: #1f2937;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--negro);
-            overflow-x: hidden;
-        }
-
-        /* Navegación */
-        nav {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-medio) 100%);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: var(--azul-principal);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--blanco);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo::before {
-            content: ""; /* MUY IMPORTANTE: Dejarlo vacío */
-            display: inline-block; /* Para que acepte width y height */
-            
-            /* Define el tamaño del logo */
-            width: 52px;  /* 2rem es aprox. 32px, ajústalo a tu gusto */
-            height: 52px; /* Mismo que el ancho para que sea un cuadrado */
-
-            /* Carga tu imagen */
-            background-image: url('img/logo_marine.png'); /* O .png, .jpg, etc. */
-
-            /* Ajusta cómo se ve la imagen de fondo */
-            background-size: contain; /* Asegura que la imagen quepa completa */
-            background-repeat: no-repeat; /* Para que no se repita */
-            background-position: center; /* Para que esté centrada */
-
-            /* La animación se mantiene igual */
-            animation: fadeInUp 2s linear;
-
-            /* Las propiedades 'font-size' y 'color' ya no son necesarias aquí */
-        }
-
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--blanco);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--plateado);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--blanco);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 70px;
-            min-height: 90vh;
-            background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--plateado) 100%);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="1" height="1" x="50" y="50" fill="%231e3a8a" opacity="0.1"/></svg>');
-            background-size: 50px 50px;
-            animation: slide 20s linear infinite;
-        }
-
-        @keyframes slide {
-            to { transform: translate(-50px, -50px); }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            color: var(--azul-principal);
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            background: linear-gradient(135deg, var(--azul-principal), var(--azul-medio));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--negro);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, var(--azul-medio), var(--azul-principal));
-            color: var(--blanco);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-            animation: fadeInUp 1s ease 0.4s backwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .cta-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
-        }
-
-        .hero-image {
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .glass-showcase {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: var(--azul-principal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-showcase::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            /* --- CAMBIOS AQUÍ --- */
-            /* Reemplazamos el 'background' anterior por estas propiedades */
-            background-image: url('img/glass_showcase_4.png'); /* Usa tu imagen. PNG con transparencias o SVG funcionan genial. */
-            background-repeat: no-repeat;
-            background-position: center center; /* Centramos la imagen en la capa gigante */
-            background-size: 50%; /* Ajusta el tamaño de tu imagen dentro de la capa. Prueba diferentes valores. */
-            
-            /* opacity: 0.15; Opcional: Haz la imagen más sutil para que parezca un reflejo */
-            
-            /* La animación se mantiene igual para que la imagen rote */
-            animation: fadeIn 3s; 
-        }
-
-        @keyframes shine {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Sección de Productos */
-        .productos {
-            padding: 5rem 2rem;
-            background: var(--blanco);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--azul-principal);
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--azul-medio), var(--plateado-oscuro));
-        }
-
-        .productos-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .producto-card {
-            background: var(--blanco);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .producto-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--azul-muy-claro), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .producto-card:hover::before {
-            opacity: 0.3;
-        }
-
-        .producto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .producto-imagen {
-            height: 200px;
-            background: linear-gradient(135deg, var(--plateado), var(--azul-muy-claro));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--azul-principal);
-        }
-
-        .producto-info {
-            padding: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .producto-info h3 {
-            color: var(--azul-principal);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .producto-info p {
-            color: var(--negro);
-            margin-bottom: 1rem;
-        }
-
-        .producto-precio {
-            font-size: 1.2rem;
-            color: var(--azul-medio);
-            font-weight: bold;
-        }
-
-        /* Sección Sobre Nosotros */
-        .sobre-nosotros {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--azul-muy-claro) 0%, var(--plateado) 100%);
-        }
-
-        .sobre-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .sobre-texto {
-            animation: fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .caracteristicas {
-            display: grid;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .caracteristica {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.8);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .caracteristica:hover {
-            background: var(--blanco);
-            transform: translateX(10px);
-        }
-
-        .caracteristica-icono {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--azul-medio), var(--azul-principal));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blanco);
-            font-size: 1.5rem;
-        }
-
-        /* Contacto */
-        .contacto {
-            padding: 5rem 2rem;
-            background: var(--blanco);
-        }
-
-        .contacto-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contacto-form {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: grid;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            color: var(--azul-principal);
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 1rem;
-            border: 2px solid var(--plateado);
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--azul-medio);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .submit-button {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, var(--azul-medio), var(--azul-principal));
-            color: var(--blanco);
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--negro) 100%);
-            color: var(--blanco);
-            padding: 3rem 2rem 1rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--plateado);
-        }
-
-        .footer-section p,
-        .footer-section ul {
-            line-height: 1.8;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: var(--blanco);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--azul-claro);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--plateado);
-        }
-
-        /* === ESTILOS PARA EL BOTÓN DE WHATSAPP === */
-        .whatsapp-button {
-            position: fixed; /* Lo mantiene fijo en la pantalla */
-            bottom: 20px;    /* 20px desde la parte inferior */
-            right: 20px;     /* 20px desde la parte derecha */
-            z-index: 1000;   /* Se asegura de que esté por encima de otros elementos */
-
-            /* Estilos visuales */
-            background-color: #25D366; /* Color oficial de WhatsApp */
-            color: white;              /* Color del icono */
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;        /* Lo hace un círculo perfecto */
-            text-align: center;
-            font-size: 28px;           /* Tamaño del icono */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-            text-decoration: none;    /* Sin subrayado */
-            
-            /* Centra el icono dentro del círculo */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            /* Transición suave para el efecto hover */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-        }
-
-        /* Efecto al pasar el ratón por encima (hover) */
-        .whatsapp-button:hover {
-            transform: scale(1.1); /* Agranda ligeramente el botón */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--azul-principal);
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .sobre-container {
-                grid-template-columns: 1fr;
-            }
-
-            .glass-showcase {
-                height: 300px;
-            }
-        }
-
-        /* Animación de carga */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Vitrinas Sílice - Diseño Premium de Vitrinas en Guadalajara</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <!-- Navegación -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#inicio" class="logo">Vitrinas Sílice</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Vitrinas de Excelencia</h1>
-                <p>Diseño, calidad y elegancia para exhibir tus productos con el estilo que merecen. Somos líderes en Guadalajara en la fabricación de vitrinas personalizadas.</p>
-                <a href="#contacto" class="cta-button">Solicita tu Cotización</a>
-            </div>
-            <div class="hero-image">
-                <div class="glass-showcase"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Productos -->
-    <section class="productos" id="productos">
-        <h2 class="section-title fade-in">Nuestros Productos</h2>
-        <div class="productos-grid">
-            <div class="producto-card fade-in">
-                <div class="producto-imagen">🏪</div>
-                <div class="producto-info">
-                    <h3>Vitrinas Comerciales</h3>
-                    <p>Perfectas para tiendas y negocios. Diseño moderno con máxima visibilidad.</p>
-                    <div class="producto-precio">Desde $8,500 MXN</div>
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
                 </div>
+                <h2 class="modal-title">Solicitar Cotización</h2>
+                <p class="modal-subtitle">Déjanos tu número y te contactaremos</p>
             </div>
-            <div class="producto-card fade-in">
-                <div class="producto-imagen">💎</div>
-                <div class="producto-info">
-                    <h3>Vitrinas para Joyería</h3>
-                    <p>Seguridad y elegancia para exhibir piezas de alto valor.</p>
-                    <div class="producto-precio">Desde $12,000 MXN</div>
-                </div>
-            </div>
-            <div class="producto-card fade-in">
-                <div class="producto-imagen">🏛️</div>
-                <div class="producto-info">
-                    <h3>Vitrinas Museográficas</h3>
-                    <p>Conservación y exhibición profesional para museos y galerías.</p>
-                    <div class="producto-precio">Cotización Personalizada</div>
-                </div>
-            </div>
-            <div class="producto-card fade-in">
-                <div class="producto-imagen">🍰</div>
-                <div class="producto-info">
-                    <h3>Vitrinas Refrigeradas</h3>
-                    <p>Ideales para pastelerías, cafeterías y restaurantes.</p>
-                    <div class="producto-precio">Desde $18,000 MXN</div>
-                </div>
-            </div>
-            <div class="producto-card fade-in">
-                <div class="producto-imagen">📱</div>
-                <div class="producto-info">
-                    <h3>Vitrinas para Electrónicos</h3>
-                    <p>Exhibe dispositivos con seguridad y accesibilidad.</p>
-                    <div class="producto-precio">Desde $7,500 MXN</div>
-                </div>
-            </div>
-            <div class="producto-card fade-in">
-                <div class="producto-imagen">✨</div>
-                <div class="producto-info">
-                    <h3>Vitrinas Personalizadas</h3>
-                    <p>Diseñamos la vitrina perfecta según tus especificaciones.</p>
-                    <div class="producto-precio">Cotización a Medida</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobre Nosotros -->
-    <section class="sobre-nosotros" id="nosotros">
-        <div class="sobre-container">
-            <div class="sobre-texto fade-in">
-                <h2 class="section-title">¿Por qué Vitrinas Sílice?</h2>
-                <p>Con más de 15 años de experiencia en Guadalajara, somos especialistas en la fabricación de vitrinas de alta calidad. Nuestro compromiso es ofrecer soluciones que combinen funcionalidad, diseño y durabilidad.</p>
-                <div class="caracteristicas">
-                    <div class="caracteristica">
-                        <div class="caracteristica-icono">✓</div>
-                        <div>
-                            <h4>Calidad Premium</h4>
-                            <p>Vidrio templado y materiales de primera</p>
-                        </div>
-                    </div>
-                    <div class="caracteristica">
-                        <div class="caracteristica-icono">⚡</div>
-                        <div>
-                            <h4>Entrega Rápida</h4>
-                            <p>Fabricación y entrega en tiempo récord</p>
-                        </div>
-                    </div>
-                    <div class="caracteristica">
-                        <div class="caracteristica-icono">🎨</div>
-                        <div>
-                            <h4>Diseño Personalizado</h4>
-                            <p>Adaptamos cada vitrina a tus necesidades</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image fade-in">
-                <div class="glass-showcase">🏆</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacto -->
-    <section class="contacto" id="contacto">
-        <h2 class="section-title fade-in">Asesoría y Presupuesto sin Compromiso</h2>
-        <div class="contacto-container fade-in">
-            <form class="contacto-form" id="contactForm">
+            <form id="contactForm">
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre completo" required minlength="2">
                 </div>
                 <div class="form-group">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" required>
+                    <label for="phone" class="form-label">Número de Teléfono</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+52 33 1234 5678" required pattern="[0-9+\s\-()]+">
                 </div>
                 <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                    <label for="interest" class="form-label">¿Qué te interesa?</label>
+                    <select id="interest" name="interest" class="form-input form-select" required>
+                        <option value="vitrinas">Vitrinas</option>
+                        <option value="panel-ranurado">Panel Ranurado</option>
+                        <option value="carpinteria">Carpintería</option>
+                    </select>
                 </div>
-                <button type="submit" class="submit-button">Enviar Mensaje</button>
+                <button type="submit" class="btn-submit">Solicitar Llamada</button>
             </form>
         </div>
-    </section>
+    </div>
+    
+    <div class="overlay-menu" id="menuOverlay"></div>
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <a href="#home">
+                    <img src="assets/img/logo.png" alt="Vitrinas Sílice Logo">
+                    <span>Vitrinas Sílice</span>
+                </a>
+            </div>
+            
+            <div class="nav-container">
+                <div class="nav-links" id="navLinks">
+                    <ul>
+                        <li><a data-section="vitrinas" class="active">Vitrinas</a></li>
+                        <li><a data-section="muebleria">Mueblería</a></li>
+                        <li><a id="contactNavBtn">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- Footer -->
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Abrir menú">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+
+
+    <main>
+        <div class="content-wrapper">
+            <!-- El contenido de esta sección se genera dinámicamente con JavaScript -->
+            <section class="hero" id="home">
+                <div class="hero-content">
+                    <h1 data-content="heroTitle"></h1>
+                    <p data-content="heroSubtitle"></p>
+                    <div class="btn-group">
+                        <a href="#contacto" class="btn-primary">Solicitar Cotización</a>
+                        <a href="https://wa.me/523334683900?text=hola" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 25 25" fill="currentColor" width="23" height="23"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>  
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+                    <div class="showcase-image-container">
+                        <div class="showcase-glow"></div>
+                        <img src="" alt="Vitrina de exhibición de cristal" class="showcase-image" data-content="heroImage">
+                    </div>
+                </div>
+            </section>
+            
+            <section class="products-section" id="productos">
+                <div class="section-header scroll-animate">
+                    <h2 data-content="productsTitle"></h2>
+                    <p data-content="productsSubtitle"></p>
+                </div>
+                <div class="products-grid" data-content="productsGrid">
+                    <!-- Las tarjetas de producto se generan dinámicamente con JS -->
+                </div>
+            </section>
+            
+            <section class="process-section" id="proceso">
+                 <div class="section-header scroll-animate">
+                    <h2>¿Cómo Trabajamos?</h2>
+                    <p>Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
+                </div>
+                <div class="process-timeline">
+                    <div class="timeline-item scroll-animate"><div class="timeline-number">01</div><h3>Consultoría</h3><p>Analizamos sus necesidades y diseñamos la solución perfecta para su espacio.</p></div>
+                    <div class="timeline-item scroll-animate"><div class="timeline-number">02</div><h3>Diseño 3D</h3><p>Creamos renderizados digitales para visualizar el resultado final.</p></div>
+                    <div class="timeline-item scroll-animate"><div class="timeline-number">03</div><h3>Fabricación</h3><p>Damos forma a su proyecto en nuestro taller.</p></div>
+                    <div class="timeline-item scroll-animate"><div class="timeline-number">04</div><h3>Instalación</h3><p>Instalación profesional con garantía total de satisfacción.</p></div>
+                </div>
+            </section>
+
+            <section class="cta-section" id="contacto">
+                <div class="cta-content scroll-animate">
+                    <h2>Transforme su Espacio de Exhibición</h2>
+                    <p>Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos más valiosos.</p>
+                    <a href="mailto:contacto@vitrinassilice.mx" class="btn-primary">Agendar Visita Gratuita</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
+            <div class="footer-brand">
                 <h3>Vitrinas Sílice</h3>
-                <p>Líderes en fabricación de vitrinas en Guadalajara. Calidad, diseño y servicio excepcional.</p>
+                <p>Líderes en diseño y fabricación de vitrinas y exhibidores en Guadalajara desde 2018.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg></a>
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266.058 1.644.07 4.85.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg></a>
+                    <a href="#" aria-label="Google Maps"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg></a>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Enlaces Rápidos</h3>
-                <ul>
-                    <li><a href="#productos">Productos</a></li>
-                    <li><a href="#nosotros">Sobre Nosotros</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="#">Catálogo PDF</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
-                <p>📍 Guadalajara, Jalisco, México</p>
-                <p>📞 +52 33 3468 3900</p>
-                <p>✉️ info@vitrinassilice.com</p>
-            </div>
-            <div class="footer-section">
-                <h3>Horario</h3>
-                <p>Lunes - Viernes: 9:00 - 18:00</p>
-                <p>Sábado: 9:00 - 14:00</p>
-                <p>Domingo: Cerrado</p>
-            </div>
+            <div class="footer-column"><h4>Productos</h4><ul><li><a href="#">Vitrinas Mostrador</a></li><li><a href="#">Vitrinas Torre</a></li><li><a href="#">Personalizadas</a></li><li><a href="#">Panel Ranurado</a></li></ul></div>
+            <div class="footer-column"><h4>Servicios</h4><ul><li><a href="#">Diseño 3D</a></li><li><a href="#">Consultoría</a></li><li><a href="#">Instalación</a></li><li><a href="#">Mantenimiento</a></li></ul></div>
+            <div class="footer-column"><h4>Contacto</h4><ul><li><a href="#">Esteban Alatorre #122, La Perla.</a></li><li><a href="#">Guadalajara, Jalisco</a></li><li><a href="tel:+523334683900">+52 33 3468 3900</a></li><li><a href="mailto:contacto@vitrinassilice.com">contacto@vitrinassilice.com</a></li></ul></div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Vitrinas Sílice. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Vitrinas Sílice. Todos los derechos reservados. | Diseñado con precisión y elegancia.</p>
         </div>
-    </footer>
-    <a href="https://wa.me/3334683900" class="whatsapp-button" target="_blank" aria-label="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script>
-        // Navegación móvil
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Efecto de scroll en navbar
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animación de aparición al hacer scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Formulario de contacto
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Simulación de envío
-            const button = e.target.querySelector('.submit-button');
-            const originalText = button.textContent;
-            
-            button.textContent = 'Enviando...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
-                e.target.reset();
-                button.textContent = originalText;
-                button.disabled = false;
-            }, 2000);
-        });
-
-        // Efecto parallax suave en hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const speed = 0.5;
-            
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * speed}px)`;
-            }
-        });
-
-        // Animación de números (para estadísticas si las agregas)
-        function animateNumber(element, start, end, duration) {
-            let current = start;
-            const range = end - start;
-            const increment = end > start ? 1 : -1;
-            const stepTime = Math.abs(Math.floor(duration / range));
-            
-            const timer = setInterval(() => {
-                current += increment;
-                element.textContent = current;
-                if (current == end) {
-                    clearInterval(timer);
-                }
-            }, stepTime);
-        }
-
-        // Efecto de hover en productos con movimiento de mouse
-        document.querySelectorAll('.producto-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-            });
-        });
-
-        // Añadir efecto de partículas flotantes
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = '4px';
-            particle.style.height = '4px';
-            particle.style.background = 'linear-gradient(135deg, #3b82f6, #e5e7eb)';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.opacity = '0.6';
-            particle.style.zIndex = '1';
-            
-            const startX = Math.random() * window.innerWidth;
-            particle.style.left = startX + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            
-            document.body.appendChild(particle);
-            
-            const duration = Math.random() * 3000 + 5000;
-            const horizontalMovement = (Math.random() - 0.5) * 100;
-            
-            particle.animate([
-                { transform: 'translateY(0) translateX(0)', opacity: 0.6 },
-                { transform: `translateY(-${window.innerHeight + 100}px) translateX(${horizontalMovement}px)`, opacity: 0 }
-            ], {
-                duration: duration,
-                easing: 'linear'
-            }).onfinish = () => particle.remove();
-        }
-
-        // Crear partículas periódicamente
-        setInterval(createParticle, 300);
-
-        // Animación de texto que aparece letra por letra
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.textContent = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-
-        // Aplicar efecto typewriter al cargar la página
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero-text h1');
-            if (heroTitle) {
-                const originalText = heroTitle.textContent;
-                typeWriter(heroTitle, originalText, 60);
-            }
-        });
-
-        // Efecto de resplandor en botones al hacer hover
-        document.querySelectorAll('.cta-button, .submit-button').forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const rect = button.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                button.style.setProperty('--x', x + 'px');
-                button.style.setProperty('--y', y + 'px');
-            });
-        });
-
-        // Validación mejorada del formulario
-        const form = document.getElementById('contactForm');
-        const inputs = form.querySelectorAll('input, textarea');
-        
-        inputs.forEach(input => {
-            input.addEventListener('blur', () => {
-                if (input.value.trim() === '') {
-                    input.style.borderColor = '#ef4444';
-                } else {
-                    input.style.borderColor = '#e5e7eb';
-                }
-            });
-            
-            input.addEventListener('focus', () => {
-                input.style.borderColor = '#3b82f6';
-            });
-        });
-
-        // Contador animado para estadísticas (si decides agregar)
-        class CounterAnimation {
-            constructor(element, target, duration = 2000) {
-                this.element = element;
-                this.target = target;
-                this.duration = duration;
-                this.start = 0;
-                this.current = 0;
-                this.increment = this.target / (this.duration / 16);
-                this.timer = null;
-            }
-            
-            animate() {
-                this.timer = setInterval(() => {
-                    this.current += this.increment;
-                    if (this.current >= this.target) {
-                        this.current = this.target;
-                        clearInterval(this.timer);
-                    }
-                    this.element.textContent = Math.floor(this.current);
-                }, 16);
-            }
-        }
-
-        // Efecto de zoom en imágenes
-        document.querySelectorAll('.glass-showcase').forEach(showcase => {
-            showcase.addEventListener('mouseenter', () => {
-                showcase.style.transform = 'scale(1.05)';
-                showcase.style.transition = 'transform 0.3s ease';
-            });
-            
-            showcase.addEventListener('mouseleave', () => {
-                showcase.style.transform = 'scale(1)';
-            });
-        });
-
-        // Detección de modo oscuro del sistema
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // Aquí podrías agregar clases para modo oscuro si lo deseas
-            console.log('Modo oscuro detectado');
-        }
-
-        // Easter egg: Konami code
-        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    activateEasterEgg();
-                    konamiIndex = 0;
-                }
-            } else {
-                konamiIndex = 0;
-            }
-        });
-        
-        function activateEasterEgg() {
-            document.body.style.animation = 'rainbow 3s linear infinite';
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes rainbow {
-                    0% { filter: hue-rotate(0deg); }
-                    100% { filter: hue-rotate(360deg); }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            setTimeout(() => {
-                document.body.style.animation = '';
-                style.remove();
-            }, 3000);
-            
-            alert('¡Felicidades! Has descubierto el código secreto 🎉');
-        }
-
-        // Mejorar accesibilidad con navegación por teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-nav');
-            }
-        });
-        
-        document.addEventListener('mousedown', () => {
-            document.body.classList.remove('keyboard-nav');
-        });
-
-        // Lazy loading simulado para imágenes (cuando agregues imágenes reales)
-        const lazyLoad = () => {
-            const images = document.querySelectorAll('[data-src]');
-            
-            images.forEach(img => {
-                if (img.getBoundingClientRect().top < window.innerHeight && img.getBoundingClientRect().bottom > 0) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', lazyLoad);
-        window.addEventListener('resize', lazyLoad);
-
-        // Notificación de cookies (simulada)
-        setTimeout(() => {
-            const cookieNotice = document.createElement('div');
-            cookieNotice.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #5f849fff, #9cbdd1ff);
-                color: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                z-index: 10000;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                animation: slideUp 0.5s ease;
-                max-width: 500px;
-                margin: 0 auto;
-            `;
-
-            cookieNotice.innerHTML = `
-                <span>Utilizamos cookies para mejorar tu experiencia 🍪</span>
-                <button style="
-                    background: white;
-                    color: #1e3a8a;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    cursor: pointer;
-                    font-weight: bold;
-                    margin-left: 20px;
-                ">Aceptar</button>
-            `;
-            
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideUp {
-                    from {
-                        transform: translateY(100px);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateY(0);
-                        opacity: 1;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            document.body.appendChild(cookieNotice);
-            
-            cookieNotice.querySelector('button').addEventListener('click', () => {
-                cookieNotice.style.animation = 'slideUp 0.5s ease reverse';
-                setTimeout(() => cookieNotice.remove(), 500);
-            });
-        }, 2000);
-
-        // Guardar preferencias del usuario en localStorage
-        const preferences = {
-            theme: 'light',
-            language: 'es'
-        };
-
-        // Efectos de sonido (sin audio real, solo visual feedback)
-        document.querySelectorAll('button, a').forEach(element => {
-            element.addEventListener('click', () => {
-                element.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 100);
-            });
-        });
-
-        // Indicador de scroll
-        const createScrollIndicator = () => {
-            const indicator = document.createElement('div');
-            indicator.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 3px;
-                background: linear-gradient(90deg, #3b82f6, #60a5fa);
-                z-index: 10001;
-                transition: width 0.2s ease;
-            `;
-            document.body.appendChild(indicator);
-            
-            window.addEventListener('scroll', () => {
-                const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                indicator.style.width = scrollPercentage + '%';
-            });
-        };
-        
-        createScrollIndicator();
-
-        // Función para detectar el dispositivo
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (isMobile) {
-            document.body.classList.add('mobile-device');
-        }
-
-        console.log('✨ Vitrinas Sílice - Sitio web cargado correctamente');
-        console.log('📍 Ubicación: Guadalajara, Jalisco, México');
-        console.log('🎨 Diseño: Azul y Plateado');
-    </script>
+    </footer>    
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

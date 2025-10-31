@@ -1,0 +1,56 @@
+/* ============================================
+   STYLES.CSS - ARCHIVO PRINCIPAL
+   Sistema de diseño modular para proyecto de vitrinas
+   ============================================ */
+
+/* IMPORTACIONES DE MÓDULOS */
+
+/* 1. Variables y Configuración Base */
+@import url('base/_variables.css');
+@import url('base/_base.css');
+@import url('base/_animations.css');
+
+/* 2. Componentes */
+@import url('components/_buttons.css');
+@import url('components/_forms.css');
+@import url('components/_modal.css');
+@import url('components/_cards.css');
+@import url('components/_navigation.css');
+
+/* 3. Layouts */
+@import url('layouts/_header.css');
+@import url('layouts/_hero.css');
+@import url('layouts/_sections.css');
+@import url('layouts/_footer.css');
+
+/* 4. Responsive */
+@import url('layouts/_responsive.css');
+
+/* ============================================
+   NOTAS DE USO:
+   
+   Estructura de carpetas recomendada:
+   
+   css/
+   ├── styles.css (este archivo)
+   ├── base/
+   │   ├── _base.css
+   │   ├── _variables.css
+   │   └── _animations.css
+   ├── components/
+   │   ├── _buttons.css
+   │   ├── _forms.css
+   │   ├── _modal.css
+   │   ├── _cards.css
+   │   └── _navigation.css
+   └── layouts/
+       ├── _header.css
+       ├── _hero.css
+       ├── _sections.css
+       ├── _footer.css
+       └── _responsive.css
+
+   En tu HTML, solo necesitas enlazar:
+   <link rel="stylesheet" href="css/styles.css">
+   
+   ============================================ */
