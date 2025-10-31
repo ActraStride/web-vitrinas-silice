@@ -1,0 +1,130 @@
+/* ============================================
+   LAYOUT: SECCIONES
+   ============================================ */
+
+/* Sección Productos */
+.products-section {
+    padding: 6rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+/* Sección Proceso */
+.process-section {
+    padding: 6rem 5%;
+    background: rgba(0, 0, 0, 0.02);
+    position: relative;
+}
+
+.process-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.timeline-item {
+    text-align: center;
+    position: relative;
+}
+
+.timeline-number {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    background: var(--bg-gradient);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 200;
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent);
+    position: relative;
+}
+
+.timeline-number::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--accent-blue) 30%, transparent),
+        transparent
+    );
+}
+
+.timeline-item:last-child .timeline-number::after {
+    display: none;
+}
+
+.timeline-item h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    color: var(--text-light);
+}
+
+.timeline-item p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* Sección CTA */
+.cta-section {
+    padding: 8rem 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--accent-blue) 10%, transparent) 0%,
+        transparent 50%
+    );
+    animation: float 30s ease-in-out infinite reverse;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 3rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+}
