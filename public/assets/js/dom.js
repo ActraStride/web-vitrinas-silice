@@ -3,7 +3,6 @@ export const elements = {
     body: document.body,
     header: document.getElementById('header'),
     modal: document.getElementById('contactModal'),
-    modalCloseBtn: document.getElementById('modalCloseBtn'),
     contactNavBtn: document.getElementById('contactNavBtn'),
     contactForm: document.getElementById('contactForm'),
     navLinksContainer: document.getElementById('navLinks'),

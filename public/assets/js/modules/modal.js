@@ -23,7 +23,6 @@ export function initModal() {
         e.preventDefault();
         toggleModal(true);
     });
-    elements.modalCloseBtn.addEventListener('click', () => toggleModal(false));
     elements.modal.addEventListener('click', (e) => {
         if (e.target === elements.modal) toggleModal(false);
     });
