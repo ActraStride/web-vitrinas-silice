@@ -4,8 +4,13 @@
 
 /* TABLET - 1024px */
 @media (max-width: 1024px) {
+    
+}
+
+/* TABLET GRANDE - 1224px */
+@media (max-width: 1224px) {
     .hero {
-        grid-template-columns: 1fr;
+        flex-direction: column; /* <- ¡Este es el único cambio necesario! */
         gap: 3rem;
         text-align: center;
         min-height: auto;
@@ -13,12 +18,13 @@
     }
 
     .hero-content {
-        order: 2;
+        order: 2; /* Funciona perfectamente en Flexbox */
     }
 
     .hero-visual {
-        order: 1;
+        order: 1; /* Funciona perfectamente en Flexbox */
     }
+    
 
     .hero-content p {
         margin: 0 auto 3rem;
@@ -29,7 +35,7 @@
     }
 
     .showcase-image {
-        max-width: 550px;
+        max-width: 750px;
     }
 }
 
@@ -191,18 +197,46 @@
     .modal-container {
         padding: 2rem;
     }
+
+    
 }
 
 /* MÓVIL PEQUEÑO - 640px */
 @media (max-width: 640px) {
+    .hero {
+        
+        /* Añadimos espacio entre las filas que se van a apilar */
+        gap: 2rem; 
+        
+        /* Ajustamos el padding para móviles */
+        padding: 4rem 1rem 2rem; 
+        
+        /* Centramos el texto ahora que está en su propia fila */
+        text-align: center;
+    }
+    
+    .btn-group {
+        flex-direction: column; /* Apila los botones verticalmente */
+        align-items: center;    /* Opcional: Centra los botones si no son de ancho completo */
+        gap: 1rem;              /* Reduce un poco el espacio vertical entre ellos */
+    }
+
+    /* Opcional pero recomendado: Haz que los botones ocupen todo el ancho */
+    .btn-group .btn-primary,
+    .btn-group .btn-secondary {
+        width: 100%;
+        text-align: center; /* Asegura que el texto y el ícono estén centrados */
+    }
+
     .hero-content h1,
     .section-header h2,
     .cta-content h2 {
-        font-size: clamp(2rem, 7vw, 2.5rem);
+        font-size: clamp(1.5rem, 1rem + 3vw, 3rem);
     }
 
     .hero-content p {
         font-size: 1rem;
+        max-width: 100%;
     }
 
     .showcase-image {
@@ -210,6 +244,10 @@
     }
 
     .hero-visual {
-        min-height: 400px;
+        min-height: 350px;
+        width: 100%;       /* Ocupa todo el ancho disponible */
+        max-width: 400px;  /* Pero nunca más de 500px (ajusta este valor) */
+        margin-left: auto; /* Centra el bloque horizontalmente */
+        margin-right: auto;/* Centra el bloque horizontalmente */
     }
 }

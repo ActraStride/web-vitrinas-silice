@@ -56,7 +56,7 @@
 
 /* Botón Secundario */
 .btn-secondary {
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 3rem;
@@ -70,6 +70,11 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+}
+
+.btn-secondary svg {
+    margin-bottom: -0.4rem;
+    flex-shrink: 0; /* <-- ¡Esta es la línea mágica! */
 }
 
 .btn-secondary::before {

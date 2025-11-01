@@ -3,14 +3,22 @@
    ============================================ */
 
 .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     align-items: center;
+    gap: 2rem; /* Añadir un gap es una buena práctica */
     min-height: calc(100vh - 80px);
     padding: 0 5% 4rem;
     max-width: 1600px;
     margin: 0 auto;
     position: relative;
+}
+
+.hero-visual {
+    flex: 1;
+    /* ... el resto de tus estilos para hero-visual ... */
+    position: relative;
+    animation: fadeInRight 1s ease-out;
+    /* ... etc ... */
 }
 
 .shimmer {
@@ -46,6 +54,11 @@
 
 /* Contenido Hero */
 .hero-content {
+    width: 100%;       /* Ocupa todo el ancho disponible */
+    max-width: 500px;  /* Pero nunca más de 500px (ajusta este valor) */
+    margin-left: auto; /* Centra el bloque horizontalmente */
+    margin-right: auto;/* Centra el bloque horizontalmente */
+    flex: 1;
     animation: fadeInLeft 1s ease-out;
     z-index: 2;
 }
@@ -85,6 +98,7 @@
     justify-content: center;
     align-items: center;
     min-height: 600px;
+    flex: 1;
 }
 
 .hero-visual::before {
