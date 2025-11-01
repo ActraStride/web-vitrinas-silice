@@ -1,0 +1,154 @@
+/* ============================================
+   LAYOUT: CTA DE CIERRE CON MAPA (Versión Corregida)
+   ============================================ */
+
+.location-cta {
+    position: relative;
+    overflow: hidden;
+
+    /* 1. Añadimos padding vertical, pero CERO horizontal.
+       El centrado lo hará el max-width. */
+    padding: 6rem 0;
+    
+    /* 2. Convertimos la sección en un contenedor flexible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 3. ¡LA CLAVE! Le damos un ancho máximo y lo centramos.
+       Esto crea los márgenes a los lados en pantallas grandes. */
+    max-width: 1300px; /* Puedes ajustar este valor */
+    margin: 0 auto; /* Centra el contenedor */
+    
+    /* 4. Comprimimos el espacio intermedio */
+    gap: 2rem; /* Antes 4rem, ahora más junto */
+}
+.location-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--accent-blue) 10%, transparent) 0%,
+        transparent 50%
+    );
+    animation: float 30s ease-in-out infinite reverse;
+    z-index: 0;
+}
+
+/* --- Columna Izquierda: AHORA SOLO POSICIONA --- */
+.cta-content {
+    flex: 1 1 50%; /* Mantenemos la proporción 60/40 */
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- [NUEVO] El contenedor que controla el ANCHO del contenido --- */
+.cta-content__inner {
+    max-width: 550px; /* ¡LA REGLA MÁS IMPORTANTE! Limita el ancho del texto */
+    width: 100%;
+    text-align: left;
+}
+
+/* Estilos de texto (sin cambios) */
+.cta-content h2 {
+    font-size: 3rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+}
+
+/* --- [MODIFICADO] Aseguramos que el botón no se estire --- */
+/* Asumiendo que .btn-primary es tu clase de botón */
+.cta-content .btn-primary {
+    display: inline-block; /* Evita que ocupe todo el ancho */
+    text-decoration: none; /* Por si es una etiqueta <a> */
+    /* ... aquí irían el resto de tus estilos de botón (padding, background, etc.) */
+}
+
+/* --- Columna Derecha: Contenedor del Mapa (sin cambios) --- */
+.map-container {
+    flex: 1 1 50%;
+    height: 400px; /* Ajusta la altura si es necesario */
+    position: relative;
+    z-index: 1;
+    align-self: stretch; /* Se estira para igualar la altura del texto */
+
+    /* 5. Mantenemos el clip-path que te gustó */
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    overflow: hidden;
+}
+
+
+.map-container iframe {
+    /* Estilos base del iframe */
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* Transición suave para el cambio de filtro al cambiar de tema y al hacer hover */
+    transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- TEMA VITRINAS (OSCURO) --- */
+
+/* Por defecto, el mapa está oscuro cuando el body NO tiene la clase .theme-muebleria */
+body:not(.theme-muebleria) .map-container iframe {
+    filter: grayscale(1) invert(0.9) contrast(0.9);
+}
+
+/* Al hacer hover en el tema oscuro, el mapa recupera sus colores originales */
+body:not(.theme-muebleria) .map-container:hover iframe {
+    filter: none;
+}
+
+/* --- TEMA MUEBLERIA (CLARO) --- */
+
+/* Cuando el body SÍ tiene la clase .theme-muebleria, el mapa no tiene filtro */
+body.theme-muebleria .map-container iframe {
+    filter: none;
+}
+
+/* Al hacer hover en el tema claro, el mapa se oscurece (efecto inverso y sutil) */
+body.theme-muebleria .map-container:hover iframe {
+    filter: grayscale(1) invert(0.9) contrast(0.9);
+}
+
+/* --- CSS Responsivo (Añadir en _responsive.css) --- */
+@media (max-width: 1280px) { /* Un breakpoint un poco más grande que el max-width */
+    .location-cta {
+        /* En pantallas más pequeñas, añadimos padding para que no toque los bordes */
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .location-cta {
+        flex-direction: column; /* Apila las columnas */
+    }
+
+    .cta-content {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .map-container {
+        width: 100%;
+        height: 350px;
+        /* En móvil, el clip-path puede verse extraño. Opcional: quitarlo. */
+        clip-path: none; 
+    }
+}
