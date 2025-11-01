@@ -1,0 +1,20 @@
+/* ============================================
+   GRACIAS.CSS - Estilos para la página de agradecimiento
+   ============================================ */
+
+/* 1. Variables y Configuración Base (¡Necesario!) */
+@import url('../base/_variables.css');
+@import url('../base/_base.css');
+
+/* 2. Componentes Esenciales (Solo los que usas) */
+@import url('../components/_buttons.css'); /* Usamos un botón */
+
+/* 3. Layouts Esenciales (Solo header y el layout de la página) */
+@import url('../layouts/_header.css');    /* Necesitamos el header */
+@import url('../layouts/_thank-you.css'); /* Nuestro nuevo layout */
+@import url('../layouts/_footer.css');   /* Asumiendo que tengas un footer */
+@import url('../components/_navigation.css');
+
+
+/* 4. Responsive (Necesario) */
+@import url('../layouts/_responsive.css');

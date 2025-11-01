@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Mensaje Enviado! - Vitrinas Sílice</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Asumo que styles.css es tu archivo principal que importa todos los demás -->
+    
+    <link rel="stylesheet" href="assets/css/pages/thank-you.css"> 
+</head>
+<body>
+    <!-- REUTILIZAMOS TU HEADER PARA CONSISTENCIA -->
+    <div class="overlay-menu" id="menuOverlay"></div>
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <a href="index.html#home"> <!-- Enlace al index -->
+                    <img src="assets/img/logo.png" alt="Vitrinas Sílice Logo">
+                    <span>Vitrinas Sílice</span>
+                </a>
+            </div>
+            
+            <div class="nav-container">
+                <div class="nav-links" id="navLinks">
+                    <ul>
+                        <!-- Los enlaces ahora apuntan al index.html -->
+                        <li><a href="index.html#vitrinas">Vitrinas</a></li>
+                        <li><a href="index.html#muebleria">Mueblería</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Abrir menú">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- === CONTENIDO PRINCIPAL DE LA PÁGINA DE AGRADECIMIENTO === -->
+    <main>
+        <section class="thank-you-section">
+            <div class="thank-you-card scroll-animate">
+                <div class="thank-you-card__icon">
+                    <!-- Icono SVG para fácil estilización con CSS -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm4.707 7.293a1 1 0 0 0-1.414-1.414L11 12.172l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z"/>
+                    </svg>
+                </div>
+                <h2 class="thank-you-card__title">¡Cotización Enviada!</h2>
+                <p class="thank-you-card__message">Hemos recibido tus datos correctamente. Nos pondremos en contacto contigo a la brevedad.</p>
+                <a href="index.html" class="btn-primary">Volver al Inicio</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Asumo que tienes un script principal para la funcionalidad del header, etc. -->
+    <!-- <script src="assets/js/main.js"></script> -->
+</body>
+</html>

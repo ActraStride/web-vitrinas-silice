@@ -12,10 +12,12 @@ function handleFormSubmit(e) {
     const phone = formData.get('phone');
     
     console.log('Formulario enviado:', Object.fromEntries(formData));
-    alert(`¡Gracias por tu interés! Nos comunicaremos contigo pronto al número ${phone}.`);
     
     toggleModal(false);
     e.target.reset();
+
+    // Redirigir a la página de agradecimiento
+    window.location.href = 'thank-you.html';
 }
 
 export function initModal() {
