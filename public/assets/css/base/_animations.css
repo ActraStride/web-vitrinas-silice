@@ -24,15 +24,17 @@
     }
 }
 
+
+
 @keyframes shimmer {
     0% {
-        transform: translateX(-100%) translateY(-100%) rotate(-75deg);
+        transform: translateX(-100%) skewX(-15deg);
     }
-    30% {
-        transform: translateX(150%) translateY(150%) rotate(-75deg);
+    20% {
+        transform: translateX(200%) skewX(-15deg);
     }
     100% {
-        transform: translateX(150%) translateY(150%) rotate(-75deg);
+        transform: translateX(200%) skewX(-15deg);
     }
 }
 
