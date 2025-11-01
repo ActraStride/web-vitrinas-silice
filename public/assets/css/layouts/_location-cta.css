@@ -135,20 +135,45 @@ body.theme-muebleria .map-container:hover iframe {
     }
 }
 
+/* --- CSS Responsivo (Añadir en _responsive.css) --- */
+
+/* ... (el breakpoint de 1280px se queda como está) ... */
+
 @media (max-width: 992px) {
     .location-cta {
-        flex-direction: column; /* Apila las columnas */
+        flex-direction: column; /* Correcto: apilar las columnas */
+        gap: 3rem; /* Damos un poco de espacio entre texto y mapa */
+
     }
 
     .cta-content {
-        text-align: center;
-        margin-bottom: 3rem;
+        /* ¡ELIMINAMOS text-align: center! */
+        /* Dejamos que el texto respire por su cuenta */
+        margin-bottom: 0; /* Ya no es necesario, el 'gap' del padre se encarga */
     }
 
+    /* [LA CLAVE] En lugar de centrar el texto, centramos el contenedor interno.
+       Esto mantiene el bloque centrado en la pantalla, pero el texto
+       dentro del bloque permanece alineado a la izquierda, como en el diseño de escritorio. */
+    .cta-content__inner {
+        margin: 0 auto; /* Centra el contenedor del texto */
+        text-align: center; /* ¡NUEVO! Centramos todo el contenido INTERNO */
+    }
+
+    /* [EL DETALLE] Para mejorar la legibilidad, devolvemos el párrafo a la izquierda.
+       Esto centra el título y el botón (que se ven bien centrados), pero
+       mantiene el párrafo legible y alineado a la izquierda. */
+    .cta-content__inner p {
+        text-align: left;
+    }
+
+
     .map-container {
+        flex: initial; /* Evita que intente compartir espacio horizontal */
         width: 100%;
-        height: 350px;
-        /* En móvil, el clip-path puede verse extraño. Opcional: quitarlo. */
-        clip-path: none; 
+        height: 400px;
+        clip-path: none; /* Correcto: quitar el clip-path en móvil */
+        align-self: auto; /* Volvemos al comportamiento por defecto */
+        border-radius: 16px; /* Añadimos bordes redondeados para un toque más suave */
     }
 }
