@@ -1,27 +1,57 @@
 // js/content.js
 export const contentData = {
     vitrinas: {
-        heroTitle: "El Escenario Perfecto para sus Productos",
-        heroSubtitle: "Creamos vitrinas de exhibición que capturan la atención, generan impacto y aumentan el valor percibido.",
+        heroTitle: "Calidad y Diseño en Vitrinas de Exhibición",
+        heroSubtitle: "Diseño y fabricación en Guadalajara. Soluciones de exhibición que realzan con elegancia el valor de sus productos.",
         heroImage: "assets/img/glass_showcase_4.png",
         productsTitle: "Nuestras Vitrinas",
         productsSubtitle: "Combinamos estética y funcionalidad para crear la solución de exhibición que necesita.",
         products: [
-            { img: 'assets/img/glass_showcase_7.jpeg', title: 'Vitrina Ejecutiva', desc: 'Diseño minimalista con iluminación LED integrada y sistema de apertura suave.', tags: ['Cristal Templado', 'LED Premium', 'Personalizable'] },
-            { img: 'assets/img/glass_showcase_3.jpeg', title: 'Vitrina Torre', desc: 'Máxima visibilidad con estructura de aluminio anodizado y cristal ultra claro.', tags: ['360° Vista', 'Altura Ajustable', 'Antirreflejo'] },
-            { img: 'assets/img/glass_showcase_2.png', title: 'Vitrina Modular', desc: 'Sistema modular expandible con conectividad inteligente y control remoto.', tags: ['IoT Ready', 'Modular', 'App Control'] }
+            { 
+                img: 'assets/img/glass_showcase_4.png',
+                title: 'Mostradores', 
+                desc: 'Aprovecha el espacio con este mostrador de cristal, ideal para una exhibición segura con visibilidad total.', 
+                tags: ['Visibilidad 360°', 'Repisas Ajustables', 'Estructura de Aluminio'] 
+            },
+            { 
+                img: 'assets/img/glass_showcase_3.jpeg',
+                title: 'Exhibidores', 
+                desc: 'Soluciones versátiles y a medida para su punto de venta, incluyendo mostradores, islas y estanterías adaptadas.', 
+                tags: ['A Medida', 'Mobiliario Comercial', 'Optimización de Espacio'] 
+            },
+            { 
+                img: 'assets/img/glass_showcase_2.png',
+                title: 'Vitrinas Iluminadas', 
+                desc: 'Con iluminación LED integrada para realzar sus productos. Perfecta para joyerías, ópticas y artículos coleccionables.', 
+                tags: ['Iluminación LED', 'Realce de Producto', 'Bajo Consumo'] 
+            }
         ]
     },
     muebleria: {
-        heroTitle: "Mobiliario Comercial que Vende por Sí Mismo",
-        heroSubtitle: "Diseñamos y fabricamos muebles a la medida que optimizan tu espacio y mejoran la experiencia de compra.",
+        heroTitle: "Carpintería profesional y a la Medida",
+        heroSubtitle: "Transformamos espacios con soluciones en madera y otros materiales, diseñadas y fabricadas en Guadalajara.",
         heroImage: "assets/img/mueble.png", 
-        productsTitle: "Soluciones en Mueblería",
-        productsSubtitle: "Desde mostradores hasta islas de exhibición, creamos el mobiliario ideal para tu negocio.",
+        productsTitle: "Proyectos de Carpintería a Medida",
+        productsSubtitle: "Diseñamos y fabricamos piezas funcionales que se integran perfectamente a su espacio, ya sea residencial o de negocio.",
         products: [
-            { img: 'assets/img/mueble1.png', title: 'Mostrador de Recepción', desc: 'Acabados premium, diseño ergonómico y espacio de almacenamiento integrado.', tags: ['Melamina Alto Brillo', 'Diseño a Medida', 'Iluminación Indirecta'] },
-            { img: 'assets/img/mueble2.png', title: 'Isla de Exhibición Central', desc: 'Perfecta para destacar productos clave y crear flujos de clientes en tu tienda.', tags: ['Vista 360°', 'Almacenamiento Inferior', 'Materiales Mixtos'] },
-            { img: 'assets/img/mueble3.png', title: 'Panel Ranurado y Estantería', desc: 'Solución versátil y adaptable para exhibir una amplia gama de productos de forma ordenada.', tags: ['Alta Resistencia', 'Accesorios Variados', 'Fácil Instalación'] }
+            { 
+                img: 'assets/img/mueble7.png',
+                title: 'Cocinas Integrales', 
+                desc: 'Cocinas diseñadas y fabricadas a tu medida. Maximizamos el espacio con materiales duraderos y funcionales.', 
+                tags: ['Personalizado', 'Optimización de Espacio', 'Herrajes'] 
+            },
+            { 
+                img: 'assets/img/mueble4.jpg',
+                title: 'Clósets y Vestidores', 
+                desc: 'Soluciones de almacenamiento prácticas. Diseñamos interiores según lo que necesitas guardar y organizar.', 
+                tags: ['Almacenamiento', 'Interiores a Medida', 'Acabados Diversos'] 
+            },
+            { 
+                img: 'assets/img/mueble3.png',
+                title: 'Mobiliario Residencial', 
+                desc: 'Mesas, sillas y bancas resistentes para tu hogar. Calidad y diseño adaptado a tus espacios.', 
+                tags: ['Durabilidad', 'Diseño Personalizado', 'Fabricación a Medida'] 
+            }
         ]
     }
 };
