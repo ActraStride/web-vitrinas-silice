@@ -29,10 +29,10 @@
         transform: translateX(-100%) translateY(-100%) rotate(-75deg);
     }
     30% {
-        transform: translateX(100%) translateY(100%) rotate(-75deg);
+        transform: translateX(150%) translateY(150%) rotate(-75deg);
     }
     100% {
-        transform: translateX(100%) translateY(100%) rotate(-75deg);
+        transform: translateX(150%) translateY(150%) rotate(-75deg);
     }
 }
 
