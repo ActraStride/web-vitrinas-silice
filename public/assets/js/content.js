@@ -7,7 +7,7 @@ export const contentData = {
         productsTitle: "Nuestras Vitrinas",
         productsSubtitle: "Combinamos estética y funcionalidad para crear la solución de exhibición que necesita.",
         products: [
-            { img: 'assets/img/glass_showcase_4.png', title: 'Vitrina Ejecutiva', desc: 'Diseño minimalista con iluminación LED integrada y sistema de apertura suave.', tags: ['Cristal Templado', 'LED Premium', 'Personalizable'] },
+            { img: 'assets/img/glass_showcase_7.jpeg', title: 'Vitrina Ejecutiva', desc: 'Diseño minimalista con iluminación LED integrada y sistema de apertura suave.', tags: ['Cristal Templado', 'LED Premium', 'Personalizable'] },
             { img: 'assets/img/glass_showcase_3.jpeg', title: 'Vitrina Torre', desc: 'Máxima visibilidad con estructura de aluminio anodizado y cristal ultra claro.', tags: ['360° Vista', 'Altura Ajustable', 'Antirreflejo'] },
             { img: 'assets/img/glass_showcase_2.png', title: 'Vitrina Modular', desc: 'Sistema modular expandible con conectividad inteligente y control remoto.', tags: ['IoT Ready', 'Modular', 'App Control'] }
         ]

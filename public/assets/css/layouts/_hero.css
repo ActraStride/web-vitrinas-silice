@@ -11,7 +11,30 @@
     max-width: 1600px;
     margin: 0 auto;
     position: relative;
+    overflow: hidden;
 }
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        110deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.08) 40%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0.08) 60%,
+        transparent 80%
+    );
+    animation: shimmer 10s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform;
+}
+
 
 /* Contenido Hero */
 .hero-content {
@@ -143,26 +166,6 @@
             drop-shadow(0 20px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent));
 }
 
-.showcase-image-container::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        110deg,
-        transparent 20%,
-        rgba(255, 255, 255, 0.08) 40%,
-        rgba(255, 255, 255, 0.25) 50%,
-        rgba(255, 255, 255, 0.08) 60%,
-        transparent 80%
-    );
-    animation: shimmer 10s linear infinite;
-    z-index: 0;
-    pointer-events: none;
-    will-change: transform;
-}
 
 /* Partículas Flotantes */
 .floating-particles {
