@@ -1,0 +1,93 @@
+/* ============================================
+   LAYOUT: SECCIONES
+   ============================================ */
+
+/* Sección Productos */
+.products-section {
+    padding: 6rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+/* Sección Proceso */
+.process-section {
+    padding: 6rem 5%;
+    background: rgba(0, 0, 0, 0.02);
+    position: relative;
+}
+
+.process-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.timeline-item {
+    text-align: center;
+    position: relative;
+}
+
+.timeline-number {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    background: var(--bg-gradient);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 200;
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent);
+    position: relative;
+}
+
+.timeline-number::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--accent-blue) 30%, transparent),
+        transparent
+    );
+}
+
+.timeline-item:last-child .timeline-number::after {
+    display: none;
+}
+
+.timeline-item h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    color: var(--text-light);
+}
+
+.timeline-item p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* Sección divisor */
+.section-divider {
+    max-width: 100%; /* O el ancho de tu contenido principal */
+    margin: 0 auto; /* Lo centramos */
+    height: 100px;
+    background-color: var(--primary-blue); /* Usa un color sutil del tema */
+    opacity: 0.5;
+}

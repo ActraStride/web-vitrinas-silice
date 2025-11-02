@@ -1,0 +1,59 @@
+/* ============================================
+   VARIABLES CSS - SISTEMA DE DISEÑO
+   ============================================ */
+
+:root {
+    /* COLORES - TEMA PREDETERMINADO (VITRINAS - AZUL OSCURO) */
+    --primary-dark: #1a1f2e;
+    --primary-blue: #2c3e50;
+    --accent-blue: #3498db;
+    --glass-blue: #e8f4f8;
+    --text-light: #ecf0f1;
+    --text-gray: #95a5a6;
+
+    /* GRADIENTES */
+    --body-bg: linear-gradient(135deg, #1a1f2e 0%, #2c3e50 50%, #34495e 100%);
+    --bg-gradient: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
+
+    /* SOMBRAS */
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --shadow-luxury: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --header-shadow-color: rgba(0, 0, 0, 0.15);
+
+    /* ICONOS DE SELECT (codificado para URL) */
+    --select-arrow-color: '%2395a5a6';
+    --select-arrow-color-focus: '%233498db';
+
+    /* ESPACIADO Y FORMA */
+    --border-radius: 16px;
+
+    /* TRANSICIONES */
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   TEMA MUEBLERIA
+   ============================================ */
+
+body.theme-muebleria {
+    /* COLORES */
+    --primary-dark: #f5f0e8;
+    --primary-blue: #e8e2d8;
+    --accent-blue: #8d6e63;
+    --glass-blue: #faf8f5;
+    --text-light: #4e342e;
+    --text-gray: #a1887f;
+
+    /* GRADIENTES */
+    --body-bg: var(--primary-dark);
+    --bg-gradient: linear-gradient(135deg, #bcaaa4 0%, #8d6e63 100%);
+
+    /* SOMBRAS */
+    --shadow-soft: 0 10px 40px rgba(141, 110, 99, 0.12);
+    --shadow-luxury: 0 20px 60px rgba(141, 110, 99, 0.18);
+    --header-shadow-color: rgba(141, 110, 99, 0.15);
+
+    /* ICONOS DE SELECT */
+    --select-arrow-color: '%23a1887f';
+    --select-arrow-color-focus: '%238d6e63';
+}

@@ -1,0 +1,27 @@
+/* ============================================
+   LAYOUT: HEADER
+   ============================================ */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: color-mix(in srgb, var(--primary-dark) 95%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+header.scrolled {
+    box-shadow: 0 10px 30px var(--header-shadow-color);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}

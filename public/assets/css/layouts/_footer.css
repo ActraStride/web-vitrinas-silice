@@ -1,0 +1,96 @@
+/* ============================================
+   LAYOUT: FOOTER
+   ============================================ */
+
+footer {
+    padding: 4rem 5% 2rem;
+    background: var(--primary-blue);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+}
+
+/* Brand del Footer */
+.footer-brand h3 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.footer-brand p {
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* Links Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Columnas del Footer */
+.footer-column h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 1rem;
+}
+
+.footer-column ul li a {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+    color: var(--text-light);
+    padding-left: 5px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
+    text-align: center;
+    color: var(--text-gray);
+}

@@ -1,0 +1,253 @@
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* TABLET - 1024px */
+@media (max-width: 1024px) {
+    
+}
+
+/* TABLET GRANDE - 1224px */
+@media (max-width: 1224px) {
+    .hero {
+        flex-direction: column; /* <- ¡Este es el único cambio necesario! */
+        gap: 3rem;
+        text-align: center;
+        min-height: auto;
+        padding: 6rem 5% 4rem;
+    }
+
+    .hero-content {
+        order: 2; /* Funciona perfectamente en Flexbox */
+    }
+
+    .hero-visual {
+        order: 1; /* Funciona perfectamente en Flexbox */
+    }
+    
+
+    .hero-content p {
+        margin: 0 auto 3rem;
+    }
+
+    .btn-group {
+        justify-content: center;
+    }
+
+    .showcase-image {
+        max-width: 750px;
+    }
+}
+
+/* TABLET PEQUEÑA - 968px */
+@media (max-width: 968px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-number::after {
+        display: none;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .footer-brand p {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* MÓVIL - 768px */
+@media (max-width: 768px) {
+    body.no-scroll {
+        overflow: hidden;
+    }
+
+    main {
+        padding-top: 70px;
+    }
+
+    nav {
+        padding: 1rem 5%;
+    }
+
+    /* Menú Hamburguesa */
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 2rem;
+        height: 2rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .hamburger-menu .bar {
+        width: 2rem;
+        height: 2px;
+        background-color: var(--text-light);
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        transform-origin: 1px;
+    }
+
+    .hamburger-menu.open .bar:nth-child(1) {
+        transform: rotate(45deg);
+    }
+
+    .hamburger-menu.open .bar:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    .hamburger-menu.open .bar:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+
+    /* Panel de Navegación Móvil (Off-canvas) */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: var(--primary-dark);
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 2rem;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.open {
+        transform: translateX(0);
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        color: var(--text-light);
+    }
+
+    /* Overlay del Menú */
+    .overlay-menu {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        z-index: 1000;
+    }
+
+    .overlay-menu.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Ajustes Generales para Móvil */
+    .hero {
+        padding-top: 4rem;
+    }
+
+    .hero-content h1,
+    .section-header h2,
+    .cta-content h2 {
+        font-size: clamp(2.2rem, 8vw, 2.8rem);
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    .products-section,
+    .process-section,
+    .cta-section {
+        padding: 4rem 5%;
+    }
+
+    .modal-container {
+        padding: 2rem;
+    }
+
+    
+}
+
+/* MÓVIL PEQUEÑO - 640px */
+@media (max-width: 640px) {
+    .hero {
+        
+        /* Añadimos espacio entre las filas que se van a apilar */
+        gap: 2rem; 
+        
+        /* Ajustamos el padding para móviles */
+        padding: 4rem 1rem 2rem; 
+        
+        /* Centramos el texto ahora que está en su propia fila */
+        text-align: center;
+    }
+    
+    .btn-group {
+        flex-direction: column; /* Apila los botones verticalmente */
+        align-items: center;    /* Opcional: Centra los botones si no son de ancho completo */
+        gap: 1rem;              /* Reduce un poco el espacio vertical entre ellos */
+    }
+
+    /* Opcional pero recomendado: Haz que los botones ocupen todo el ancho */
+    .btn-group .btn-primary,
+    .btn-group .btn-secondary {
+        width: 100%;
+        text-align: center; /* Asegura que el texto y el ícono estén centrados */
+    }
+
+    .hero-content h1,
+    .section-header h2,
+    .cta-content h2 {
+        font-size: clamp(1.5rem, 1rem + 3vw, 3rem);
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .showcase-image {
+        max-width: 100%;
+    }
+
+    .hero-visual {
+        min-height: 350px;
+        width: 100%;       /* Ocupa todo el ancho disponible */
+        max-width: 400px;  /* Pero nunca más de 500px (ajusta este valor) */
+        margin-left: auto; /* Centra el bloque horizontalmente */
+        margin-right: auto;/* Centra el bloque horizontalmente */
+    }
+}

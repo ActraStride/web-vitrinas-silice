@@ -1,0 +1,43 @@
+name: Create and Publish Release Docker Image
+
+# Se activa cada vez que se empuja un tag que empiece con "v"
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      # 1. Clona el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Login en Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Extrae metadata de la versión desde el tag
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/silixe-web
+          tags: |
+            type=semver,pattern={{version}}
+
+      # 4. Construye y publica la imagen
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

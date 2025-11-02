@@ -1,6 +1,5 @@
 services:
   silixe-web:
-    container_name: silixe-web
     image: nginxinc/nginx-unprivileged:stable-alpine
     ports:
       - "80:8080"

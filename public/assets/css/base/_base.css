@@ -1,0 +1,85 @@
+/* ============================================
+   BASE - RESET Y CONFIGURACIÓN GLOBAL
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* ============================================
+   TIPOGRAFÍA BASE
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+/* ============================================
+   UTILIDADES GENERALES
+   ============================================ */
+
+main {
+    padding-top: 80px;
+}
+
+.content-wrapper {
+    transition: opacity 0.4s ease-in-out;
+}
+
+.content-wrapper.fade-out {
+    opacity: 0;
+}
+
+/* Animaciones de Scroll */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Encabezados de Sección */
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    font-weight: 200;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    color: var(--text-light);
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    max-width: 600px;
+    margin: 0 auto;
+}

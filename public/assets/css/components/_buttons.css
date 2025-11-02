@@ -1,0 +1,98 @@
+/* ============================================
+   COMPONENTE: BOTONES
+   ============================================ */
+
+/* Botón Principal (Submit / Primary) */
+.btn-submit,
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--bg-gradient);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-blue) 30%, transparent);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-submit {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.btn-submit::before,
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+
+.btn-submit:hover,
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px color-mix(in srgb, var(--accent-blue) 40%, transparent);
+}
+
+.btn-submit:hover::before,
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-submit:active,
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Botón Secundario */
+.btn-secondary {
+    display: inline-block;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 3rem;
+    background: transparent;
+    color: var(--text-light);
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--text-light) 20%, transparent);
+    border-radius: 50px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary svg {
+    margin-bottom: -0.4rem;
+    flex-shrink: 0; /* <-- ¡Esta es la línea mágica! */
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 211, 102, 0.25), transparent);
+    transition: left 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(37, 211, 102, 0.5);
+}
+
+.btn-secondary:hover::before {
+    left: 100%;
+}
