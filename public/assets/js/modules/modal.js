@@ -18,7 +18,7 @@ async function handleFormSubmit(e) { // <-- Convertimos la función a 'async'
     // --- ¡AQUÍ ESTÁ EL PUNTO DE ENLACE! ---
     try {
         // 2. Enviar los datos a la API de FastAPI
-        const response = await fetch('/contact', {
+        const response = await fetch('/service/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
