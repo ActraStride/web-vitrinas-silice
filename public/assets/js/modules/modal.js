@@ -6,18 +6,51 @@ function toggleModal(show) {
     elements.body.style.overflow = show ? 'hidden' : '';
 }
 
-function handleFormSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const phone = formData.get('phone');
-    
-    console.log('Formulario enviado:', Object.fromEntries(formData));
-    
-    toggleModal(false);
-    e.target.reset();
+// js/modules/modal.js (dentro de handleFormSubmit)
 
-    // Redirigir a la página de agradecimiento
-    window.location.href = 'thank-you.html';
+async function handleFormSubmit(e) { // <-- Convertimos la función a 'async'
+    e.preventDefault();
+    
+    // 1. Obtener los datos del formulario
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    // --- ¡AQUÍ ESTÁ EL PUNTO DE ENLACE! ---
+    try {
+        // 2. Enviar los datos a la API de FastAPI
+        const response = await fetch('https://vitrinassilice.com/service/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // Asegúrate de que estos nombres coincidan con tu schema Pydantic
+                name: data.name,
+                phone_number: data.phone, // ¡OJO! Asegúrate que el name en HTML es "phone"
+                option: parseInt(data.interest, 10) // Convertir a número
+            }),
+        });
+
+        // 3. Verificar si la petición fue exitosa
+        if (!response.ok) {
+            // Si la API devuelve un error (ej: 422, 500), lo lanzamos
+            const errorData = await response.json();
+            throw new Error(errorData.detail || 'Ocurrió un error al enviar el formulario.');
+        }
+
+        // Si todo fue bien, la API devolvió un 201 Created
+        const result = await response.json();
+        console.log('Respuesta de la API:', result);
+
+        // 4. Lógica de UI después del éxito
+        toggleModal(false);
+        e.target.reset();
+        window.location.href = 'thank-you.html'; // Redirigir
+
+    } catch (error) {
+        console.error('Falló la petición fetch:', error);
+        alert('No se pudo enviar el formulario. Revisa la consola para más detalles.');
+    }
 }
 
 export function initModal() {
