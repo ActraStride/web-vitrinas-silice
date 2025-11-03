@@ -54,17 +54,10 @@ async function handleFormSubmit(e) { // <-- Convertimos la función a 'async'
 }
 
 export function initModal() {
-    elements.contactNavBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleModal(true);
-    });
-    elements.modal.addEventListener('click', (e) => {
-        if (e.target === elements.modal) toggleModal(false);
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && elements.modal.classList.contains('active')) {
-            toggleModal(false);
-        }
-    });
-    elements.contactForm.addEventListener('submit', handleFormSubmit);
+    [elements.contactNavBtn, elements.requestQuoteBtn, elements.scheduleVisitBtn]
+        .forEach(btn => btn?.addEventListener('click', e => { e.preventDefault(); toggleModal(true); }));
+
+    elements.modal.addEventListener('click', e => { if (e.target === elements.modal) toggleModal(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && elements.modal.classList.contains('active')) toggleModal(false); });
+    elements.contactForm?.addEventListener('submit', handleFormSubmit);
 }

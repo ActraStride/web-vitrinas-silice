@@ -4,6 +4,8 @@ export const elements = {
     header: document.getElementById('header'),
     modal: document.getElementById('contactModal'),
     contactNavBtn: document.getElementById('contactNavBtn'),
+    requestQuoteBtn: document.getElementById('requestQuoteBtn'),
+    scheduleVisitBtn: document.getElementById('scheduleVisitBtn'),
     contactForm: document.getElementById('contactForm'),
     navLinksContainer: document.getElementById('navLinks'),
     allNavLinks: document.querySelectorAll('#navLinks a'),
