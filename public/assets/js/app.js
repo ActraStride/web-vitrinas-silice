@@ -34,7 +34,7 @@ function updateContent(sectionName, animate = true) {
     if(animate) setupScrollObserver();
 }
 
-function switchSection(sectionName) {
+function switchSection(sectionName, isInitialLoad = false) {
     if (elements.body.dataset.currentTheme === sectionName) return;
 
     elements.body.classList.toggle('theme-muebleria', sectionName === 'muebleria');
@@ -43,12 +43,23 @@ function switchSection(sectionName) {
     elements.allNavLinks.forEach(navLink => {
         navLink.classList.toggle('active', navLink.dataset.section === sectionName);
     });
+
+    // Actualiza la URL en la barra de direcciones sin recargar la página
+    // Usa replaceState para la carga inicial para no crear una entrada inútil en el historial
+    if (isInitialLoad) {
+        history.replaceState(null, '', `#${sectionName}`);
+    } else {
+        history.pushState(null, '', `#${sectionName}`);
+    }
     
+    // Anima la transición de contenido
     elements.contentWrapper.classList.add('fade-out');
     setTimeout(() => {
         updateContent(sectionName);
         elements.contentWrapper.classList.remove('fade-out');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (!isInitialLoad) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }, FADE_ANIMATION_DURATION);
 }
 
@@ -60,12 +71,36 @@ function handleNavClick(e) {
         e.preventDefault();
         switchSection(section);
     }
-    // El clic en el botón de contacto ya es manejado por el módulo del modal
-
+    
     if (elements.navLinksContainer.classList.contains('open')) {
         toggleMobileMenu(false);
     }
 }
+
+/**
+ * Función "Router": Lee el ancla de la URL en la carga inicial
+ * para mostrar la sección correcta.
+ */
+function handleInitialLoad() {
+    const hash = window.location.hash.substring(1);
+
+    // Si hay un ancla válida en la URL (ej: #muebleria), muéstrala.
+    // De lo contrario, carga 'vitrinas' como la sección por defecto.
+    const initialSection = (hash && contentData[hash]) ? hash : 'vitrinas';
+
+    updateContent(initialSection, false); // Carga el contenido inicial sin animar
+    
+    // Establece el estado visual correcto para la sección inicial
+    elements.body.classList.toggle('theme-muebleria', initialSection === 'muebleria');
+    elements.body.dataset.currentTheme = initialSection;
+    elements.allNavLinks.forEach(navLink => {
+        navLink.classList.toggle('active', navLink.dataset.section === initialSection);
+    });
+
+    // Asegura que el ancla correcta esté en la URL desde el principio
+    history.replaceState(null, '', `#${initialSection}`);
+}
+
 
 function init() {
     // Inicializar módulos de UI
@@ -78,8 +113,8 @@ function init() {
         if(link.dataset.section) link.addEventListener('click', handleNavClick);
     });
 
-    // Configuración inicial de la página
-    updateContent('vitrinas', false);
+    // Configuración inicial de la página basada en la URL
+    handleInitialLoad();
     setupScrollObserver();
 }
 
