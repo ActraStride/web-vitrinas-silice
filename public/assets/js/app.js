@@ -6,6 +6,7 @@ import { initModal } from './modules/modal.js';
 import { initMobileMenu, toggleMobileMenu } from './modules/mobileMenu.js';
 import { initHeader } from './modules/header.js';
 import { setupScrollObserver } from './modules/scrollObserver.js';
+import { initTracking } from './modules/tracking.js';
 
 function updateContent(sectionName, animate = true) {
     const data = contentData[sectionName];
@@ -103,6 +104,8 @@ function handleInitialLoad() {
 
 
 function init() {
+    // Inicializar seguimiento (GTM)
+    initTracking();
     // Inicializar módulos de UI
     initHeader();
     initModal();
