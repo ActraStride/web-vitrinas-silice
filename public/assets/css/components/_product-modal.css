@@ -339,8 +339,14 @@
 @media (max-width: 768px) {
     .product-modal-container {
         grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr; /* La imagen ocupa su espacio, el contenido el resto */
+        overflow: hidden; /* Buena práctica para asegurar que nada se desborde */
         width: 95%;
         max-height: 85vh;
+    }
+
+    .product-modal-content {
+        min-height: 0; /* Un truco mágico para que el overflow funcione bien en Grid/Flex */
     }
 
     .product-modal-image {
