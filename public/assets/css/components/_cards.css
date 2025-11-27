@@ -1,14 +1,13 @@
 /* ============================================
    COMPONENTE: TARJETAS DE PRODUCTO
    ============================================ */
-
 .product-card {
     background: color-mix(in srgb, var(--primary-dark) 80%, var(--primary-blue) 20%);
     backdrop-filter: blur(20px);
     border: 1px solid color-mix(in srgb, var(--text-light) 5%, transparent);
     border-radius: var(--border-radius);
     overflow: hidden;
-    transition: var(--transition);
+    /* transition: all 0.3s ease; */
     position: relative;
     cursor: pointer;
 }
@@ -17,6 +16,10 @@
     transform: translateY(-10px);
     box-shadow: var(--shadow-luxury);
     background: var(--primary-blue);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
 }
 
 .product-image {
@@ -35,6 +38,32 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+}
+
+/* ⭐ NUEVO: Badge de precio */
+.product-price-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--primary-blue-transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-price-badge {
+    background: var(--bg-gradient);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
 .product-info {
@@ -68,4 +97,32 @@
     border-radius: 20px;
     font-size: 0.85rem;
     color: var(--accent-blue);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .feature-tag {
+    background: color-mix(in srgb, var(--accent-blue) 15%, transparent);
+    border-color: color-mix(in srgb, var(--accent-blue) 50%, transparent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-image {
+        height: 250px;
+    }
+
+    .product-price-badge {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .product-info {
+        padding: 1.5rem;
+    }
+
+    .product-info h3 {
+        font-size: 1.25rem;
+    }
 }
