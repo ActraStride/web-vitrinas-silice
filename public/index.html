@@ -16,69 +16,51 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KP4V392P"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- El overlay es el bloque 'modal' con un modificador de tipo -->
-    <div class="modal modal--contact" id="contactModal">
-        <!-- El container es un elemento del modal -->
+    <!-- ====================================================================== -->
+    <!--                   MODAL DE CONTACTO (ESTÁTICO)                         -->
+    <!-- ====================================================================== -->
+    <div class="modal modal--contact" id="contactModal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal__container">
-            <!-- El contenido del modal es un bloque autocontenido: 'contact-form' -->
+            
             <form class="contact-form" id="contactForm">
-                
-                <!-- Elementos que pertenecen al bloque 'contact-form' -->
                 <div class="contact-form__header">
-                    <div class="contact-form__icon">
-                        <svg viewBox="0 0 24 24">...</svg>
-                    </div>
+                    <div class="contact-form__icon">...</div>
                     <h2 class="contact-form__title">Solicitar Cotización</h2>
                     <p class="contact-form__subtitle">Déjanos tu número y te contactaremos</p>
                 </div>
-
-                <!-- Un elemento para agrupar los campos -->
                 <div class="contact-form__fields">
-                    
-                    <!-- Cada grupo es un bloque reutilizable: 'form-field' -->
                     <div class="form-field">
                         <label for="name" class="form-field__label">Nombre</label>
                         <input type="text" id="name" name="name" class="form-field__input" placeholder="Tu nombre completo" required minlength="2">
                     </div>
-
                     <div class="form-field">
                         <label for="phone" class="form-field__label">Número de Teléfono</label>
-                        <input type="tel" id="phone" name="phone" class="form-field__input" placeholder="+52 33 1234 5678" required pattern="[0-9+\s\-()]+">
+                        <input type="tel" id="phone" name="phone" class="form-field__input" placeholder="+52 33 1234 5678" required>
                     </div>
-
                     <div class="form-field">
                         <label for="interest" class="form-field__label">¿Qué te interesa?</label>
-                        <!-- El select es un 'input' con un modificador -->
                         <select id="interest" name="interest" class="form-field__input form-field__input--select" required>
                             <option value="0">Vitrinas</option>
                             <option value="1">Panel Ranurado</option>
                             <option value="2">Carpintería</option>
                         </select>
                     </div>
-
                 </div>
-                
-                <!-- Usamos el bloque global 'btn' y le añadimos una clase específica del formulario para el espaciado si es necesario -->
                 <button type="submit" class="btn btn--primary contact-form__submit-btn">Solicitar Llamada</button>
-
             </form>
         </div>
     </div>
-    
-    <!-- El contenedor principal es el bloque 'site-header' -->
-    <header class="site-header" id="header">
-        <!-- El logo es un elemento del header -->
+
+    <header class="site-header">
         <a href="#home" class="site-header__logo">
-            <img class="site-header__logo-img" src="assets/img/logo.png" alt="Vitrinas Sílice Logo">
-            <span class="site-header__logo-text">Vitrinas Sílice</span>
+            <img src="assets/img/logo.png" alt="Vitrinas Sílice Logo">
+            <span>Vitrinas Sílice</span>
         </a>
 
-        <!-- La navegación principal es su propio bloque, ya que es un componente complejo -->
-        <nav class="site-nav" id="navLinks">
+        <nav class="site-nav">
             <ul class="site-nav__list">
                 <li class="site-nav__item">
-                    <!-- Usamos el elemento + el modificador de estado -->
-                    <a class="site-nav__link site-nav__link--is-active" data-section="vitrinas">Vitrinas</a>
+                    <a class="site-nav__link is-active" data-section="vitrinas">Vitrinas</a>
                 </li>
                 <li class="site-nav__item">
                     <a class="site-nav__link" data-section="muebleria">Mueblería</a>
@@ -88,42 +70,30 @@
                 </li>
             </ul>
         </nav>
-
-        <!-- El botón de hamburguesa es un bloque reutilizable -->
-        <button class="hamburger-btn" id="hamburgerMenu" aria-label="Abrir menú">
-            <span class="hamburger-btn__bar"></span>
-            <span class="hamburger-btn__bar"></span>
-            <span class="hamburger-btn__bar"></span>
+        
+        <button class="hamburger" id="hamburgerMenu" aria-label="Abrir menú">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
         </button>
     </header>
 
-
     <main>
-        <!-- 'content-wrapper' es una clase de layout, no un bloque BEM, está bien dejarla así -->
-        <div class="content-wrapper">
-            <!-- El bloque principal 'hero' ahora contiene todo -->
+        <div class="l-wrapper">
             <section class="hero" id="home">
-                
-                <!-- El contenido es un elemento del hero -->
                 <div class="hero__content">
                     <h1 class="hero__heading" data-content="heroTitle"></h1>
                     <p class="hero__text" data-content="heroSubtitle"></p>
-                    
-                    <!-- El grupo de botones es un elemento del hero -->
                     <div class="hero__actions">
-                        <!-- Usamos el bloque global 'btn' con sus modificadores -->
                         <a href="#" class="btn btn--primary" id="requestQuoteBtn">Solicitar Cotización</a>
-                        <a href="..." class="btn btn--secondary" target="_blank" rel="noopener noreferrer" id="whatsappBtnGlobal">
-                            <!-- El SVG es un elemento del bloque 'btn' -->
-                            <svg class="btn__icon" viewBox="0 0 25 25" ...>...</svg>
+                        <a href="https://wa.me/523334683900" class="btn btn--secondary" target="_blank" rel="noopener noreferrer" id="whatsappBtnGlobal">
+                            <svg class="btn__icon" viewBox="0 0 25 25">...</svg>
                             <span class="btn__text">WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- La parte visual es otro elemento principal del hero -->
                 <div class="hero__visual">
-                    <!-- Las partículas son un efecto decorativo, un elemento del hero -->
                     <div class="hero__particles">
                         <div class="hero__particle"></div>
                         <div class="hero__particle"></div>
@@ -131,70 +101,47 @@
                         <div class="hero__particle"></div>
                         <div class="hero__particle"></div>
                     </div>
-                    
-                    <!-- El contenedor de la imagen es un elemento wrapper -->
                     <div class="hero__image-wrapper">
-                        <!-- El brillo es un elemento decorativo de la imagen -->
                         <div class="hero__image-glow"></div>
                         <img src="" alt="Vitrina de exhibición de cristal" class="hero__image" data-content="heroImage">
                     </div>
                 </div>
-
             </section>
-            <!-- Usamos nuestro bloque 'section' con un modificador de propósito -->
-            <section class="section section--products" id="productos">
 
-                <!-- Usamos el elemento 'section__header' que ya definimos -->
-                <div class="section__header scroll-animate">
+            <section class="section section--products" id="productos">
+                <header class="section__header">
                     <h2 class="section__title" data-content="productsTitle"></h2>
                     <p class="section__subtitle" data-content="productsSubtitle"></p>
-                </div>
-
-                <!-- El contenido principal de la sección -->
+                </header>
                 <div class="section__content">
-                    <!-- El grid es un bloque independiente, ya que tiene su propia lógica -->
                     <div class="product-grid" data-content="productsGrid">
-                        <!-- ... tu HTML existente ... -->
-
+                        <!-- Generado dinámicamente -->
                     </div>
                 </div>
-
             </section>
 
-            <!-- Usamos el bloque 'section' con un modificador de propósito -->
             <section class="section section--process" id="proceso">
-                
-                <!-- Usamos los elementos 'section__header', '__title', y '__subtitle' que ya existen -->
-                <div class="section__header scroll-animate">
+                <header class="section__header scroll-animate">
                     <h2 class="section__title">¿Cómo Trabajamos?</h2>
-                    <p class="section__subtitle">Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
-                </div>
-
-                <!-- El contenido principal de la sección -->
+                    <p class="section__subtitle">Cada proyecto es único. Nuestro proceso garantiza resultados precisos y a su medida.</p>
+                </header>
                 <div class="section__content">
-                    
-                    <!-- 'process-steps' es un bloque nuevo y reutilizable -->
                     <ol class="process-steps">
-                        
-                        <!-- Cada paso es un elemento del bloque 'process-steps' -->
                         <li class="process-steps__item scroll-animate">
                             <div class="process-steps__marker">01</div>
                             <h3 class="process-steps__title">Consultoría</h3>
                             <p class="process-steps__description">Analizamos sus necesidades y diseñamos la solución perfecta para su espacio.</p>
                         </li>
-                        
                         <li class="process-steps__item scroll-animate">
                             <div class="process-steps__marker">02</div>
                             <h3 class="process-steps__title">Diseño 3D</h3>
                             <p class="process-steps__description">Creamos renderizados digitales para visualizar el resultado final.</p>
                         </li>
-                        
                         <li class="process-steps__item scroll-animate">
                             <div class="process-steps__marker">03</div>
                             <h3 class="process-steps__title">Fabricación</h3>
                             <p class="process-steps__description">Damos forma a su proyecto en nuestro taller.</p>
                         </li>
-                        
                         <li class="process-steps__item scroll-animate">
                             <div class="process-steps__marker">04</div>
                             <h3 class="process-steps__title">Instalación</h3>
@@ -204,96 +151,70 @@
                 </div>
             </section>
 
-            <!-- El bloque principal es 'cta-block', aplicado directamente a la etiqueta <section> -->
             <section class="cta-block" id="contacto">
-
-                <!-- El contenido de texto es un elemento del bloque -->
                 <div class="cta-block__content scroll-animate">
                     <h2 class="cta-block__title">Transforme su Espacio de Exhibición</h2>
-                    <p class="cta-block__text">Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos más valiosos.</p>
-                    
-                    <!-- Combinamos el bloque 'btn' global con un elemento de 'cta-block' para el layout -->
-                    <a href="#" class="btn btn--primary cta-block__action" id="scheduleVisitBtn">Agendar Visita Gratuita</a>
+                    <p class="cta-block__text">Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos.</p>
+                    <div class="cta-block__action">
+                        <a href="#" class="btn btn--primary" id="scheduleVisitBtn">Agendar Visita Gratuita</a>
+                    </div>
                 </div>
-
-                <!-- El contenedor del mapa es otro elemento del bloque -->
                 <div class="cta-block__map scroll-animate">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.716192259671!2d-103.33645469999999!3d20.6811223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b15e14d4cdf1%3A0x3d829348bcaa2949!2sVitrinas%20S%C3%ADlice!5e0!3m2!1ses-419!2smx!4v1762006914370!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-
             </section>
         </div>
     </main>
-    <!-- 'site-footer' es el bloque principal que abarca todo el pie de página -->
+
     <footer class="site-footer">
-        
-        <!-- El contenedor principal de las columnas es un elemento del footer -->
         <div class="site-footer__main">
-            
-            <!-- Cada columna es un elemento. La de la marca tiene un modificador -->
             <div class="site-footer__column site-footer__column--brand">
                 <h3 class="site-footer__title">Vitrinas Sílice</h3>
                 <p class="site-footer__text">Líderes en diseño y fabricación de vitrinas y exhibidores en Guadalajara desde 2018.</p>
-                
-                <!-- 'social-links' es un bloque independiente y reutilizable -->
-                <div class="social-links">
-                    <a href="#" class="social-links__link" aria-label="WhatsApp">
-                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
-                    </a>
-                    <a href="#" class="social-links__link" aria-label="Facebook">
-                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
-                    </a>
-                    <a href="#" class="social-links__link" aria-label="Instagram">
-                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
-                    </a>
-                    <a href="#" class="social-links__link" aria-label="Google Maps">
-                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
-                    </a>
-                </div>
+                <nav class="social-links">
+                    <a href="https://wa.me/523334683900" class="social-links__link" aria-label="WhatsApp">...</a>
+                    <a href="#" class="social-links__link" aria-label="Facebook">...</a>
+                    <a href="#" class="social-links__link" aria-label="Instagram">...</a>
+                    <a href="https://maps.app.goo.gl/yourlink" class="social-links__link" aria-label="Google Maps">...</a>
+                </nav>
             </div>
-
             <div class="site-footer__column">
                 <h4 class="site-footer__title">Productos</h4>
                 <ul class="site-footer__nav-list">
                     <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Vitrinas Mostrador</a></li>
                     <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Vitrinas Torre</a></li>
                     <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Personalizadas</a></li>
-                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Panel Ranurado</a></li>
                 </ul>
             </div>
-            
             <div class="site-footer__column">
                 <h4 class="site-footer__title">Servicios</h4>
                 <ul class="site-footer__nav-list">
                     <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Diseño 3D</a></li>
-                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Consultoría</a></li>
-                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Instalación</a></li>
-                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Mantenimiento</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Consultoría de Espacios</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Instalación Profesional</a></li>
                 </ul>
             </div>
-            
             <div class="site-footer__column">
                 <h4 class="site-footer__title">Contacto</h4>
                 <ul class="site-footer__nav-list">
-                    <li class="site-footer__nav-item"><span>Esteban Alatorre #122, La Perla.</span></li>
-                    <li class="site-footer__nav-item"><span>Guadalajara, Jalisco</span></li>
+                    <li class="site-footer__nav-item">Esteban Alatorre #122, La Perla.</li>
+                    <li class="site-footer__nav-item">Guadalajara, Jalisco</li>
                     <li class="site-footer__nav-item"><a href="tel:+523334683900" class="site-footer__link">+52 33 3468 3900</a></li>
                     <li class="site-footer__nav-item"><a href="mailto:contacto@vitrinassilice.com" class="site-footer__link">contacto@vitrinassilice.com</a></li>
                 </ul>
             </div>
         </div>
-        
-        <!-- La barra inferior es el último elemento del footer -->
         <div class="site-footer__bottom">
-            <p>&copy; 2025 Vitrinas Sílice. Todos los derechos reservados. | Diseñado con precisión y elegancia.</p>
+            <p>&copy; 2025 Vitrinas Sílice. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- ¡AQUÍ ESTÁ LA MAGIA! -->
+    <!-- ====================================================================== -->
+    <!--          PLANTILLAS PARA GENERACIÓN DINÁMICA CON JAVASCRIPT            -->
+    <!-- ====================================================================== -->
+
     <template id="productCardTemplate">
-        <!-- Usamos nuestra arquitectura BEM para la tarjeta -->
-        <div class="card product-grid__item scroll-animate">
+        <article class="card product-grid__item">
             <div class="card__media">
                 <img class="card__image" src="" alt="" loading="lazy">
                 <div class="price-tag"></div>
@@ -301,100 +222,61 @@
             <div class="card__content">
                 <h3 class="card__title"></h3>
                 <p class="card__text"></p>
-                <div class="card__footer">
-                    <div class="tag-list">
-                        <!-- Las etiquetas se añadirán aquí -->
-                    </div>
-                </div>
             </div>
-        </div>
+            <footer class="card__footer">
+                <ul class="tag-list"></ul>
+            </footer>
+        </article>
     </template>
 
     <template id="productModalTemplate">
-        <!-- El bloque 'modal' con sus modificadores -->
-        <div class="modal modal--product">
+        <div class="modal modal--product" role="dialog" aria-modal="true" aria-hidden="true">
             <div class="modal__container">
-                <!-- Botón de cierre, un elemento del modal -->
                 <button class="modal__close-btn" aria-label="Cerrar modal">
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-linecap="round"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24">...</svg>
                 </button>
-                
-                <!-- El contenido del modal se divide en media y content -->
                 <div class="modal__media">
-                    <!-- El slideshow es un bloque independiente que vive aquí -->
                     <div class="slideshow">
-                        <div class="slideshow__slides">
-                            <!-- Las imágenes se generan dinámicamente -->
-                        </div>
-                        <button class="slideshow__btn slideshow__btn--prev" aria-label="Anterior">
-                            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-                        </button>
-                        <button class="slideshow__btn slideshow__btn--next" aria-label="Siguiente">
-                            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-                        </button>
-                        <div class="slideshow__dots">
-                            <!-- Los puntos se generan dinámicamente -->
-                        </div>
+                        <div class="slideshow__track"></div>
+                        <button class="slideshow__control slideshow__control--prev" aria-label="Anterior">...</button>
+                        <button class="slideshow__control slideshow__control--next" aria-label="Siguiente">...</button>
+                        <div class="slideshow__indicators"></div>
                     </div>
                 </div>
-                
                 <div class="modal__content">
-                    <!-- Los detalles del producto son otro bloque independiente -->
                     <div class="product-details">
-                        <div class="product-details__header">
-                            <h2 class="product-details__title"></h2>
-                            <p class="product-details__description"></p>
-                        </div>
-                        
-                        <!-- La lista de features es otro bloque -->
-                        <div class="feature-list product-details__features">
-                            <!-- Features se generan dinámicamente -->
-                        </div>
-                        
-                        <!-- El display del precio es otro bloque -->
-                        <div class="price-display product-details__price" style="display: none;">
+                        <header class="product-details__header">
+                            <h2 class="product-details__title" id="productModalTitle"></h2>
+                            <p class="product-details__description" id="productModalDescription"></p>
+                        </header>
+                        <ul class="feature-list" id="productModalFeatures"></ul>
+                        <div class="price-display product-details__price" id="productModalPrice">
                             <span class="price-display__label">Precio desde:</span>
-                            <span class="price-display__value"></span>
+                            <span class="price-display__value" id="productModalPriceValue"></span>
                         </div>
-                        
                         <div class="product-details__actions">
-                            <!-- Usamos nuestro bloque 'btn' global -->
-                            <button class="btn btn--primary">
-                                Solicitar Cotización
-                            </button>
+                            <button class="btn btn--primary">Solicitar Cotización</button>
                             <a href="#" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
-                                <svg class="btn__icon" viewBox="0 0 25 25" ...>...</svg>
+                                <svg class="btn__icon" viewBox="0 0 25 25">...</svg>
                                 <span class="btn__text">WhatsApp</span>
                             </a>
                         </div>
-                        
-                        <div class="product-details__footer">
-                            <p class="product-details__delivery"></p>
-                        </div>
+                        <footer class="product-details__footer" id="productModalDelivery"></footer>
                     </div>
                 </div>
             </div>
         </div>
     </template>
-
-    <!-- También necesitamos una plantilla para cada slide y cada feature para mantener el JS limpio -->
-    <template id="slideTemplate">
-        <div class="slideshow__slide">
-            <img src="" alt="">
-        </div>
-    </template>
-
-    <template id="dotTemplate">
-        <button class="slideshow__dot"></button>
-    </template>
-
+    
+    <template id="slideTemplate"><div class="slideshow__slide"><img src="" alt=""></div></template>
+    <template id="indicatorTemplate"><button class="slideshow__indicator"></button></template>
     <template id="featureTemplate">
-        <div class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"></svg>
+        <li class="feature-list__item">
+            <svg class="feature-list__icon" viewBox="0 0 24 24">...</svg>
             <span class="feature-list__text"></span>
-        </div>
+        </li>
     </template>
+    <template id="tagTemplate"><li class="tag-list__item"></li></template>
+
 </body>
 </html>
