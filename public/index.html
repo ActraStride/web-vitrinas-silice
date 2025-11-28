@@ -10,161 +10,391 @@
     <meta property="og:url" content="https://www.vitrinassilice.com/" />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
-    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KP4V392P"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="modal-overlay" id="contactModal">
-        <div class="modal-container">
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
+    <!-- El overlay es el bloque 'modal' con un modificador de tipo -->
+    <div class="modal modal--contact" id="contactModal">
+        <!-- El container es un elemento del modal -->
+        <div class="modal__container">
+            <!-- El contenido del modal es un bloque autocontenido: 'contact-form' -->
+            <form class="contact-form" id="contactForm">
+                
+                <!-- Elementos que pertenecen al bloque 'contact-form' -->
+                <div class="contact-form__header">
+                    <div class="contact-form__icon">
+                        <svg viewBox="0 0 24 24">...</svg>
+                    </div>
+                    <h2 class="contact-form__title">Solicitar Cotización</h2>
+                    <p class="contact-form__subtitle">Déjanos tu número y te contactaremos</p>
                 </div>
-                <h2 class="modal-title">Solicitar Cotización</h2>
-                <p class="modal-subtitle">Déjanos tu número y te contactaremos</p>
-            </div>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre completo" required minlength="2">
+
+                <!-- Un elemento para agrupar los campos -->
+                <div class="contact-form__fields">
+                    
+                    <!-- Cada grupo es un bloque reutilizable: 'form-field' -->
+                    <div class="form-field">
+                        <label for="name" class="form-field__label">Nombre</label>
+                        <input type="text" id="name" name="name" class="form-field__input" placeholder="Tu nombre completo" required minlength="2">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="phone" class="form-field__label">Número de Teléfono</label>
+                        <input type="tel" id="phone" name="phone" class="form-field__input" placeholder="+52 33 1234 5678" required pattern="[0-9+\s\-()]+">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="interest" class="form-field__label">¿Qué te interesa?</label>
+                        <!-- El select es un 'input' con un modificador -->
+                        <select id="interest" name="interest" class="form-field__input form-field__input--select" required>
+                            <option value="0">Vitrinas</option>
+                            <option value="1">Panel Ranurado</option>
+                            <option value="2">Carpintería</option>
+                        </select>
+                    </div>
+
                 </div>
-                <div class="form-group">
-                    <label for="phone" class="form-label">Número de Teléfono</label>
-                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+52 33 1234 5678" required pattern="[0-9+\s\-()]+">
-                </div>
-                <div class="form-group">
-                    <label for="interest" class="form-label">¿Qué te interesa?</label>
-                    <select id="interest" name="interest" class="form-input form-select" required>
-                        <option value="0">Vitrinas</option>
-                        <option value="1">Panel Ranurado</option>
-                        <option value="2">Carpintería</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-submit">Solicitar Llamada</button>
+                
+                <!-- Usamos el bloque global 'btn' y le añadimos una clase específica del formulario para el espaciado si es necesario -->
+                <button type="submit" class="btn btn--primary contact-form__submit-btn">Solicitar Llamada</button>
+
             </form>
         </div>
     </div>
     
-    <div class="overlay-menu" id="menuOverlay"></div>
-    <header id="header">
-        <nav>
-            <div class="logo">
-                <a href="#home">
-                    <img src="assets/img/logo.png" alt="Vitrinas Sílice Logo">
-                    <span>Vitrinas Sílice</span>
-                </a>
-            </div>
-            
-            <div class="nav-container">
-                <div class="nav-links" id="navLinks">
-                    <ul>
-                        <li><a data-section="vitrinas" class="active">Vitrinas</a></li>
-                        <li><a data-section="muebleria">Mueblería</a></li>
-                        <li><a id="contactNavBtn">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- El contenedor principal es el bloque 'site-header' -->
+    <header class="site-header" id="header">
+        <!-- El logo es un elemento del header -->
+        <a href="#home" class="site-header__logo">
+            <img class="site-header__logo-img" src="assets/img/logo.png" alt="Vitrinas Sílice Logo">
+            <span class="site-header__logo-text">Vitrinas Sílice</span>
+        </a>
 
-            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Abrir menú">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+        <!-- La navegación principal es su propio bloque, ya que es un componente complejo -->
+        <nav class="site-nav" id="navLinks">
+            <ul class="site-nav__list">
+                <li class="site-nav__item">
+                    <!-- Usamos el elemento + el modificador de estado -->
+                    <a class="site-nav__link site-nav__link--is-active" data-section="vitrinas">Vitrinas</a>
+                </li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link" data-section="muebleria">Mueblería</a>
+                </li>
+                <li class="site-nav__item">
+                    <a class="site-nav__link" id="contactNavBtn">Contacto</a>
+                </li>
+            </ul>
         </nav>
+
+        <!-- El botón de hamburguesa es un bloque reutilizable -->
+        <button class="hamburger-btn" id="hamburgerMenu" aria-label="Abrir menú">
+            <span class="hamburger-btn__bar"></span>
+            <span class="hamburger-btn__bar"></span>
+            <span class="hamburger-btn__bar"></span>
+        </button>
     </header>
 
 
     <main>
+        <!-- 'content-wrapper' es una clase de layout, no un bloque BEM, está bien dejarla así -->
         <div class="content-wrapper">
-            <!-- El contenido de esta sección se genera dinámicamente con JavaScript -->
-            <div class="shimmer">
-                <section class="hero" id="home">
-                    <div class="hero-content">
-                        <h1 data-content="heroTitle"></h1>
-                        <p data-content="heroSubtitle"></p>
-                        <div class="btn-group">
-                            <a href="#" class="btn-primary" id="requestQuoteBtn">Solicitar Cotización</a>
-                            <a href="https://wa.me/523334683900?text=hola" class="btn-secondary" target="_blank" rel="noopener noreferrer" id="whatsappBtnGlobal">
-                                <svg viewBox="0 0 25 25" fill="currentColor" width="23" height="23"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>  
-                                WhatsApp
-                            </a>
-                        </div>
+            <!-- El bloque principal 'hero' ahora contiene todo -->
+            <section class="hero" id="home">
+                
+                <!-- El contenido es un elemento del hero -->
+                <div class="hero__content">
+                    <h1 class="hero__heading" data-content="heroTitle"></h1>
+                    <p class="hero__text" data-content="heroSubtitle"></p>
+                    
+                    <!-- El grupo de botones es un elemento del hero -->
+                    <div class="hero__actions">
+                        <!-- Usamos el bloque global 'btn' con sus modificadores -->
+                        <a href="#" class="btn btn--primary" id="requestQuoteBtn">Solicitar Cotización</a>
+                        <a href="..." class="btn btn--secondary" target="_blank" rel="noopener noreferrer" id="whatsappBtnGlobal">
+                            <!-- El SVG es un elemento del bloque 'btn' -->
+                            <svg class="btn__icon" viewBox="0 0 25 25" ...>...</svg>
+                            <span class="btn__text">WhatsApp</span>
+                        </a>
                     </div>
-                    <div class="hero-visual">
-                        <div class="floating-particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
-                        <div class="showcase-image-container">
-                            <div class="showcase-glow"></div>
-                            <img src="" alt="Vitrina de exhibición de cristal" class="showcase-image" data-content="heroImage">
-                        </div>
+                </div>
+
+                <!-- La parte visual es otro elemento principal del hero -->
+                <div class="hero__visual">
+                    <!-- Las partículas son un efecto decorativo, un elemento del hero -->
+                    <div class="hero__particles">
+                        <div class="hero__particle"></div>
+                        <div class="hero__particle"></div>
+                        <div class="hero__particle"></div>
+                        <div class="hero__particle"></div>
+                        <div class="hero__particle"></div>
                     </div>
-                </section>
-            </div>
-            
-            <section class="products-section" id="productos">
-                <div class="section-header scroll-animate">
-                    <h2 data-content="productsTitle"></h2>
-                    <p data-content="productsSubtitle"></p>
+                    
+                    <!-- El contenedor de la imagen es un elemento wrapper -->
+                    <div class="hero__image-wrapper">
+                        <!-- El brillo es un elemento decorativo de la imagen -->
+                        <div class="hero__image-glow"></div>
+                        <img src="" alt="Vitrina de exhibición de cristal" class="hero__image" data-content="heroImage">
+                    </div>
                 </div>
-                <div class="products-grid" data-content="productsGrid">
-                    <!-- Las tarjetas de producto se generan dinámicamente con JS -->
-                </div>
+
             </section>
-            
-            <section class="process-section" id="proceso">
-                 <div class="section-header scroll-animate">
-                    <h2>¿Cómo Trabajamos?</h2>
-                    <p>Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
+            <!-- Usamos nuestro bloque 'section' con un modificador de propósito -->
+            <section class="section section--products" id="productos">
+
+                <!-- Usamos el elemento 'section__header' que ya definimos -->
+                <div class="section__header scroll-animate">
+                    <h2 class="section__title" data-content="productsTitle"></h2>
+                    <p class="section__subtitle" data-content="productsSubtitle"></p>
                 </div>
-                <div class="process-timeline">
-                    <div class="timeline-item scroll-animate"><div class="timeline-number">01</div><h3>Consultoría</h3><p>Analizamos sus necesidades y diseñamos la solución perfecta para su espacio.</p></div>
-                    <div class="timeline-item scroll-animate"><div class="timeline-number">02</div><h3>Diseño 3D</h3><p>Creamos renderizados digitales para visualizar el resultado final.</p></div>
-                    <div class="timeline-item scroll-animate"><div class="timeline-number">03</div><h3>Fabricación</h3><p>Damos forma a su proyecto en nuestro taller.</p></div>
-                    <div class="timeline-item scroll-animate"><div class="timeline-number">04</div><h3>Instalación</h3><p>Instalación profesional con garantía total de satisfacción.</p></div>
+
+                <!-- El contenido principal de la sección -->
+                <div class="section__content">
+                    <!-- El grid es un bloque independiente, ya que tiene su propia lógica -->
+                    <div class="product-grid" data-content="productsGrid">
+                        <!-- ... tu HTML existente ... -->
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Usamos el bloque 'section' con un modificador de propósito -->
+            <section class="section section--process" id="proceso">
+                
+                <!-- Usamos los elementos 'section__header', '__title', y '__subtitle' que ya existen -->
+                <div class="section__header scroll-animate">
+                    <h2 class="section__title">¿Cómo Trabajamos?</h2>
+                    <p class="section__subtitle">Cada proyecto es único. Nuestro proceso garantiza resultados <strong>precisos</strong> y a su medida.</p>
+                </div>
+
+                <!-- El contenido principal de la sección -->
+                <div class="section__content">
+                    
+                    <!-- 'process-steps' es un bloque nuevo y reutilizable -->
+                    <ol class="process-steps">
+                        
+                        <!-- Cada paso es un elemento del bloque 'process-steps' -->
+                        <li class="process-steps__item scroll-animate">
+                            <div class="process-steps__marker">01</div>
+                            <h3 class="process-steps__title">Consultoría</h3>
+                            <p class="process-steps__description">Analizamos sus necesidades y diseñamos la solución perfecta para su espacio.</p>
+                        </li>
+                        
+                        <li class="process-steps__item scroll-animate">
+                            <div class="process-steps__marker">02</div>
+                            <h3 class="process-steps__title">Diseño 3D</h3>
+                            <p class="process-steps__description">Creamos renderizados digitales para visualizar el resultado final.</p>
+                        </li>
+                        
+                        <li class="process-steps__item scroll-animate">
+                            <div class="process-steps__marker">03</div>
+                            <h3 class="process-steps__title">Fabricación</h3>
+                            <p class="process-steps__description">Damos forma a su proyecto en nuestro taller.</p>
+                        </li>
+                        
+                        <li class="process-steps__item scroll-animate">
+                            <div class="process-steps__marker">04</div>
+                            <h3 class="process-steps__title">Instalación</h3>
+                            <p class="process-steps__description">Instalación profesional con garantía total de satisfacción.</p>
+                        </li>
+                    </ol>
                 </div>
             </section>
 
-            <section class="location-cta" id="contacto">
-                <div class="cta-content scroll-animate">
-                    <!-- ¡AQUÍ ESTÁ LA MAGIA! Un contenedor interno para el contenido -->
-                    <div class="cta-content__inner scroll-animate">
-                        <h2>Transforme su Espacio de Exhibición</h2>
-                        <p>Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos más valiosos.</p>
-                        <a href="#" class="btn-primary" id="scheduleVisitBtn">Agendar Visita Gratuita</a>
-                    </div>
+            <!-- El bloque principal es 'cta-block', aplicado directamente a la etiqueta <section> -->
+            <section class="cta-block" id="contacto">
+
+                <!-- El contenido de texto es un elemento del bloque -->
+                <div class="cta-block__content scroll-animate">
+                    <h2 class="cta-block__title">Transforme su Espacio de Exhibición</h2>
+                    <p class="cta-block__text">Descubra cómo nuestras vitrinas pueden elevar la presentación de sus productos más valiosos.</p>
+                    
+                    <!-- Combinamos el bloque 'btn' global con un elemento de 'cta-block' para el layout -->
+                    <a href="#" class="btn btn--primary cta-block__action" id="scheduleVisitBtn">Agendar Visita Gratuita</a>
                 </div>
-                <div class="map-container scroll-animate">
+
+                <!-- El contenedor del mapa es otro elemento del bloque -->
+                <div class="cta-block__map scroll-animate">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.716192259671!2d-103.33645469999999!3d20.6811223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b15e14d4cdf1%3A0x3d829348bcaa2949!2sVitrinas%20S%C3%ADlice!5e0!3m2!1ses-419!2smx!4v1762006914370!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
+
             </section>
         </div>
     </main>
-    <!-- <div class="section-divider"></div> -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>Vitrinas Sílice</h3>
-                <p>Líderes en diseño y fabricación de vitrinas y exhibidores en Guadalajara desde 2018.</p>
+    <!-- 'site-footer' es el bloque principal que abarca todo el pie de página -->
+    <footer class="site-footer">
+        
+        <!-- El contenedor principal de las columnas es un elemento del footer -->
+        <div class="site-footer__main">
+            
+            <!-- Cada columna es un elemento. La de la marca tiene un modificador -->
+            <div class="site-footer__column site-footer__column--brand">
+                <h3 class="site-footer__title">Vitrinas Sílice</h3>
+                <p class="site-footer__text">Líderes en diseño y fabricación de vitrinas y exhibidores en Guadalajara desde 2018.</p>
+                
+                <!-- 'social-links' es un bloque independiente y reutilizable -->
                 <div class="social-links">
-                    <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg></a>
-                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg></a>
-                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266.058 1.644.07 4.85.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg></a>
-                    <a href="#" aria-label="Google Maps"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg></a>
+                    <a href="#" class="social-links__link" aria-label="WhatsApp">
+                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
+                    </a>
+                    <a href="#" class="social-links__link" aria-label="Facebook">
+                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
+                    </a>
+                    <a href="#" class="social-links__link" aria-label="Instagram">
+                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
+                    </a>
+                    <a href="#" class="social-links__link" aria-label="Google Maps">
+                        <svg class="social-links__icon" viewBox="0 0 24 24" ...>...</svg>
+                    </a>
                 </div>
             </div>
-            <div class="footer-column"><h4>Productos</h4><ul><li><a href="#">Vitrinas Mostrador</a></li><li><a href="#">Vitrinas Torre</a></li><li><a href="#">Personalizadas</a></li><li><a href="#">Panel Ranurado</a></li></ul></div>
-            <div class="footer-column"><h4>Servicios</h4><ul><li><a href="#">Diseño 3D</a></li><li><a href="#">Consultoría</a></li><li><a href="#">Instalación</a></li><li><a href="#">Mantenimiento</a></li></ul></div>
-            <div class="footer-column"><h4>Contacto</h4><ul><li><a href="#">Esteban Alatorre #122, La Perla.</a></li><li><a href="#">Guadalajara, Jalisco</a></li><li><a href="tel:+523334683900">+52 33 3468 3900</a></li><li><a href="mailto:contacto@vitrinassilice.com">contacto@vitrinassilice.com</a></li></ul></div>
+
+            <div class="site-footer__column">
+                <h4 class="site-footer__title">Productos</h4>
+                <ul class="site-footer__nav-list">
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Vitrinas Mostrador</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Vitrinas Torre</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Personalizadas</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Panel Ranurado</a></li>
+                </ul>
+            </div>
+            
+            <div class="site-footer__column">
+                <h4 class="site-footer__title">Servicios</h4>
+                <ul class="site-footer__nav-list">
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Diseño 3D</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Consultoría</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Instalación</a></li>
+                    <li class="site-footer__nav-item"><a href="#" class="site-footer__link">Mantenimiento</a></li>
+                </ul>
+            </div>
+            
+            <div class="site-footer__column">
+                <h4 class="site-footer__title">Contacto</h4>
+                <ul class="site-footer__nav-list">
+                    <li class="site-footer__nav-item"><span>Esteban Alatorre #122, La Perla.</span></li>
+                    <li class="site-footer__nav-item"><span>Guadalajara, Jalisco</span></li>
+                    <li class="site-footer__nav-item"><a href="tel:+523334683900" class="site-footer__link">+52 33 3468 3900</a></li>
+                    <li class="site-footer__nav-item"><a href="mailto:contacto@vitrinassilice.com" class="site-footer__link">contacto@vitrinassilice.com</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-bottom">
+        
+        <!-- La barra inferior es el último elemento del footer -->
+        <div class="site-footer__bottom">
             <p>&copy; 2025 Vitrinas Sílice. Todos los derechos reservados. | Diseñado con precisión y elegancia.</p>
         </div>
-    </footer>    
-    <script type="module" src="assets/js/app.js"></script>
+    </footer>
+
+    <!-- ¡AQUÍ ESTÁ LA MAGIA! -->
+    <template id="productCardTemplate">
+        <!-- Usamos nuestra arquitectura BEM para la tarjeta -->
+        <div class="card product-grid__item scroll-animate">
+            <div class="card__media">
+                <img class="card__image" src="" alt="" loading="lazy">
+                <div class="price-tag"></div>
+            </div>
+            <div class="card__content">
+                <h3 class="card__title"></h3>
+                <p class="card__text"></p>
+                <div class="card__footer">
+                    <div class="tag-list">
+                        <!-- Las etiquetas se añadirán aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="productModalTemplate">
+        <!-- El bloque 'modal' con sus modificadores -->
+        <div class="modal modal--product">
+            <div class="modal__container">
+                <!-- Botón de cierre, un elemento del modal -->
+                <button class="modal__close-btn" aria-label="Cerrar modal">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <!-- El contenido del modal se divide en media y content -->
+                <div class="modal__media">
+                    <!-- El slideshow es un bloque independiente que vive aquí -->
+                    <div class="slideshow">
+                        <div class="slideshow__slides">
+                            <!-- Las imágenes se generan dinámicamente -->
+                        </div>
+                        <button class="slideshow__btn slideshow__btn--prev" aria-label="Anterior">
+                            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button class="slideshow__btn slideshow__btn--next" aria-label="Siguiente">
+                            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                        <div class="slideshow__dots">
+                            <!-- Los puntos se generan dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal__content">
+                    <!-- Los detalles del producto son otro bloque independiente -->
+                    <div class="product-details">
+                        <div class="product-details__header">
+                            <h2 class="product-details__title"></h2>
+                            <p class="product-details__description"></p>
+                        </div>
+                        
+                        <!-- La lista de features es otro bloque -->
+                        <div class="feature-list product-details__features">
+                            <!-- Features se generan dinámicamente -->
+                        </div>
+                        
+                        <!-- El display del precio es otro bloque -->
+                        <div class="price-display product-details__price" style="display: none;">
+                            <span class="price-display__label">Precio desde:</span>
+                            <span class="price-display__value"></span>
+                        </div>
+                        
+                        <div class="product-details__actions">
+                            <!-- Usamos nuestro bloque 'btn' global -->
+                            <button class="btn btn--primary">
+                                Solicitar Cotización
+                            </button>
+                            <a href="#" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
+                                <svg class="btn__icon" viewBox="0 0 25 25" ...>...</svg>
+                                <span class="btn__text">WhatsApp</span>
+                            </a>
+                        </div>
+                        
+                        <div class="product-details__footer">
+                            <p class="product-details__delivery"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- También necesitamos una plantilla para cada slide y cada feature para mantener el JS limpio -->
+    <template id="slideTemplate">
+        <div class="slideshow__slide">
+            <img src="" alt="">
+        </div>
+    </template>
+
+    <template id="dotTemplate">
+        <button class="slideshow__dot"></button>
+    </template>
+
+    <template id="featureTemplate">
+        <div class="feature-list__item">
+            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"></svg>
+            <span class="feature-list__text"></span>
+        </div>
+    </template>
 </body>
 </html>
