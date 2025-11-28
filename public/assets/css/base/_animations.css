@@ -1,37 +1,30 @@
-/* ============================================
-   ANIMACIONES Y KEYFRAMES
-   ============================================ */
+/* ======================================================
+   /base/_animations.css
+   ====================================================== */
 
-@keyframes fadeInLeft {
+/* --------------------------------------------------
+   DEFINICIÓN DE KEYFRAMES REUTILIZABLES
+   -------------------------------------------------- */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
 
 @keyframes shimmer {
     0% {
         transform: translateX(-100%) skewX(-15deg);
-    }
-    20% {
-        transform: translateX(200%) skewX(-15deg);
     }
     100% {
         transform: translateX(200%) skewX(-15deg);
@@ -49,32 +42,29 @@
     }
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translate(-50%, -50%) scale(1.05);
-    }
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-20px); }
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) translateX(0px);
-        opacity: 0.3;
-    }
-    25% {
-        transform: translateY(-20px) translateX(10px);
-        opacity: 0.6;
-    }
-    50% {
-        transform: translateY(-40px) translateX(-10px);
-        opacity: 0.8;
-    }
-    75% {
-        transform: translateY(-20px) translateX(10px);
-        opacity: 0.6;
-    }
+/* --------------------------------------------------
+   CLASES DE UTILIDAD DE ANIMACIÓN
+   -------------------------------------------------- */
+
+/*
+   Clase de utilidad para animar elementos al entrar en el viewport.
+   - Estado inicial: oculto y desplazado hacia abajo.
+   - Estado visible ('is-visible'): se revela.
+   - El JavaScript se encarga de añadir/quitar 'is-visible'.
+*/
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    /* Usamos la variable de transición base para consistencia */
+    transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }

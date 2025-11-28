@@ -1,61 +1,118 @@
-/* ============================================
-   VARIABLES CSS - SISTEMA DE DISEÑO
-   ============================================ */
+/* ======================================================
+   SISTEMA DE DISEÑO GLOBAL (TOKENS)
+   ====================================================== */
 
 :root {
-    /* COLORES - TEMA PREDETERMINADO (VITRINAS - AZUL OSCURO) */
-    --primary-dark: #1a1f2e;
-    --primary-blue: #2c3e50;
-    --primary-blue-transparent: rgba(44, 62, 80, 0.65);
-    --accent-blue: #3498db;
-    --glass-blue: #e8f4f8;
-    --text-light: #ecf0f1;
-    --text-gray: #95a5a6;
+    /* --------------------------------------------------
+       COLORES (TEMA PREDETERMINADO: VITRINAS)
+       -------------------------------------------------- */
+    
+    /* Variables de Valor (Raw Values) */
+    --color-blue-900-rgb: 26, 31, 46;       /* #1a1f2e */
+    --color-blue-700-rgb: 44, 62, 80;       /* #2c3e50 */
+    --color-blue-500-rgb: 52, 152, 219;     /* #3498db */
+    --color-white-rgb: 255, 255, 255;      /* #ffffff */
+    --color-gray-100-rgb: 244, 247, 249;   /* #f4f7f9 */
+    --color-gray-300-rgb: 225, 232, 237;   /* #e1e8ed */
+    --color-gray-500-rgb: 90, 115, 139;    /* #5a738b */
 
-    /* GRADIENTES */
-    --body-bg: linear-gradient(135deg, #1a1f2e 0%, #2c3e50 50%, #34495e 100%);
-    --bg-gradient: linear-gradient(135deg, var(--accent-blue) 0%, #2980b9 100%);
+    /* Variables Semánticas (Tokens de Diseño) */
+    --color-surface: rgb(var(--color-white-rgb));              /* Superficies como cards, modales */
+    --color-background: rgb(var(--color-gray-100-rgb));        /* Fondo principal del body */
+    --color-primary: rgb(var(--color-blue-700-rgb));           /* Botones principales, enlaces activos */
+    --color-accent: rgb(var(--color-blue-500-rgb));            /* Acentos, highlights */
+    --color-text-primary: rgb(var(--color-blue-900-rgb));      /* Títulos y texto principal */
+    --color-text-secondary: rgb(var(--color-gray-500-rgb));    /* Subtítulos y texto de apoyo */
+    --color-text-inverted: rgb(var(--color-white-rgb));        /* Texto sobre fondos oscuros o primarios */
+    --color-border: rgb(var(--color-gray-300-rgb));            /* Bordes sutiles */
+    
+    /* --------------------------------------------------
+       TIPOGRAFÍA
+       -------------------------------------------------- */
+   
+   --font-family-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 
-    /* SOMBRAS */
-    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --shadow-luxury: 0 20px 60px rgba(0, 0, 0, 0.15);
-    --header-shadow-color: rgba(0, 0, 0, 0.15);
+   
+   --font-family-base: var(--font-family-system);
+   --font-family-heading: var(--font-family-system);
 
-    /* ICONOS DE SELECT (codificado para URL) */
-    --select-arrow-color: '%2395a5a6';
-    --select-arrow-color-focus: '%233498db';
-
-    /* ESPACIADO Y FORMA */
-    --border-radius: 16px;
-
-    /* TRANSICIONES */
-    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem;    /* 16px */
+    --font-size-md: 1.125rem; /* 18px */
+    --font-size-lg: 1.5rem;   /* 24px */
+    --font-size-xl: 2.25rem;  /* 36px */
+    
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+    
+    /* --------------------------------------------------
+       ESPACIADO (Basado en una escala de 8px)
+       -------------------------------------------------- */
+    --space-xs: 0.25rem; /* 4px */
+    --space-sm: 0.5rem;  /* 8px */
+    --space-md: 1rem;    /* 16px */
+    --space-lg: 1.5rem;  /* 24px */
+    --space-xl: 2rem;    /* 32px */
+    
+    /* --------------------------------------------------
+       BORDES Y SOMBRAS
+       -------------------------------------------------- */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    
+    --shadow-sm: 0 2px 4px rgba(var(--color-blue-900-rgb), 0.05);
+    --shadow-md: 0 10px 40px rgba(var(--color-blue-900-rgb), 0.1);
+    
+    /* --------------------------------------------------
+       OTROS
+       -------------------------------------------------- */
+    --transition-fast: all 0.2s ease-out;
+    --transition-base: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Ícono del <select> codificado para URL */
+    --select-arrow-color: '%235a738b'; /* Corresponde a --color-text-secondary */
+    --select-arrow-color-focus: '%233498db'; /* Corresponde a --color-accent */
 }
 
-/* ============================================
-   TEMA MUEBLERIA
-   ============================================ */
+/* ======================================================
+   TEMA: MUEBLERÍA
+   ====================================================== */
 
 body.theme-muebleria {
-    /* COLORES */
-    --primary-dark: #f5f0e8;
-    --primary-blue: #e8e2d8;
-    --primary-blue-transparent: rgba(232, 226, 216, 0.65);
-    --accent-blue: #8d6e63;
-    --glass-blue: #faf8f5;
-    --text-light: #4e342e;
-    --text-gray: #a1887f;
+    /* --------------------------------------------------
+       COLORES (TEMA MUEBLERÍA)
+       -------------------------------------------------- */
 
-    /* GRADIENTES */
-    --body-bg: var(--primary-dark);
-    --bg-gradient: linear-gradient(135deg, #bcaaa4 0%, #8d6e63 100%);
+    /* Variables de Valor (Raw Values) */
+    --color-brown-900-rgb: 78, 52, 46;       /* #4e342e */
+    --color-brown-700-rgb: 141, 110, 99;     /* #8d6e63 */
+    --color-brown-500-rgb: 188, 170, 164;   /* #bcaaa4 */
+    --color-brown-300-rgb: 121, 85, 72;     /* #795548 */
+    --color-cream-100-rgb: 250, 248, 245;  /* #faf8f5 */
+    --color-cream-300-rgb: 245, 240, 232;  /* #f5f0e8 */
+    --color-cream-500-rgb: 215, 204, 200;  /* #d7ccc8 */
 
-    /* SOMBRAS */
-    --shadow-soft: 0 10px 40px rgba(141, 110, 99, 0.12);
-    --shadow-luxury: 0 20px 60px rgba(141, 110, 99, 0.18);
-    --header-shadow-color: rgba(141, 110, 99, 0.15);
+    /* Sobrescribimos las Variables Semánticas */
+    --color-surface: rgb(var(--color-cream-100-rgb));
+    --color-background: rgb(var(--color-cream-300-rgb));
+    --color-primary: rgb(var(--color-brown-700-rgb));
+    --color-accent: rgb(var(--color-brown-500-rgb));
+    --color-text-primary: rgb(var(--color-brown-900-rgb));
+    --color-text-secondary: rgb(var(--color-brown-300-rgb));
+    /* --color-text-inverted se mantiene blanco (rgb(var(--color-white-rgb))) */
+    --color-border: rgb(var(--color-cream-500-rgb));
 
-    /* ICONOS DE SELECT */
-    --select-arrow-color: '%23a1887f';
-    --select-arrow-color-focus: '%238d6e63';
+    /* --------------------------------------------------
+       BORDES Y SOMBRAS (Se actualizan automáticamente)
+       -------------------------------------------------- */
+    --shadow-sm: 0 2px 4px rgba(var(--color-brown-900-rgb), 0.08);
+    --shadow-md: 0 10px 40px rgba(var(--color-brown-900-rgb), 0.12);
+    
+    /* --------------------------------------------------
+       OTROS (Se actualizan automáticamente)
+       -------------------------------------------------- */
+    --select-arrow-color: '%23795548'; /* Corresponde a --color-text-secondary */
+    --select-arrow-color-focus: '%238d6e63'; /* Corresponde a --color-primary */
 }
