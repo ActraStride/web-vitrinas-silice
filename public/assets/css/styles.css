@@ -17,6 +17,7 @@
 @import url('components/_product-modal.css');
 @import url('components/_cards.css');
 @import url('components/_navigation.css');
+@import url('components/_chatbot.css');
 
 /* 3. Layouts */
 @import url('layouts/_header.css');

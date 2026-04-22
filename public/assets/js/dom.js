@@ -13,5 +13,16 @@ export const elements = {
     contentElements: document.querySelectorAll('[data-content]'),
     productsGrid: document.querySelector('[data-content="productsGrid"]'),
     hamburger: document.getElementById('hamburgerMenu'),
-    menuOverlay: document.getElementById('menuOverlay')
+    menuOverlay: document.getElementById('menuOverlay'),
+
+    // js/dom.js (Solo actualiza la sección del chatbot)
+    // NUEVOS ELEMENTOS DEL CHATBOT
+    chatLauncher: document.getElementById('chatLauncher'),
+    chatBadge: document.getElementById('chatBadge'), // <--- Nuevo
+    chatWindow: document.getElementById('chatWindow'),
+    chatClose: document.getElementById('chatClose'),
+    chatMessages: document.getElementById('chatMessages'),
+    chatForm: document.getElementById('chatForm'),
+    chatInput: document.getElementById('chatInput'),
+    chatSubmitBtn: document.getElementById('chatSubmitBtn') // <--- Nuevo
 };

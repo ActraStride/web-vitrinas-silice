@@ -8,6 +8,8 @@ import { initMobileMenu, toggleMobileMenu } from './modules/mobileMenu.js';
 import { initHeader } from './modules/header.js';
 import { setupScrollObserver } from './modules/scrollObserver.js';
 import { initTracking } from './modules/tracking.js';
+import { initChatbot } from './modules/chatbot.js';
+import { initAuth } from './modules/auth.js'; // Importar módulo
 
 function updateContent(sectionName, animate = true) {
     const data = contentData[sectionName];
@@ -158,6 +160,8 @@ function init() {
     initModal();
     initProductModal();
     initMobileMenu();
+    initChatbot();
+    initAuth(); // Inicializar el Login
     
     // Bind eventos principales de navegación
     elements.allNavLinks.forEach(link => {
