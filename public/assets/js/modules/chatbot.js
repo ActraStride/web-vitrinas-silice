@@ -106,43 +106,68 @@ async function fetchAIResponse(userMessage) {
     elements.chatInput.disabled = true;
 
     try {
-        const response = await fetch('/service/chat', {
+        // PASO 1: Disparar el run
+        const runResponse = await fetch('/xulcan/v1/agent/run', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                prompt: userMessage,
-                agent_id: "vitrinas-whatsapp-funnel",
-                session_key: sessionKey 
+            body: JSON.stringify({
+                blueprint_id: 'chat',
+                agent_id: sessionKey,
+                input_text: userMessage,
+                session_key: sessionKey
             })
         });
 
-        const data = await response.json();
-        const aiText = data.response_text;
+        if (!runResponse.ok) throw new Error('Error al iniciar el run');
+        const { run_id } = await runResponse.json();
 
-        hideTyping();
+        // PASO 2: Escuchar el stream hasta run_completed
+        const eventSource = new EventSource(`/xulcan/v1/runs/${run_id}/stream`);
 
-        // --- LÓGICA DE DETECCIÓN DE CARD ---
-        const cardRegex = /\[RENDER_CONTACT_CARD:\s*({.*?})\s*\]/s;
-        const match = aiText.match(cardRegex);
+        eventSource.onmessage = (event) => {
+            const data = JSON.parse(event.data);
 
-        if (match) {
-            const cleanText = aiText.replace(cardRegex, '').trim();
-            if (cleanText) addMessage(cleanText, true); // Muestra el texto de despedida
+            if (data.type === 'run_completed') {
+                eventSource.close();
+                hideTyping();
 
-            try {
-                const config = JSON.parse(match[1]);
-                setTimeout(() => renderContactCard(config), 600); // Pequeño delay para naturalidad
-            } catch (e) {
-                console.error("Error en JSON de Card:", e);
+                const aiText = data.final_response?.content || '';
+
+                // Detección de tarjeta de contacto
+                const cardRegex = /\[RENDER_CONTACT_CARD:\s*({.*?})\s*\]/s;
+                const match = aiText.match(cardRegex);
+
+                if (match) {
+                    const cleanText = aiText.replace(cardRegex, '').trim();
+                    if (cleanText) addMessage(cleanText, true);
+                    try {
+                        const config = JSON.parse(match[1]);
+                        setTimeout(() => renderContactCard(config), 600);
+                    } catch (e) {
+                        console.error('Error en JSON de Card:', e);
+                    }
+                } else {
+                    addMessage(aiText, true);
+                }
             }
-        } else {
-            addMessage(aiText, true);
-        }
+
+            if (data.type === 'run_failed') {
+                eventSource.close();
+                hideTyping();
+                addMessage('Lo siento, tuve un problema. ¿Te gustaría hablar con un asesor?', true);
+            }
+        };
+
+        eventSource.onerror = () => {
+            eventSource.close();
+            hideTyping();
+            addMessage('Lo siento, tengo problemas para conectarme ahora mismo.', true);
+        };
 
     } catch (error) {
-        console.error("Error Xulcan:", error);
+        console.error('Error Xulcan:', error);
         hideTyping();
-        addMessage("Lo siento, tengo problemas para conectarme ahora mismo. ¿Te gustaría hablar con un asesor por WhatsApp?", true);
+        addMessage('Lo siento, tengo problemas para conectarme ahora mismo.', true);
     } finally {
         isWaitingForResponse = false;
         elements.chatSubmitBtn.disabled = false;

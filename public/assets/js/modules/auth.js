@@ -10,13 +10,15 @@ export function initAuth() {
 
     // 1. ABRIR Y CERRAR EL MODAL
     if (openBtn) {
+        // En tu web principal (js/modules/auth.js)
         openBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // Antes de abrir, verificamos si YA tiene sesión
             const existingToken = localStorage.getItem('silixe_token') || sessionStorage.getItem('silixe_token');
+            
+            // Si quieres ser estricto, podrías validar el token aquí. 
+            // Por ahora, si te da problemas, borra el token manualmente una vez y loguéate de nuevo.
             if (existingToken) {
-                // Si ya tiene token, lo mandamos directo al CRM sin pedir login
-                window.location.href = '/crm'; // <-- CAMBIA ESTO por la URL de tu CRM real
+                window.location.href = '/crm/'; 
                 return;
             }
             loginModal.classList.add('active');
@@ -74,7 +76,7 @@ export function initAuth() {
                     }
 
                     // Redirigir al panel CRM privado
-                    window.location.href = '/crm'; // <-- CAMBIA ESTO por la URL de tu CRM
+                    window.location.href = '/crm/'; // <-- CAMBIA ESTO por la URL de tu CRM
                 } else {
                     // Falló el login
                     errorMsg.style.display = 'block';
