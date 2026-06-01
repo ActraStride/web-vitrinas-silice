@@ -13,11 +13,11 @@ export const contentData = {
         // ⭐ CONTENIDO DE PRODUCTOS REFACTORIZADO (DIRECTO, TÉCNICO Y ÚNICO PARA CADA UNO)
         products: [ 
             { 
-                img: 'assets/img/v7.webp', // Mostrador
+                img: 'assets/img/v17.webp', // Mostrador
                 title: 'Mostradores', 
                 desc: 'El punto de venta ideal. Diseñados para una interacción clara con el cliente y exhibición segura de productos clave.', 
                 tags: ['Visibilidad Frontal', 'Punto de Venta', 'Estructura de Aluminio'],
-                images: [ 'assets/img/v7.webp', 'assets/img/v3.webp', 'assets/img/v1.webp' ],
+                images: ['assets/img/v17.webp', 'assets/img/v7.webp', 'assets/img/v3.webp', 'assets/img/v1.webp' ],
                 fullDescription: 'Nuestros mostradores son el centro de la interacción comercial. Fabricados con cristal templado y perfiles de aluminio de alta resistencia, ofrecen una exhibición panorámica y segura, ideal para joyerías, ópticas y tiendas de electrónica.',
                 features: [
                     { icon: 'search', text: 'Cristal templado de 6mm para máxima seguridad y claridad' },
@@ -30,11 +30,11 @@ export const contentData = {
                 category: 0
             },
             { 
-                img: 'assets/img/v2.webp', // Exhibidor (de armas)
+                img: 'assets/img/v18.webp', // Exhibidor (de armas)
                 title: 'Exhibidores', 
                 desc: 'Soluciones de exhibición versátiles. Creamos murales, islas y estanterías que se adaptan a tu producto y espacio.', 
                 tags: ['A Medida', 'Mobiliario Comercial', 'Optimización de Espacio'],
-                images: [ 'assets/img/v2.webp', 'assets/img/v15.webp'],
+                images: ['assets/img/v18.webp', 'assets/img/v7.webp', 'assets/img/v2.webp', 'assets/img/v15.webp'],
                 fullDescription: 'Desde exhibidores murales para colecciones hasta islas centrales que definen el flujo de tu tienda. Diseñamos cada pieza pensando en la funcionalidad y la estética, utilizando materiales que complementan tu marca y producto.',
                 features: [
                     { icon: 'box', text: 'Diseño estructural a la medida del producto a exhibir' },
@@ -81,19 +81,19 @@ export const contentData = {
                 category: 0
             },
             { 
-                img: 'assets/img/v14.webp', // Panel Ranurado
-                title: 'Panel Ranurado', 
-                desc: 'Flexibilidad total para tu mercancía. Sistema de panel versátil para colgar y organizar productos de forma dinámica.', 
-                tags: ['Sistema Modular', 'Alta Capacidad', 'Organización Versátil'],
-                images: [ 'assets/img/v14.webp' /* Añadir más si tienes */ ],
-                fullDescription: 'El panel ranurado es la base del retail moderno. Te permite reconfigurar tu exhibición en minutos. Lo integramos en mostradores, murales o góndolas, ofreciendo una solución robusta y adaptable para todo tipo de mercancía.',
+                img: 'assets/img/v16.webp', 
+                title: 'Punto de Venta', 
+                desc: 'Optimización y diseño para tu área de cobro. Solución integrada con vitrina de exhibición y almacenamiento seguro.', 
+                tags: ['Área de Cobro', 'Exhibición Integrada', 'Diseño Funcional'],
+                images: [ 'assets/img/v16.webp' ],
+                fullDescription: 'El punto de venta es el núcleo de tu negocio. Este mostrador combina una vitrina de exhibición de alta visibilidad con compartimentos de trabajo, cajones y almacenamiento cerrado, ofreciendo una solución funcional y estética para la atención al cliente.',
                 features: [
-                    { icon: 'box', text: 'Panel de MDF con ranuras de inserción de aluminio para alta resistencia' },
-                    { icon: 'search', text: 'Compatible con una amplia gama de ganchos, ménsulas y accesorios' },
-                    { icon: 'lightbulb', text: 'Combinable con módulos de mostrador y almacenamiento inferior' },
-                    { icon: 'lock', text: 'Disponible en múltiples acabados y colores para tu marca' }
+                    { icon: 'box', text: 'Estructura robusta con vitrina de vidrio templado de alta resistencia' },
+                    { icon: 'search', text: 'Área de cobro optimizada con espacio para monitor, teclado y cableado' },
+                    { icon: 'lightbulb', text: 'Módulos de almacenamiento inferior con puertas deslizantes y cajonera' },
+                    { icon: 'lock', text: 'Compartimentos diseñados para el resguardo seguro de valores y mercancía' }
                 ],
-                price: '$2,499 MXN',
+                price: '$14,499 MXN',
                 delivery: 'Tiempo de fabricación según diseño (consultar).',
                 category: 0
             },
