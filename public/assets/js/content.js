@@ -98,11 +98,11 @@ export const contentData = {
                 category: 0
             },
             { 
-                img: 'assets/img/v12.webp', // Proyectos a medida
+                img: 'assets/img/v21.webp', // Proyectos a medida
                 title: 'Proyectos a Medida', 
                 desc: '¿Una idea única? La construimos. Nos especializamos en mobiliario comercial complejo y soluciones de exhibición integrales.', 
                 tags: ['Diseño Personalizado', 'Identidad de Marca', 'Solución Integral'],
-                images: [ 'assets/img/v12.webp', 'assets/img/v2.webp', 'assets/img/v10.webp' ],
+                images: ['assets/img/v20.webp', 'assets/img/v12.webp', 'assets/img/v2.webp', 'assets/img/v10.webp' ],
                 fullDescription: 'Transformamos tu visión en realidad. Trabajamos contigo desde el concepto hasta la instalación para crear espacios comerciales únicos. Desde un kiosco para un centro comercial hasta el equipamiento completo de tu tienda.',
                 features: [
                     { icon: 'lightbulb', text: 'Proceso de diseño y renderizado 3D para visualización previa' },
