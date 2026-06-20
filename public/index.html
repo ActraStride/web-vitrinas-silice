@@ -50,43 +50,7 @@
         </div>
     </div>
 
-    <!-- 🔒 MODAL DE LOGIN INTERNO -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal-container">
-            <button class="close-modal" id="closeLoginBtn" aria-label="Cerrar modal" style="position:absolute; right:20px; top:20px; background:none; border:none; font-size:24px; cursor:pointer; color:var(--text-gray);">&times;</button>
-            
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6z"></path>
-                    </svg>
-                </div>
-                <h2 class="modal-title">Acceso Interno</h2>
-                <p class="modal-subtitle">Área restringida</p>
-            </div>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="adminUser" class="form-label">Usuario</label>
-                    <input type="text" id="adminUser" class="form-input" placeholder="Tu usuario" required autocomplete="username">
-                </div>
-                <div class="form-group">
-                    <label for="adminPass" class="form-label">Contraseña</label>
-                    <input type="password" id="adminPass" class="form-input" placeholder="••••••••" required autocomplete="current-password">
-                </div>
-                
-                <!-- AQUÍ ESTÁ EL RECUÉRDAME -->
-                <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
-                    <input type="checkbox" id="rememberMe" style="accent-color: var(--accent-blue); width: 18px; height: 18px; cursor: pointer;">
-                    <label for="rememberMe" class="form-label" style="margin-bottom: 0; cursor: pointer;">Mantener sesión iniciada</label>
-                </div>
-
-                <div id="loginErrorMsg" style="color: #ff5252; font-size: 0.9rem; display: none; margin-bottom: 1rem; text-align: center;">Credenciales incorrectas</div>
-                
-                <button type="submit" class="btn-submit" id="loginSubmitBtn">Entrar</button>
-            </form>
-        </div>
-    </div>
+    
     
     <div class="overlay-menu" id="menuOverlay"></div>
     <header id="header">
@@ -105,7 +69,7 @@
                         <li><a data-section="muebleria">Mueblería</a></li>
                         <li><a id="contactNavBtn">Contacto</a></li>
                         <li>
-                            <a href="/crm/" id="loginBtn" style="cursor: pointer; opacity: 0.6;" aria-label="Acceso" title="Acceso Interno">
+                            <a href="/crm/login" style="cursor: pointer; opacity: 0.6;" aria-label="Acceso" title="Acceso Interno">
                                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle;">
                                     <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
                                 </svg>
