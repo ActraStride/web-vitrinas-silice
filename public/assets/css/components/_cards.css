@@ -2,7 +2,7 @@
    COMPONENTE: TARJETAS DE PRODUCTO
    ============================================ */
 .product-card {
-    background: color-mix(in srgb, var(--primary-dark) 80%, var(--primary-blue) 20%);
+    background: var(--primary-dark);
     backdrop-filter: blur(20px);
     border: 1px solid color-mix(in srgb, var(--text-light) 5%, transparent);
     border-radius: var(--border-radius);
@@ -15,7 +15,6 @@
 .product-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-luxury);
-    background: var(--primary-blue);
 }
 
 .product-card:hover .product-image img {
